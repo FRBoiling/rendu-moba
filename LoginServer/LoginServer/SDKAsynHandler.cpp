@@ -606,7 +606,7 @@ void SDKAsynHandler::PostMsg(const char* pMsg, int length, int msgid, int gcneti
 
 void SDKAsynHandler::AsynHandleLoiginCheckMsg(ConnInfo* pConnInfo)
 {
-	//½«ÓÃ»§ uid ºÍ Æ½Ì¨ ½áºÏÎªÎ¨Ò»ÕÊºÅ
+	//å°†ç”¨æˆ· uid å’Œ å¹³å° ç»“åˆä¸ºå”¯ä¸€å¸å·
 	bool ret_flag = false;
 	string account = "";
 	string creator = "";
@@ -681,7 +681,7 @@ int SDKAsynHandler::CheckLogin(GCToLS::AskLogin& sAskLogin, int gcnetid){
 	{
 		boost::mutex::scoped_lock lock(m_UserLoginDataMapMutex);
 		if (m_UserLoginDataMap.find(gcnetid) != m_UserLoginDataMap.end()){
-			ELOG(LOG_WARNNING, "Íæ¼Ò(%d)¶à´ÎµÇÂ¼£¡£¡µ«·şÎñÆ÷Êı¾İ»¹Ã»·µ»ØÊı¾İ¸ø¿Í»§¶Ë", sAskLogin.uin());
+			ELOG(LOG_WARNNING, "ç©å®¶(%d)å¤šæ¬¡ç™»å½•ï¼ï¼ä½†æœåŠ¡å™¨æ•°æ®è¿˜æ²¡è¿”å›æ•°æ®ç»™å®¢æˆ·ç«¯", sAskLogin.uin());
 			return eNormal;
 		}
 		m_UserLoginDataMap[gcnetid] = pData;
@@ -769,7 +769,7 @@ int SDKAsynHandler::AddUserToLoginMap(ConnInfo* pConnInfo, EUserPlatform eplat, 
 		return FALSE;
 	}
 
-	//Ó¦µ±°ÑÆ½Ì¨µÄÃ¶¾ÙÖµÓëuinÕûºÏÎªÎ¨Ò»±êÊ¶´æ´¢
+	//åº”å½“æŠŠå¹³å°çš„æšä¸¾å€¼ä¸uinæ•´åˆä¸ºå”¯ä¸€æ ‡è¯†å­˜å‚¨
 	LoginUserInfo sTempInfo;
 	sTempInfo.plat = sUserData.platFrom;
 	sTempInfo.sessionid = sUserData.sessionid;
@@ -835,6 +835,3 @@ void SDKAsynHandler::PostToLoginFailQueue(EFBAllErrorCode ErrorCode, int gcnetid
 	ELOG(LOG_WARNNING, "Fail with netid:%d.", gcnetid);
 	SdkConnector::GetInstance().SendToFailData(ErrorCode, gcnetid);
 }
-
-
-

@@ -1,4 +1,4 @@
-// LoginServer.cpp : ¶¨Òå¿ØÖÆÌ¨Ó¦ÓÃ³ÌĞòµÄÈë¿Úµã¡£
+// LoginServer.cpp : å®šä¹‰æ§åˆ¶å°åº”ç”¨ç¨‹åºçš„å…¥å£ç‚¹ã€‚
 //
 
 #include "stdafx.h"
@@ -66,8 +66,8 @@ bool Init()
 		printf("can't load server list config.\n");
 		return false;
 	}
-	INetSessionMgr::GetInstance()->CreateListener(gLsConfig.bs_listen_port,102400,102400,0,&gBalanceSessionFactory);//GS¶Ë¿Ú³¤Á¬½Ó
-	INetSessionMgr::GetInstance()->CreateListener(gLsConfig.client_listen_port,102400,102400,1,&gClientSessionFactory);//GC¶Ë¿Ú¶ÌÁ¬½Ó
+	INetSessionMgr::GetInstance()->CreateListener(gLsConfig.bs_listen_port,102400,102400,0,&gBalanceSessionFactory);//GSç«¯å£é•¿è¿æ¥
+	INetSessionMgr::GetInstance()->CreateListener(gLsConfig.client_listen_port,102400,102400,1,&gClientSessionFactory);//GCç«¯å£çŸ­è¿æ¥
 	SDKAsynHandler::GetInstance().Init();
 	return true;
 }
@@ -147,9 +147,9 @@ bool LoadServerList()
 		string temp_addr = server_addr;
 		string temp_name = server_name;
 
-		//ÏÈ°Ñ ascii ×ªÎª unicode 
+		//å…ˆæŠŠ ascii è½¬ä¸º unicode 
 		std::wstring  wstr_addr = SdkConnector::Acsi2WideByte(temp_addr);
-		//×îºó°Ñ unicode ×ªÎª utf8  
+		//æœ€åæŠŠ unicode è½¬ä¸º utf8  
 		string utf8_addr = SdkConnector::Unicode2Utf8(wstr_addr);
 
 		std::wstring  wstr_name = SdkConnector::Acsi2WideByte(temp_name);

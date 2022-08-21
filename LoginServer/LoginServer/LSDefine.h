@@ -4,9 +4,9 @@
 
 //Sdk Message
 //91_ios
-const string appid_91 = "115561";														//Í¬¿Í»§¶ËÒ»ÖÂµÄAPPID
-const string appkey_91 = "5fd1729c881082a107591fb88234c6b94180816ffd5abffa";				//Í¬¿Í»§¶ËÒ»ÖÂµÄAPPKEY
-const string goUrl_91 = "http://service.sj.91.com/usercenter/AP.aspx?";					//Æ½Ì¨·şÎñÆ÷µØÖ· getÄ£Ê½·¢ËÍ
+const string appid_91 = "115561";														//åŒå®¢æˆ·ç«¯ä¸€è‡´çš„APPID
+const string appkey_91 = "5fd1729c881082a107591fb88234c6b94180816ffd5abffa";				//åŒå®¢æˆ·ç«¯ä¸€è‡´çš„APPKEY
+const string goUrl_91 = "http://service.sj.91.com/usercenter/AP.aspx?";					//å¹³å°æœåŠ¡å™¨åœ°å€ getæ¨¡å¼å‘é€
 
 //PP_iOS
 const string appid_pp = "4069";
@@ -19,14 +19,14 @@ const string appkey_tb = "YNlxI@Kh5u7Ro2qAYkax@UJhtE7od1qX";
 const string goUrl_tb1 = "http://tgi.tongbu.com/check.aspx?";		//get	
 const string goUrl_tb2 = "http://tgi.tongbu.com/checkv2.aspx?";		//get
 
-//CMGE_iOS_Ô½Óü
+//CMGE_iOS_è¶Šç‹±
 const string gameid_cmge_JB = "D10080";						//product_id
 const string serverid_cmge_JB = "M1098";						
 const string appkey_cmge_JB = "640ro08insrj7x717q16";	//client_id
 const string gamekey_cmge_JB = "w3my7nnlvd3b0skrg0d2";		//secret_key
 const string synkey_cmge_JB = "f2pyef52wvrj1u8hx6s4";			
 const string projectID_cmge_JB = "P11290";
-//CMGE_iOS_Õı°æ
+//CMGE_iOS_æ­£ç‰ˆ
 const string gameid_cmge_ZB = "D10081";
 const string serverid_cmge_ZB = "M1099";
 const string appkey_cmge_ZB = "42ygskk1vguw0nx706kk";

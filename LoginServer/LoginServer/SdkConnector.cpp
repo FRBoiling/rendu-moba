@@ -701,7 +701,7 @@ wstring SdkConnector::Acsi2WideByte(string& strascii)
 
 void SdkConnector::PostMsgToGC_NotifyServerList(int gcnetid)
 {
-	// ·¢ËÍµÚ2ÏûÏ¢£ºµÇÂ¼³É¹¦£¬bs·şÎñÆ÷ÁĞ±í
+	// å‘é€ç¬¬2æ¶ˆæ¯ï¼šç™»å½•æˆåŠŸï¼ŒbsæœåŠ¡å™¨åˆ—è¡¨
 	LSToGC::ServerBSAddr ServerList;
 	map<UINT32,sServerAddr>::iterator iter = gAllServerAddr.begin();
 	for(; iter != gAllServerAddr.end(); iter ++){
@@ -716,7 +716,7 @@ void SdkConnector::PostMsgToGC_NotifyServerList(int gcnetid)
 
 void SdkConnector::PostMsgToGC_NotifyLoginFail(int errorcode, int gcnetid)
 {
-	// ·¢ËÍµÚ1ÏûÏ¢£ºµÇÂ¼Ê§°Ü
+	// å‘é€ç¬¬1æ¶ˆæ¯ï¼šç™»å½•å¤±è´¥
 	LSToGC::LoginResult sMsg;
 	sMsg.set_result(errorcode);
 	INetSessionMgr::GetInstance()->SendMsgToSession(ST_SERVER_LS_OnlyGC, gcnetid, sMsg, sMsg.msgid());
