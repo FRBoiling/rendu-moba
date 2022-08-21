@@ -31,7 +31,7 @@ public:
 		return false;
 	}
 public:
-	virtual ISDSession* UCAPI CreateSession(ISDConnection* pConnection) { return NULL; /*��д*/}
+	virtual ISDSession* UCAPI CreateSession(ISDConnection* pConnection) { return NULL; /*ÖØÐ´*/}
 	virtual ICliSession* UCAPI CreateConnectorSession(SESSION_TYPE type);
 };
 

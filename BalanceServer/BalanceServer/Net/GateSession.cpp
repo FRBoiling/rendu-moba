@@ -111,7 +111,7 @@ bool CGateSession::Msg_Handle_Dispath(const char* pMsg, int n32MsgLength, INetSe
 
 bool CGateSession::Msg_Handle_OneUserLoginTokenRet( const char* pMsg, int n32MsgLength, INetSession* vthis , int n32MsgID )
 {
-	// ·¢ËÍµÚ4ÏûÏ¢£ºgsÔÊĞí¸ÃÓÃ»§Á¬½Ó£¬¸æÖªgsµØÖ·ºÍÁ¬½ÓÃÜÂë
+	// å‘é€ç¬¬4æ¶ˆæ¯ï¼šgså…è®¸è¯¥ç”¨æˆ·è¿æ¥ï¼Œå‘ŠçŸ¥gsåœ°å€å’Œè¿æ¥å¯†ç 
 	map<UINT32,sOneGsInfo>::iterator findit = gAllGsInfo.find(vthis->GetLogicID());
 
 	if (findit != gAllGsInfo.end())

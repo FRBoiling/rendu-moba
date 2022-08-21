@@ -1,4 +1,4 @@
-// BalanceServer.cpp : ¶¨Òå¿ØÖÆÌ¨Ó¦ÓÃ³ÌÐòµÄÈë¿Úµã¡£
+// BalanceServer.cpp : å®šä¹‰æŽ§åˆ¶å°åº”ç”¨ç¨‹åºçš„å…¥å£ç‚¹ã€‚
 //
 
 #include "stdafx.h"
@@ -57,8 +57,8 @@ bool Init()
 		printf("can't load all config.\n");
 		return false;
 	}
-	INetSessionMgr::GetInstance()->CreateListener(gBsConfig.gs_listen_port,102400,102400,0,&gGateSessionFactory);//GS¶Ë¿Ú³¤Á¬½Ó
-	INetSessionMgr::GetInstance()->CreateListener(gBsConfig.client_listen_port,102400,102400,1,&gClientSessionFactory);//GC¶Ë¿Ú¶ÌÁ¬½Ó
+	INetSessionMgr::GetInstance()->CreateListener(gBsConfig.gs_listen_port,102400,102400,0,&gGateSessionFactory);//GSç«¯å£é•¿è¿žæŽ¥
+	INetSessionMgr::GetInstance()->CreateListener(gBsConfig.client_listen_port,102400,102400,1,&gClientSessionFactory);//GCç«¯å£çŸ­è¿žæŽ¥
 	INetSessionMgr::GetInstance()->CreateConnector(ST_CLIENT_B2L,gBsConfig.ls_ip.c_str(),gBsConfig.ls_port,102400,102400,0);
 	return true;
 }

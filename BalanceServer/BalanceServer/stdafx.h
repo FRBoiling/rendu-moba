@@ -1,6 +1,6 @@
-// stdafx.h : ±ê×¼ÏµÍ³°üº¬ÎÄ¼şµÄ°üº¬ÎÄ¼ş£¬
-// »òÊÇ¾­³£Ê¹ÓÃµ«²»³£¸ü¸ÄµÄ
-// ÌØ¶¨ÓÚÏîÄ¿µÄ°üº¬ÎÄ¼ş
+// stdafx.h : æ ‡å‡†ç³»ç»ŸåŒ…å«æ–‡ä»¶çš„åŒ…å«æ–‡ä»¶ï¼Œ
+// æˆ–æ˜¯ç»å¸¸ä½¿ç”¨ä½†ä¸å¸¸æ›´æ”¹çš„
+// ç‰¹å®šäºé¡¹ç›®çš„åŒ…å«æ–‡ä»¶
 //
 
 #pragma once
@@ -12,7 +12,7 @@
 #include <list>
 using namespace std;
 
-// TODO: ÔÚ´Ë´¦ÒıÓÃ³ÌĞòĞèÒªµÄÆäËûÍ·ÎÄ¼ş
+// TODO: åœ¨æ­¤å¤„å¼•ç”¨ç¨‹åºéœ€è¦çš„å…¶ä»–å¤´æ–‡ä»¶
 #include <WinSock2.h>
 #include <Windows.h>
 #include <conio.h>
@@ -49,9 +49,9 @@ struct sOneGsInfo
 {
 	bool gs_isLost;
 	UINT32 gs_nets;
-	INT32 gs_gc_count;//gs µ±Ç°Á¬½ÓÊı//
-	string gs_IpExport;//gs ¶ÔÍâ¹«²¼µØÖ·//
-	string gs_Ip;//gs ¶ÔÄÚÑéÖ¤µØÖ·//
+	INT32 gs_gc_count;//gs å½“å‰è¿æ¥æ•°//
+	string gs_IpExport;//gs å¯¹å¤–å…¬å¸ƒåœ°å€//
+	string gs_Ip;//gs å¯¹å†…éªŒè¯åœ°å€//
 	UINT32 gs_Port;
 	UINT32 gs_Id;
 };

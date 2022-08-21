@@ -45,7 +45,7 @@ bool CClientSession::Msg_Handle_Dispath(const char* pMsg, int n32MsgLength, INet
 
 bool CClientSession::MSG_OneClientLogin( const char* pMsg, int n32MsgLength, INetSession* vthis, int n32MsgID )
 {
-	// ÊÕµ½µÚ2ÏûÏ¢£º¿Í»§¶ËÁ¬½Óbs£¬bsÏòlsÇëÇóÓÃ»§ÊÇ·ñºÏ·¨Á¬½Ó
+	// æ”¶åˆ°ç¬¬2æ¶ˆæ¯ï¼šå®¢æˆ·ç«¯è¿æ¥bsï¼Œbså‘lsè¯·æ±‚ç”¨æˆ·æ˜¯å¦åˆæ³•è¿æ¥
 	std::auto_ptr<GCToBS::OneClinetLogin> sOneClientLogin(new GCToBS::OneClinetLogin);
 
 	bool bRet = sOneClientLogin->ParseFromArray(pMsg,n32MsgLength);

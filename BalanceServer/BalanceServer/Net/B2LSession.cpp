@@ -54,7 +54,7 @@ bool CB2LSession::Msg_User_Login(const char* pMsg, int n32MsgLength, INetSession
 	std::auto_ptr<GCToBS::OneClinetLogin> sUserLoginInfo(new GCToBS::OneClinetLogin);
 	sUserLoginInfo->ParseFromArray(pMsg, n32MsgLength);
 
-	// ·¢ËÍµÚ3ÏûÏ¢£ºÓÃ»§ÑéÖ¤ÊÇ·ñ³É¹¦£¬Èç¹ûÑéÖ¤³É¹¦£¬ÇëÇó·ÖÅägs¸øÓÃ»§
+	// å‘é€ç¬¬3æ¶ˆæ¯ï¼šç”¨æˆ·éªŒè¯æ˜¯å¦æˆåŠŸï¼Œå¦‚æžœéªŒè¯æˆåŠŸï¼Œè¯·æ±‚åˆ†é…gsç»™ç”¨æˆ·
 	BSToGC::ClinetLoginCheckRet sMsg;
 	sMsg.set_login_success(sUserLoginInfo->login_success());
 	INetSessionMgr::GetInstance()->SendMsgToSession(ST_SERVER_BS_OnlyGC,sUserLoginInfo->nsid(),sMsg, sMsg.mgsid());
