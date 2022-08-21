@@ -31,8 +31,8 @@ public:
 		return false;
 	}
 public:
-	virtual ISDSession* UCAPI CreateSession(ISDConnection* pConnection) { return NULL; /*ÖØĞ´*/}
-	virtual ICliSession* UCAPI CreateConnectorSession(SESSION_TYPE type) { return NULL; /*²»ĞèÒª*/}
+	virtual ISDSession* UCAPI CreateSession(ISDConnection* pConnection) { return NULL; /*é‡å†™*/}
+	virtual ICliSession* UCAPI CreateConnectorSession(SESSION_TYPE type) { return NULL; /*ä¸éœ€è¦*/}
 };
 
 class CClientSessionFactory : public ISDSessionFactory
