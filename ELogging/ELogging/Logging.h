@@ -8,7 +8,7 @@
 class Active;
 class Buffer;
 
-// ×¢Òâ£ºÕâ¸öÃ¶¾ÙÖµÓĞ2¸ö//
+// æ³¨æ„ï¼šè¿™ä¸ªæšä¸¾å€¼æœ‰2ä¸ª//
 enum LoggingEnum{
 	LOG_INFO,
 	LOG_DBBUG,
