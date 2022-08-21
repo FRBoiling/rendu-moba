@@ -15,12 +15,12 @@ namespace CentralServer
 	{  
 		INT32																				m_curtMaxMailIdx;
 
-		//È«·şÓÊ¼ş(°´ÕÕÊ±¼äÅÅĞò,Ò²¾ÍÊÇËµmailId ´Ó´ó-->Ğ¡)
+		//å…¨æœé‚®ä»¶(æŒ‰ç…§æ—¶é—´æ’åº,ä¹Ÿå°±æ˜¯è¯´mailId ä»å¤§-->å°)
 		std::map<INT32, MailDBData>															m_mapGameMail;
 
-		//ÁÙÊ±ÑÓÊ±µÄÓÊ¼ş,ÓÊ¼şid,ÊÇ·ñÓÊ¼ş·¢ËÍ
+		//ä¸´æ—¶å»¶æ—¶çš„é‚®ä»¶,é‚®ä»¶id,æ˜¯å¦é‚®ä»¶å‘é€
 		std::map<INT64, std::map<INT32,bool> >												m_IfHasSendMail;
-		//¸öÈËÓÊ¼ş
+		//ä¸ªäººé‚®ä»¶
 		std::map<INT64/*objIdx*/, std::map<INT32,tagMailState> >							m_mapPersonalMail;  
 
 		INT64																				m_LastRefMailTime;
@@ -39,7 +39,7 @@ namespace CentralServer
 
 		std::map<INT32, MailDBData>		&			getCurtGameMail()								{return						m_mapGameMail;}
 
-		//¿Í»§¶Ë²Ù×÷ÓÊ¼ş
+		//å®¢æˆ·ç«¯æ“ä½œé‚®ä»¶
 		bool	closeOrGetMailGift(CCSUser *pUser, INT32 mailId );   
 
 		INT32	getMailInfoById(INT64 objIdx,INT32 mailId,   GSToGC::MailInfo & mailInfo,INT32 &nstate); 
@@ -61,11 +61,11 @@ namespace CentralServer
 		bool	checkIfMailHasSend(INT64 objIdx, INT32 mailId); 
 
 		void   addPersonalMail(INT64 objIdx, vector<UserMailDBData> &pmail	);
-		//ÊÇ·ñÁìÈ¡
+		//æ˜¯å¦é¢†å–
 		bool   checkIfMailHasRecv(INT64 objIdx, INT32 mailId);
-		//ÊÇ·ñÓÊ¼ş¹ıÆÚ
+		//æ˜¯å¦é‚®ä»¶è¿‡æœŸ
 		bool  checkIfMailHasTimeOver(INT32 mailId);
-		//ÓÊ¼şÏûÏ¢
+		//é‚®ä»¶æ¶ˆæ¯
 		void  getShortMailMasg(INT64 objId, INT32 mailid,INT32 mailtype, std::string& mailtitle, INT32 mailState, GSToGC::NotifyMailList&  mailList);
 	private:
 		void	addPersonalMail( const MailDBData  & mail);    

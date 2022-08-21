@@ -5,7 +5,7 @@ using namespace CentralServer;
 
 #define MAX_ROOM_PLAYERS 100
 
-/*·¿¼ä*/
+/*æˆ¿é—´*/
 class CCSBattleRoom
 {
 public:

@@ -1,11 +1,11 @@
-// stdafx.h : ±ê×¼ÏµÍ³°üº¬ÎÄ¼şµÄ°üº¬ÎÄ¼ş£¬
-// »òÊÇ¾­³£Ê¹ÓÃµ«²»³£¸ü¸ÄµÄ
-// ÌØ¶¨ÓÚÏîÄ¿µÄ°üº¬ÎÄ¼ş
+// stdafx.h : æ ‡å‡†ç³»ç»ŸåŒ…å«æ–‡ä»¶çš„åŒ…å«æ–‡ä»¶ï¼Œ
+// æˆ–æ˜¯ç»å¸¸ä½¿ç”¨ä½†ä¸å¸¸æ›´æ”¹çš„
+// ç‰¹å®šäºé¡¹ç›®çš„åŒ…å«æ–‡ä»¶
 //
 
 #pragma once
 
-#define WIN32_LEAN_AND_MEAN             //  ´Ó Windows Í·ÎÄ¼şÖĞÅÅ³ı¼«ÉÙÊ¹ÓÃµÄĞÅÏ¢
+#define WIN32_LEAN_AND_MEAN             //  ä» Windows å¤´æ–‡ä»¶ä¸­æ’é™¤æå°‘ä½¿ç”¨çš„ä¿¡æ¯
 
 #pragma warning(disable:4996)
 
@@ -78,7 +78,7 @@ using namespace std;
 #include "SSElementArr.h"
 #include "SSElementArr.inl"
 #include "CSUserDBDataStruct.h"
-// TODO: ÔÚ´Ë´¦ÒıÓÃ³ÌĞòĞèÒªµÄÆäËûÍ·ÎÄ¼ş
+// TODO: åœ¨æ­¤å¤„å¼•ç”¨ç¨‹åºéœ€è¦çš„å…¶ä»–å¤´æ–‡ä»¶
 
 namespace CentralServer{
 	class ICSSSInfo
@@ -280,7 +280,7 @@ INT64 GetUTCMiliSecond();
 ptime&	GetInitPtime();
 }
 using namespace CentralServer;
-/*·¿¼äÈËÔ±*/
+/*æˆ¿é—´äººå‘˜*/
 class IRoomPlayer
 {
 public:
@@ -305,7 +305,7 @@ public:
 	BOOLEAN bIfReStart;
 };
 
-/*Æ¥ÅäÈËÔ±*/
+/*åŒ¹é…äººå‘˜*/
 class IMatchPlayer
 {
 public:

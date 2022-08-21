@@ -1,4 +1,4 @@
-// CSUserMgr.cpp : ¶¨Òå DLL Ó¦ÓÃ³ÌĞòµÄµ¼³öº¯Êı¡£
+// CSUserMgr.cpp : å®šä¹‰ DLL åº”ç”¨ç¨‹åºçš„å¯¼å‡ºå‡½æ•°ã€‚
 
 #include "stdafx.h"
 #include <iostream>
@@ -45,7 +45,7 @@ const int  RefreshCardBegin = 130005;
 #else
 	const int RefreshNum = 0;
 #endif
-	//´Ëº¯ÊıÊÇÔÚnew UserÊ±¼ÓÔØÊı¾İ¿â£¬Ò»ÇĞ¶¼ÊÇĞÂµÄ
+	//æ­¤å‡½æ•°æ˜¯åœ¨new Useræ—¶åŠ è½½æ•°æ®åº“ï¼Œä¸€åˆ‡éƒ½æ˜¯æ–°çš„
 	INT32	CCSUser::LoadDBData(SUserDBData &crsDBData)
 	{
 		m_sUserDBData = crsDBData;
@@ -59,18 +59,18 @@ const int  RefreshCardBegin = 130005;
 			auto itemID = RefreshCardBegin + i;
 			auto cfg = CCSCfgMgr::getInstance().GetOtherItemCfg(itemID);
 			if (!cfg){
-				ELOG(LOG_ERROR, "Ï´Á·È«ÅäÖÃÎªnull");
+				ELOG(LOG_ERROR, "æ´—ç»ƒå…¨é…ç½®ä¸ºnull");
 				continue;
 			}
 			SUserItemInfo sSUserItemInfo;
 			sSUserItemInfo.item_id = itemID;
 			sSUserItemInfo.item_num = 5;
 			sSUserItemInfo.end_time = -1;
-			ELOG(LOG_DBBUG, "Ôö¼ÓÁÙÊ±Ï´Á·");
+			ELOG(LOG_DBBUG, "å¢åŠ ä¸´æ—¶æ´—ç»ƒ");
 			m_sUserDBData.item_Map[sSUserItemInfo.item_id] = sSUserItemInfo;
 		}
 
-		GetTaskMgr()->UnpackTaskData(m_sUserDBData.szTaskData);//½âÎöÈÎÎñÊı¾İ
+		GetTaskMgr()->UnpackTaskData(m_sUserDBData.szTaskData);//è§£æä»»åŠ¡æ•°æ®
 
 		return eNormal;
 	}
@@ -108,16 +108,16 @@ const int  RefreshCardBegin = 130005;
 		SUserHeroDBData sDBData;
 		auto itr =  m_sUserDBData.heroListMap.find(pCfg->un32HeroID);
 		if (itr != m_sUserDBData.heroListMap.end()){
-			//Èç¹ûÊÇ¹ºÂòÊ±ÏŞÓ¢ĞÛ
+			//å¦‚æœæ˜¯è´­ä¹°æ—¶é™è‹±é›„
 			if (pCfg->useTimeSpan > 0){
 				if (itr->second.endTime != -1){
-					//Èç¹û»¹Ã»¹ıÆÚ
+					//å¦‚æœè¿˜æ²¡è¿‡æœŸ
 					if ( (itr->second.endTime + itr->second.buyTime) - time(NULL) > 0){
 						itr->second.endTime += pCfg->useTimeSpan * 3600;
 						pList->set_expired_time(itr->second.endTime + itr->second.buyTime - time(NULL));
 					}
 					else{
-						//Èç¹ûÒÑ¾­¹ıÆÚ
+						//å¦‚æœå·²ç»è¿‡æœŸ
 						itr->second.buyTime = time(NULL);
 						itr->second.endTime =  pCfg->useTimeSpan * 3600;
 						pList->set_expired_time(pCfg->useTimeSpan * 3600);
@@ -125,19 +125,19 @@ const int  RefreshCardBegin = 130005;
 				}
 			}
 			else{
-				//Èç¹ûÊÇ¹ºÂòÓÀ¾ÃÓ¢ĞÛ
+				//å¦‚æœæ˜¯è´­ä¹°æ°¸ä¹…è‹±é›„
 				if (itr != m_sUserDBData.heroListMap.end()){
 					itr->second.endTime = -1;
 					pList->set_expired_time(-1);
 				}
 			}
-			//¸üĞÂÊı¾İ¿â
+			//æ›´æ–°æ•°æ®åº“
 			UpdateHero(itr->second.un32HeroID, itr->second.endTime);
 		}
 		else{
 			sDBData.un32HeroID = pCfg->un32HeroID;
 			sDBData.buyTime = time(NULL);
-			//Èç¹û¹ºÂòµÄÊÇÊ±ÏŞÓ¢ĞÛ
+			//å¦‚æœè´­ä¹°çš„æ˜¯æ—¶é™è‹±é›„
 			if (pCfg->useTimeSpan > 0){
 				sDBData.endTime = pCfg->useTimeSpan * 3600;
 				pList->set_expired_time(pCfg->useTimeSpan * 3600);
@@ -146,10 +146,10 @@ const int  RefreshCardBegin = 130005;
 				sDBData.endTime = -1;
 				pList->set_expired_time(-1);
 			}
-			//¼ÓÈëÊı¾İ¿â
+			//åŠ å…¥æ•°æ®åº“
 			AddHero(sDBData);
 		}
-		//²éÑ¯Ó¢ĞÛ¶ÔÓ¦µÄÓÀ¾ÃÓ¢ĞÛID£¬ÒòÎªÉÌÆ·±í¿ÉÄÜÊÇÊ±ÏŞÓ¢ĞÛ
+		//æŸ¥è¯¢è‹±é›„å¯¹åº”çš„æ°¸ä¹…è‹±é›„IDï¼Œå› ä¸ºå•†å“è¡¨å¯èƒ½æ˜¯æ—¶é™è‹±é›„
 		SHeroBuyCfg *temp_cfg = CCSCfgMgr::getInstance().GetHeroClientMatchCfg(pCfg->un32HeroID);
 		if (temp_cfg == NULL)
 		{
@@ -171,7 +171,7 @@ const int  RefreshCardBegin = 130005;
 		GSToGC::NotifyCSHeroList sMsg;
 		GSToGC::NotifyCSHeroList::HeroListCfg* pList = sMsg.add_herocfg();
 		SHeroBuyCfg *t_cfg = CCSCfgMgr::getInstance().GetHeroClientMatchCfg(heroid);
-		//Ê±ÏŞÓ¢ĞÛÎïÆ·ID×ªÎª¿Í»§¶Ë±íÏÖËùĞèÒªID
+		//æ—¶é™è‹±é›„ç‰©å“IDè½¬ä¸ºå®¢æˆ·ç«¯è¡¨ç°æ‰€éœ€è¦ID
 		if (t_cfg != NULL)
 		{
 			pList->set_heroid(t_cfg->un32CommondityID);
@@ -183,20 +183,20 @@ const int  RefreshCardBegin = 130005;
 		auto itr =  m_sUserDBData.heroListMap.find(heroid);
 		if (itr != m_sUserDBData.heroListMap.end())
 		{
-			//Èç¹ûÒÑÓĞÓÀ¾ÃÓ¢ĞÛ
+			//å¦‚æœå·²æœ‰æ°¸ä¹…è‹±é›„
 			if (-1 == itr->second.endTime){
 				return eEC_HavedPerpetualHero;
 			}
 
 			if (0 < itr->second.buyTime + itr->second.endTime - time(NULL) && iftimeAdd){
-				//Ê±ÏŞÓ¢ĞÛ»¹Î´¹ıÆÚ
+				//æ—¶é™è‹±é›„è¿˜æœªè¿‡æœŸ
 				itr->second.endTime += addtime;
 				pList->set_expired_time(itr->second.endTime + itr->second.buyTime - time(NULL));
 			}
 			else{
-				//Ê±ÏŞÓ¢ĞÛÒÑ¹ıÆÚ»òÊ±¼äÎª²»¿ÉÀÛ¼Ó
+				//æ—¶é™è‹±é›„å·²è¿‡æœŸæˆ–æ—¶é—´ä¸ºä¸å¯ç´¯åŠ 
 				if (itr->second.buyTime + itr->second.endTime > addtime + time(NULL)){
-					//Ê±¼ä²»¿ÉÀÛ¼ÓÇÒÊ£ÓàÊ±¼ä´óÓÚÀÛ¼ÓÊ±¼ä
+					//æ—¶é—´ä¸å¯ç´¯åŠ ä¸”å‰©ä½™æ—¶é—´å¤§äºç´¯åŠ æ—¶é—´
 					return eNormal;
 				} 
 				else{
@@ -292,7 +292,7 @@ const int  RefreshCardBegin = 130005;
 
 		GetCSKernelInstance()->PostMsgToGC(m_sUserNetInfo, sMsg, sMsg.msgid());
 		ELOG(LOG_DBBUG, "euip rune(%u) to pos(%d) success", runeID, toPos);
-		//ÈÕÖ¾
+		//æ—¥å¿—
 		{
 			stringstream mystream; 
 			mystream << runeID << LOG_SIGN;
@@ -324,7 +324,7 @@ const int  RefreshCardBegin = 130005;
 				EquipRuneArray& sEquipRuneArray = iter->second;
 				UINT32* pRuneId = sEquipRuneArray.GetValueFromIndex(n16RuneFromPos);
 				if (!pRuneId){
-					ELOG(LOG_ERROR, "·ûÎÄidÕÒ²»µ½");
+					ELOG(LOG_ERROR, "ç¬¦æ–‡idæ‰¾ä¸åˆ°");
 					break;
 				}
 
@@ -346,13 +346,13 @@ const int  RefreshCardBegin = 130005;
 		} while (false);
 
 		if (!ifUnEquipSuccess){
-			ELOG(LOG_ERROR, "·ûÎÄĞ¶ÔØÊ§°Ü");
+			ELOG(LOG_ERROR, "ç¬¦æ–‡å¸è½½å¤±è´¥");
 			return eEC_AskUseRunesFail;
 		}
 
 		UpdateRuneBagJson();
 		UpdateRuneSlotJson();
-		//ÈÕÖ¾
+		//æ—¥å¿—
 		{
 			stringstream mystream;
 			mystream << page << LOG_SIGN;
@@ -396,7 +396,7 @@ const int  RefreshCardBegin = 130005;
 
 			pRuneCfg = CCSCfgMgr::getInstance().GetRanmRuneFromLevel(pCfg1->un8Level + 1);
 			if (NULL == pRuneCfg){
-				ELOG(LOG_ERROR, "µÈ¼¶ÏàÍ¬·ûÎÄºÏ³ÉÊ§°Ü");
+				ELOG(LOG_ERROR, "ç­‰çº§ç›¸åŒç¬¦æ–‡åˆæˆå¤±è´¥");
 				return eEC_AskComposeRunesFail;
 			}
 
@@ -410,7 +410,7 @@ const int  RefreshCardBegin = 130005;
 			}
 			pRuneCfg = CCSCfgMgr::getInstance().GetNextLevelRunesFromFixedRunesID(pCfg1->eOT);
 			if (NULL == pRuneCfg){
-				ELOG(LOG_ERROR, "Í¬Ò»ID·ûÎÄ ÕÒ²»µ½ÏÂÒ»Ëæ»ú·ûÎÄ");
+				ELOG(LOG_ERROR, "åŒä¸€IDç¬¦æ–‡ æ‰¾ä¸åˆ°ä¸‹ä¸€éšæœºç¬¦æ–‡");
 				return eEC_AskComposeRunesFail;
 			}
 
@@ -419,7 +419,7 @@ const int  RefreshCardBegin = 130005;
 
 		bool ifCostSucess = ConsumeCombine(level);
 		if (!ifCostSucess){
-			ELOG(LOG_ERROR, "µÈ¼¶ÏàÍ¬·ûÎÄºÏ³ÉÊ§°Ü");
+			ELOG(LOG_ERROR, "ç­‰çº§ç›¸åŒç¬¦æ–‡åˆæˆå¤±è´¥");
 			return eEC_AskComposeRunesFail;
 		}
 
@@ -502,7 +502,7 @@ const int  RefreshCardBegin = 130005;
 				if (n32Conmsume <= m_sUserDBData.sPODUsrDBData.n64Gold){
 					m_sUserDBData.ChangeUserDbData(eUserDBType_Gold, -n32Conmsume);
 					ifBuySuccess = true;
-					ELOG(LOG_SpecialDebug, "¹ºÂò»¨·Ñ½ğ±Ò%d£¬Ê£Óà:%lld", n32Conmsume, m_sUserDBData.sPODUsrDBData.n64Gold);
+					ELOG(LOG_SpecialDebug, "è´­ä¹°èŠ±è´¹é‡‘å¸%dï¼Œå‰©ä½™:%lld", n32Conmsume, m_sUserDBData.sPODUsrDBData.n64Gold);
 				}
 				else{
 					return eEC_NotEnoughGold;
@@ -511,7 +511,7 @@ const int  RefreshCardBegin = 130005;
 			case eConsmue_Diamond:
 				if (n32Conmsume <= m_sUserDBData.sPODUsrDBData.n64Diamond){
 					m_sUserDBData.ChangeUserDbData(eUserDBType_Diamond, -n32Conmsume);
-					ELOG(LOG_SpecialDebug, "¹ºÂò»¨·Ñ×êÊ¯%d£¬Ê£Óà:%lld", n32Conmsume, m_sUserDBData.sPODUsrDBData.n64Diamond);
+					ELOG(LOG_SpecialDebug, "è´­ä¹°èŠ±è´¹é’»çŸ³%dï¼Œå‰©ä½™:%lld", n32Conmsume, m_sUserDBData.sPODUsrDBData.n64Diamond);
 					ifBuySuccess = true;
 				}
 				else{
@@ -580,13 +580,13 @@ const int  RefreshCardBegin = 130005;
 
 	void CCSUser::OnNewDay()
 	{
-		SynUserCLDays();//ĞÂµÄÒ»Ìì
+		SynUserCLDays();//æ–°çš„ä¸€å¤©
 	}
 	void CCSUser::OnNewMonth()
 	{
 		m_sUserDBData.ChangeUserDbData(eUserDBType_LastGetLoginReward, 0);
 		m_sUserDBData.ChangeUserDbData(eUserDBType_CLDay, 0);
-		SynUserCLDays();//ĞÂµÄÒ»ÔÂ
+		SynUserCLDays();//æ–°çš„ä¸€æœˆ
 	}
 	void CCSUser::OnNewYear()
 	{
@@ -595,11 +595,11 @@ const int  RefreshCardBegin = 130005;
 	void CCSUser::LoginRewardInit()
 	{
 		const boost::gregorian::date& today = GetCSUserMgrInstance()->GetToday();
-		UINT32 curDays = today.julian_day();//µ±ÌìÊÇµÚ¼¸Ìì(1900Äê1ÔÂ1ÈÕ)
-		UINT32 baseDays = curDays-today.day()+1;//ÔÂ³õÊÇµÚ¼¸Ìì(1900Äê1ÔÂ1ÈÕ)
-		UINT32 lastDays = m_sUserDBData.sPODUsrDBData.un32LastGetLoginRewardDay;//ÉÏ´ÎÊÇµÚ¼¸Ìì(1900Äê1ÔÂ1ÈÕ)(Êı¾İ¿â)
-		UINT32 lastCount = m_sUserDBData.sPODUsrDBData.un16Cldays;//±¾ÔÂÇ©µ½´ÎÊı(Êı¾İ¿â)
-		if (lastDays<baseDays){//µ±ÔÂÎ´Ç©µ½
+		UINT32 curDays = today.julian_day();//å½“å¤©æ˜¯ç¬¬å‡ å¤©(1900å¹´1æœˆ1æ—¥)
+		UINT32 baseDays = curDays-today.day()+1;//æœˆåˆæ˜¯ç¬¬å‡ å¤©(1900å¹´1æœˆ1æ—¥)
+		UINT32 lastDays = m_sUserDBData.sPODUsrDBData.un32LastGetLoginRewardDay;//ä¸Šæ¬¡æ˜¯ç¬¬å‡ å¤©(1900å¹´1æœˆ1æ—¥)(æ•°æ®åº“)
+		UINT32 lastCount = m_sUserDBData.sPODUsrDBData.un16Cldays;//æœ¬æœˆç­¾åˆ°æ¬¡æ•°(æ•°æ®åº“)
+		if (lastDays<baseDays){//å½“æœˆæœªç­¾åˆ°
 			m_sUserDBData.ChangeUserDbData(eUserDBType_LastGetLoginReward, 0);
 			m_sUserDBData.ChangeUserDbData(eUserDBType_CLDay, 0);
 		}
@@ -608,12 +608,12 @@ const int  RefreshCardBegin = 130005;
 	INT32 CCSUser::AskGetLoginReward()
 	{
 		const boost::gregorian::date& today = GetCSUserMgrInstance()->GetToday();
-		UINT32 curDays = today.julian_day();//µ±ÌìÊÇµÚ¼¸Ìì(1900Äê1ÔÂ1ÈÕ)
-		UINT32 baseDays = curDays - today.day()+1;//ÔÂ³õÊÇµÚ¼¸Ìì(1900Äê1ÔÂ1ÈÕ)
-		UINT32 lastDays = m_sUserDBData.sPODUsrDBData.un32LastGetLoginRewardDay;//ÉÏ´ÎÊÇµÚ¼¸Ìì(1900Äê1ÔÂ1ÈÕ)(Êı¾İ¿â)
-		UINT32 lastCount = m_sUserDBData.sPODUsrDBData.un16Cldays;//±¾ÔÂÇ©µ½´ÎÊı(Êı¾İ¿â)
-		if (lastDays < curDays && lastCount < GetCSUserMgrInstance()->GetMonthDays()){//µ±ÈÕÎ´Ç©µ½
-			if (lastDays < baseDays){//µ±ÔÂÎ´Ç©µ½
+		UINT32 curDays = today.julian_day();//å½“å¤©æ˜¯ç¬¬å‡ å¤©(1900å¹´1æœˆ1æ—¥)
+		UINT32 baseDays = curDays - today.day()+1;//æœˆåˆæ˜¯ç¬¬å‡ å¤©(1900å¹´1æœˆ1æ—¥)
+		UINT32 lastDays = m_sUserDBData.sPODUsrDBData.un32LastGetLoginRewardDay;//ä¸Šæ¬¡æ˜¯ç¬¬å‡ å¤©(1900å¹´1æœˆ1æ—¥)(æ•°æ®åº“)
+		UINT32 lastCount = m_sUserDBData.sPODUsrDBData.un16Cldays;//æœ¬æœˆç­¾åˆ°æ¬¡æ•°(æ•°æ®åº“)
+		if (lastDays < curDays && lastCount < GetCSUserMgrInstance()->GetMonthDays()){//å½“æ—¥æœªç­¾åˆ°
+			if (lastDays < baseDays){//å½“æœˆæœªç­¾åˆ°
 				lastDays = 0;
 				lastCount = 0;
 			}
@@ -906,7 +906,7 @@ const int  RefreshCardBegin = 130005;
 				piUser->SynUserSNSList(GetGUID(), eRSType_Friends);
 			}
 		}
-		//ÈÕÖ¾
+		//æ—¥å¿—
 		{
 			stringstream mystream;
 			mystream << un32headerid << LOG_SIGN << this->GetUserDBData().szNickName;
@@ -914,7 +914,7 @@ const int  RefreshCardBegin = 130005;
 		} 
 	}
 
-	//·ûÎÄÏ´Á·
+	//ç¬¦æ–‡æ´—ç»ƒ
 	INT32	CCSUser::AskRecoinRune(UINT32 rune_id, INT32 cradID)
 	{
 		auto iter = m_RunesMap.find(rune_id);
@@ -958,7 +958,7 @@ const int  RefreshCardBegin = 130005;
 
 			pRuneCfg = CCSCfgMgr::getInstance().GetRanmRuneFromLevel(pOriCfg->un8Level);
 			if (NULL == pRuneCfg){
-				ELOG(LOG_ERROR, "Í¬Ò»ID·ûÎÄ ÕÒ²»µ½ÏÂÒ»Ëæ»ú·ûÎÄ");
+				ELOG(LOG_ERROR, "åŒä¸€IDç¬¦æ–‡ æ‰¾ä¸åˆ°ä¸‹ä¸€éšæœºç¬¦æ–‡");
 				return eEC_WashRuneFail;
 			}
 
@@ -967,19 +967,19 @@ const int  RefreshCardBegin = 130005;
 		}
 		else{
 			if (cradID < RuneWashCfgBegin || cradID > RuneWashCfgEnd){
-				ELOG(LOG_ERROR, "²»ºÏ·¨Ï´Á·È¯");
+				ELOG(LOG_ERROR, "ä¸åˆæ³•æ´—ç»ƒåˆ¸");
 				return eEC_WashRuneFail;
 			}
 			auto level = pOriCfg->un8Level;
 			auto pCurCfg = CCSCfgMgr::getInstance().GetOtherItemCfg(cradID);
 			auto cardIter = m_sUserDBData.item_Map.find(cradID);
 			if (cardIter == m_sUserDBData.item_Map.end()){
-				ELOG(LOG_ERROR, "ÕÒ²»µ½¶ÔÓ¦Ï´Á·È¯");
+				ELOG(LOG_ERROR, "æ‰¾ä¸åˆ°å¯¹åº”æ´—ç»ƒåˆ¸");
 				return eEC_AskComposeRunesFail;
 			}
 
 			if (pCurCfg->effect_value < level){
-				ELOG(LOG_ERROR, "Ï´Á·µÈ¼¶´íÎó!");
+				ELOG(LOG_ERROR, "æ´—ç»ƒç­‰çº§é”™è¯¯!");
 				return eEC_AskComposeRunesFail;
 			}
 
@@ -1001,7 +1001,7 @@ const int  RefreshCardBegin = 130005;
 			}
 
 			if (!pRuneCfg){
-				ELOG(LOG_ERROR, "Í¬Ò»ID·ûÎÄ ÕÒ²»µ½ÏÂÒ»Ëæ»ú·ûÎÄ");
+				ELOG(LOG_ERROR, "åŒä¸€IDç¬¦æ–‡ æ‰¾ä¸åˆ°ä¸‹ä¸€éšæœºç¬¦æ–‡");
 				return eEC_AskComposeRunesFail;
 			}
 		}
@@ -1056,7 +1056,7 @@ const int  RefreshCardBegin = 130005;
 
 	{
 		m_sUserDBData.heroListMap.insert(std::make_pair(db.un32HeroID, db));
-		//½«Ó¢ĞÛ¼ÓÈëÊı¾İ¿â!
+		//å°†è‹±é›„åŠ å…¥æ•°æ®åº“!
 		string sql;
 		CCSUserDbDataMgr::GetNewUserDbHerosData(m_sUserDBData.sPODUsrDBData.un64ObjIdx, db, sql);
 		GetCSUserMgrInstance()->PostUserCacheMsgToDBThread(GetGUID(), sql);
@@ -1137,7 +1137,7 @@ const int  RefreshCardBegin = 130005;
 		}
 
 		if (!expiredVec.empty()){
-			//Í¨Öª¿Í»§¶Ë Ó¢ĞÛ¹ıÆÚ
+			//é€šçŸ¥å®¢æˆ·ç«¯ è‹±é›„è¿‡æœŸ
 			GSToGC::NotifyGoodsExpired sMsg;
 			for (auto iter = expiredVec.begin(); iter != expiredVec.end(); ++iter){
 				sMsg.add_commondityid(*iter);
@@ -1145,7 +1145,7 @@ const int  RefreshCardBegin = 130005;
 
 			PostMsgToGC(sMsg, sMsg.msgid());
 
-			//Í¨Öª´ÓÊı¾İ¿âÉ¾³ı
+			//é€šçŸ¥ä»æ•°æ®åº“åˆ é™¤
 			GetCSUserMgrInstance()->PostUserCacheMsgToDBThread(GetGUID(), expireSql);
 		}
 	}
@@ -1200,15 +1200,15 @@ const int  RefreshCardBegin = 130005;
 		}
 
 		if ( isReLogin){
-			//ÖØÁ¬
+			//é‡è¿
 			CSSGameLogMgr::GetInstance().AddGameLog(eLog_UserRecon,this->GetUserDBData().sPODUsrDBData.un64ObjIdx,0); 
 		}
 		 
 		if (GetUserBattleInfoEx().GetBattleState()<eBattleState_Async)
-		{//ÓÉcs½øĞĞ¹ÜÀí//
+		{//ç”±csè¿›è¡Œç®¡ç†//
 			if (GetUserBattleInfoEx().GetBattleState()!=eBattleState_Free)
 			{
-				ELOG(LOG_ERROR,"Õ½¶·ÀàĞÍ(%u)Õ½¶·×´Ì¬(%u)Õ½¶·ID(%u)·¿¼ä(%u)¶ÓÎé(%u)",
+				ELOG(LOG_ERROR,"æˆ˜æ–—ç±»å‹(%u)æˆ˜æ–—çŠ¶æ€(%u)æˆ˜æ–—ID(%u)æˆ¿é—´(%u)é˜Ÿä¼(%u)",
 					GetUserBattleInfoEx().GetBattleType(),
 					GetUserBattleInfoEx().GetBattleState(),
 					GetUserBattleInfoEx().GetBattleID(),
@@ -1217,7 +1217,7 @@ const int  RefreshCardBegin = 130005;
 			}
 		}
 		else
-		{//ÓÉss½øĞĞ¹ÜÀí£¬Ö»Í¨ÖªssÒ»ÏÂ//
+		{//ç”±ssè¿›è¡Œç®¡ç†ï¼Œåªé€šçŸ¥ssä¸€ä¸‹//
 			GetBattleMgrInstance()->NotifyBattleSSUserIsOnline(this, true);
 		}
 	}
@@ -1225,7 +1225,7 @@ const int  RefreshCardBegin = 130005;
 	void CCSUser::OnOffline()
 	{
 		GetCSUserMgrInstance()->DBPoster_UpdateUser(this);
-		//¸üĞÂÏÂÏßÊ±¼ä
+		//æ›´æ–°ä¸‹çº¿æ—¶é—´
 		m_OfflineTime = time(NULL) + CCSCfgMgr::getInstance().GetCSGlobalCfg().delayDelFromCacheTime;
 		GetCSUserMgrInstance()->OnUserOffline(this);
 		NotifyUserPlayState();
@@ -1233,7 +1233,7 @@ const int  RefreshCardBegin = 130005;
 		CSSGameLogMgr::GetInstance().AddGameLog(eLog_Logout,GetUserDBData().szUserName,0); 
 
 		if (GetUserBattleInfoEx().GetBattleState()<eBattleState_Async)
-		{//ÓÉcs½øĞĞ¹ÜÀí//
+		{//ç”±csè¿›è¡Œç®¡ç†//
 			INT32 ret = eNormal;
 			switch(GetUserBattleInfoEx().GetBattleType())
 			{
@@ -1247,7 +1247,7 @@ const int  RefreshCardBegin = 130005;
 			Assert(ret==eNormal);
 		}
 		else
-		{//ÓÉss½øĞĞ¹ÜÀí£¬Ö»Í¨ÖªssÒ»ÏÂ//
+		{//ç”±ssè¿›è¡Œç®¡ç†ï¼Œåªé€šçŸ¥ssä¸€ä¸‹//
 			GetBattleMgrInstance()->NotifyBattleSSUserIsOnline(this, false);
 		}
 	}
@@ -1409,7 +1409,7 @@ const int  RefreshCardBegin = 130005;
 		temp_info.buy_time = itemInfo.buy_time();
 		temp_info.end_time = itemInfo.end_time();
 		temp_info.item_num = itemInfo.item_num();
-		//Èô²»ÎªÓÀ¾ÃÓµÓĞ£¬¹ıÆÚÔòÉ¾³ı
+		//è‹¥ä¸ä¸ºæ°¸ä¹…æ‹¥æœ‰ï¼Œè¿‡æœŸåˆ™åˆ é™¤
 		if (-1 != itemInfo.end_time() && 0 > itemInfo.end_time() + itemInfo.buy_time() - time(NULL)){
 			GetCSUserMgrInstance()->UserAskUdateItem(temp_info, eOperationType_Del, GetGUID());
 		}
@@ -1422,19 +1422,19 @@ const int  RefreshCardBegin = 130005;
 	{
 		SOtherItem *t_cfg = CCSCfgMgr::getInstance().GetOtherItemCfg(ItemID);
 		if (t_cfg == NULL){
-			ELOG(LOG_ERROR, "Î´ÕÒµ½ÅäÖÃ!");
+			ELOG(LOG_ERROR, "æœªæ‰¾åˆ°é…ç½®!");
 			return eEC_DidNotHaveThisItem;
 		}
 
 		auto iter = m_sUserDBData.item_Map.find(ItemID);
-		//ÓÃ»§ÊÇ·ñÒÑÓµÓĞ¸ÃÎïÆ·
+		//ç”¨æˆ·æ˜¯å¦å·²æ‹¥æœ‰è¯¥ç‰©å“
 		if (iter != m_sUserDBData.item_Map.end())
 		{
-			//¸ÃÎïÆ·ÊÇ·ñÊÇÊ±¼äÀÛ¼ÓÀàĞÍ
+			//è¯¥ç‰©å“æ˜¯å¦æ˜¯æ—¶é—´ç´¯åŠ ç±»å‹
 			if (OtherItemIfTimeAdd(t_cfg->effect_type)){
-				//ÊÇ·ñÒÑ¹ıÆÚ
+				//æ˜¯å¦å·²è¿‡æœŸ
 				if (iter->second.end_time + iter->second.buy_time - time(NULL) > 0){
-					//Ê£ÓàÊ±¼ä
+					//å‰©ä½™æ—¶é—´
 					iter->second.end_time += t_cfg->item_duration * 60 * 60;
 				}
 				else{
@@ -1444,7 +1444,7 @@ const int  RefreshCardBegin = 130005;
 				GetCSUserMgrInstance()->UserAskUdateItem(iter->second, eOperationType_Upd, GetGUID());
 			}
 			else{
-				//ÊıÁ¿ÊÇ·ñÎª0
+				//æ•°é‡æ˜¯å¦ä¸º0
 				iter->second.item_num += num;
 				if (iter->second.item_num <= 0){
 					GetCSUserMgrInstance()->UserAskUdateItem(iter->second, eOperationType_Del, GetGUID());
@@ -1455,7 +1455,7 @@ const int  RefreshCardBegin = 130005;
 			}
 		}
 		else{
-			//È«Ó¢ĞÛÌåÑéÈ¯
+			//å…¨è‹±é›„ä½“éªŒåˆ¸
 			if (eItemEffect_AllHeroFree == t_cfg->effect_type){
 				bool ifAdd = false;
 				auto iter_heromap = CCSCfgMgr::getInstance().GetHeroBuyCfgmap().begin();
@@ -1463,7 +1463,7 @@ const int  RefreshCardBegin = 130005;
 					if (iter_heromap->second.useTimeSpan > 0){
 						continue;
 					}
-					//Èç¹ûÊÇ·ÇÃâ·ÑÓ¢ĞÛ£¬ÔòÌí¼Ó
+					//å¦‚æœæ˜¯éå…è´¹è‹±é›„ï¼Œåˆ™æ·»åŠ 
 					for (auto consumeIter = iter_heromap->second.sConsumeList.Begin(); 
 						consumeIter != iter_heromap->second.sConsumeList.End(); consumeIter = iter_heromap->second.sConsumeList.Next()){
 						ConsumeStruct& sConsumeStruct = *consumeIter;
@@ -1481,7 +1481,7 @@ const int  RefreshCardBegin = 130005;
 				}
 				return eNormal;
 			}
-			//ÆäËûÎïÆ·
+			//å…¶ä»–ç‰©å“
 			SUserItemInfo t_info;
 			t_info.item_id = ItemID;
 			t_info.buy_time = time(NULL);
@@ -1490,7 +1490,7 @@ const int  RefreshCardBegin = 130005;
 			
 			if (t_cfg->item_duration != -1){
 				if (OtherItemIfTimeAdd(t_cfg->effect_type)){
-					//Èç¹ûÊÇÊ±¼äÀÛ¼ÓÀàĞÍ
+					//å¦‚æœæ˜¯æ—¶é—´ç´¯åŠ ç±»å‹
 					t_info.end_time = t_cfg->item_duration * 60 * 60 * num;
 					t_info.item_num = 1;
 				}
@@ -1517,17 +1517,17 @@ const int  RefreshCardBegin = 130005;
 		INT64 temp_time = 0;
 		CalculateItemAddition();
 		switch(effect){
-		//¾­Ñé¼Ó³É¿¨Ê£ÓàÊ±¼ä
+		//ç»éªŒåŠ æˆå¡å‰©ä½™æ—¶é—´
 		case eItemEffect_ExpGain:
 			{
 				auto iter = m_ItemAdditionMap.find(ePrivilege_ExpCopAdd);
 				if (iter != m_ItemAdditionMap.end()){
-					//end_time Îªbuy_time + expried_time
+					//end_time ä¸ºbuy_time + expried_time
 					temp_time = iter->second.end_time - time(NULL);
 				}
 			}
 			break;
-		//½ğ±Ò¼Ó³É¿¨Ê£ÓàÊ±¼ä
+		//é‡‘å¸åŠ æˆå¡å‰©ä½™æ—¶é—´
 		case eItemEffect_GoldGain:
 			{
 				auto iter = m_ItemAdditionMap.find(ePrivilege_GlodCopAdd);
@@ -1562,7 +1562,7 @@ const int  RefreshCardBegin = 130005;
 
 	void	CCSUser::CalculateItemAddition()
 	{
-		//Ê¹ÓÃµ½Ïà¹ØÊı¾İÊ±¼ÆËãÒ»´Î
+		//ä½¿ç”¨åˆ°ç›¸å…³æ•°æ®æ—¶è®¡ç®—ä¸€æ¬¡
 		auto iter = m_sUserDBData.item_Map.begin();
 		for(; iter != m_sUserDBData.item_Map.end(); iter++){
 			SOtherItem* temp_cfg = CCSCfgMgr::getInstance().GetOtherItemCfg(iter->first);
@@ -1570,7 +1570,7 @@ const int  RefreshCardBegin = 130005;
 				ELOG(LOG_ERROR, "null cfg:%d", iter->first);
 				continue;
 			} 
-			//¼ì²â¹ıÆÚ
+			//æ£€æµ‹è¿‡æœŸ
 			if (0 > iter->second.buy_time + iter->second.end_time - time(NULL)){
 				GetCSUserMgrInstance()->UserAskUdateItem(iter->second, eOperationType_Del, GetGUID());
 			}
@@ -1579,7 +1579,7 @@ const int  RefreshCardBegin = 130005;
 			case eItemEffect_GoldGain:{
 				auto iter_f = m_ItemAdditionMap.find(ePrivilege_GlodCopAdd);
 				if (iter_f != m_ItemAdditionMap.end()){
-					//ÎïÆ·¼Ó³ÉÒÔ×î¸ßÎªÖ÷
+					//ç‰©å“åŠ æˆä»¥æœ€é«˜ä¸ºä¸»
 					if (iter_f->second.add_num >= temp_cfg->effect_value){
 						break;
 					}
@@ -1590,7 +1590,7 @@ const int  RefreshCardBegin = 130005;
 				else{
 					SPrivilege t_sp;
 					t_sp.add_num = temp_cfg->effect_value;
-					//end_time = ¹ºÂòÊ±¼ä + Ê£ÓàÊ±¼ä
+					//end_time = è´­ä¹°æ—¶é—´ + å‰©ä½™æ—¶é—´
 					t_sp.end_time = iter->second.end_time + iter->second.buy_time;
 					m_ItemAdditionMap[ePrivilege_GlodCopAdd] = t_sp;
 				}
@@ -1746,7 +1746,7 @@ const int  RefreshCardBegin = 130005;
 			runedIter->second.n64GotTime = curTime;
 
 			if (runedIter->second.n16Num == 0){
-				ELOG(LOG_DBBUG, "É¾³ı·ûÎÄ£¡");
+				ELOG(LOG_DBBUG, "åˆ é™¤ç¬¦æ–‡ï¼");
 				m_RunesMap.erase(runedIter);
 			}
 		}
@@ -1761,7 +1761,7 @@ const int  RefreshCardBegin = 130005;
 
 			GetCSKernelInstance()->PostMsgToGC(m_sUserNetInfo, sNotifyRunesList, sNotifyRunesList.msgid());
 
-			ELOG(LOG_DBBUG, "¸üĞÂ·ûÎÄĞÅÏ¢num:%d, runeid:%d", num, runeId);
+			ELOG(LOG_DBBUG, "æ›´æ–°ç¬¦æ–‡ä¿¡æ¯num:%d, runeid:%d", num, runeId);
 		}
 
 		return true;
@@ -1783,7 +1783,7 @@ const int  RefreshCardBegin = 130005;
 		return true;
 	}
 
-	//½«Íæ¼ÒÊı¾İ´æ´¢µ½Redis
+	//å°†ç©å®¶æ•°æ®å­˜å‚¨åˆ°Redis
 	bool CCSUser::SaveToRedis(){
 		if (!GetUserDBCacheRedisHandler()){
 			return false;
@@ -1793,7 +1793,7 @@ const int  RefreshCardBegin = 130005;
 			return false;
 		}
 
-		GetTaskMgr()->PackTaskData(m_sUserDBData.szTaskData,m_sUserDBData.isTaskRush);//´æRedisÊ±Ôö¼ÓÈÎÎñÊı¾İ
+		GetTaskMgr()->PackTaskData(m_sUserDBData.szTaskData,m_sUserDBData.isTaskRush);//å­˜Redisæ—¶å¢åŠ ä»»åŠ¡æ•°æ®
 
 		string runeBagStr = "";
 		{

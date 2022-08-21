@@ -6,7 +6,7 @@
 #include "stdafx.h"
 
 namespace CentralServer{
-//UserDBDateÀàĞÍ
+//UserDBDateç±»å‹
 enum EUserDBDataType
 {
 	eUserDBType_None = 0,//			un64ObjIdx; 
@@ -18,7 +18,7 @@ enum EUserDBDataType
 	eUserDBType_Sex,//				n8Sex; 
 	eUserDBType_Diamond,//			n64Diamond;
 	eUserDBType_Gold,//			n64Gold;;
-	eUserDBType_RegisterTime,//			tRegisteUTCMillisec;	//×¢²áÊ±¼ä(s)
+	eUserDBType_RegisterTime,//			tRegisteUTCMillisec;	//æ³¨å†Œæ—¶é—´(s)
 	eUserDBType_Score,//				n64Score;
 	eUserDBType_TotalGameInns,//			un32TotalGameInns;
 	eUserDBType_TotalWinInns,//		un32TotalWinInns;
@@ -117,7 +117,7 @@ struct	SUserRelationshipInfo{
 	ERelationShip eRelationShip;
 	TIME_MILSEC tMilSec;
 
-	//Ä¬ÈÏ¹¹Ôìº¯Êı
+	//é»˜è®¤æ„é€ å‡½æ•°
 	SUserRelationshipInfo()
 		:stNickName(""),
 		nHeadId(0),
@@ -129,7 +129,7 @@ struct	SUserRelationshipInfo{
 
 	}
 
-	//¹¹Ôìº¯Êı
+	//æ„é€ å‡½æ•°
 	SUserRelationshipInfo(const string& stName, INT32 headId, ERelationShip ers, TIME_MILSEC tm, UINT64 GuidIdx, UINT32 vipLv)
 		:stNickName(stName.length()<= c_n32DefaultNickNameLen ? stName : ""),
 		nHeadId(headId),
@@ -233,7 +233,7 @@ struct SGoodsBuyCfg
 struct SUserHeroDBData{
 	UINT32			un32HeroID;
 	INT64			endTime; // time(NULL)
-	INT64			buyTime; //¹ºÂòÊ±¼ä   time(NULL)
+	INT64			buyTime; //è´­ä¹°æ—¶é—´   time(NULL)
 
 	SUserHeroDBData() {memset(this,0,sizeof(*this));}
 	SUserHeroDBData(UINT32 idx, time_t life, TIME_MILSEC btime)
@@ -278,14 +278,14 @@ enum ItemEffect{
 };
 
 struct SOtherItem{
-	UINT32		item_id;			//ÎïÆ·ID
-	ItemEffect	effect_type;		//ÎïÆ·ÀàĞÍ
-	UINT32		effect_value;		//ÎïÆ·ÉúĞ§Öµ»òµÈ¼¶
-	UINT32		consume_type;		//Ïû·ÑÀàĞÍ
-	bool		bIsGetUse;			//ÊÇ·ñ»ñÈ¡¼´Ê¹ÓÃ
-	UINT32		price_series;		//¼Û¸ñ
-	UINT8		b_inshop;			//ÊÇ·ñÔÚÉÌµêÏÔÊ¾
-	UINT32		item_duration;		//ÎïÆ·ÓĞĞ§Ê±¼ä
+	UINT32		item_id;			//ç‰©å“ID
+	ItemEffect	effect_type;		//ç‰©å“ç±»å‹
+	UINT32		effect_value;		//ç‰©å“ç”Ÿæ•ˆå€¼æˆ–ç­‰çº§
+	UINT32		consume_type;		//æ¶ˆè´¹ç±»å‹
+	bool		bIsGetUse;			//æ˜¯å¦è·å–å³ä½¿ç”¨
+	UINT32		price_series;		//ä»·æ ¼
+	UINT8		b_inshop;			//æ˜¯å¦åœ¨å•†åº—æ˜¾ç¤º
+	UINT32		item_duration;		//ç‰©å“æœ‰æ•ˆæ—¶é—´
 };
 
 
@@ -316,9 +316,9 @@ struct UserDbSaveConfig
 #define GUIDE_SIGN ","
 struct SUserGuideSteps
 { 
-	string   szCSContinueGuide;						//CS½çÃæÒıµ¼,¼ÇÂ¼µÄ¶¼ÊÇÒÑ¾­Íê³ÉµÄÒıµ¼(¸ñÊ½:1001,1002,....,ok),ok´ú±íÍê³É¸ÃÒıµ¼
-	bool   bSSGuideState;							//Õ½³¡Òıµ¼ÊÇ·ñÍê³É(Õ½³¡Òıµ¼Ó¦Íê³ÉÒ»¸öCSµÄ½çÃæÒıµ¼)
-	bool   bIsChange;								//ÊÇ·ñ¸ÃÒıµ¼ÓĞ¸Ä±ä(ÓÃÓÚ±£´æ)
+	string   szCSContinueGuide;						//CSç•Œé¢å¼•å¯¼,è®°å½•çš„éƒ½æ˜¯å·²ç»å®Œæˆçš„å¼•å¯¼(æ ¼å¼:1001,1002,....,ok),okä»£è¡¨å®Œæˆè¯¥å¼•å¯¼
+	bool   bSSGuideState;							//æˆ˜åœºå¼•å¯¼æ˜¯å¦å®Œæˆ(æˆ˜åœºå¼•å¯¼åº”å®Œæˆä¸€ä¸ªCSçš„ç•Œé¢å¼•å¯¼)
+	bool   bIsChange;								//æ˜¯å¦è¯¥å¼•å¯¼æœ‰æ”¹å˜(ç”¨äºä¿å­˜)
 
 	SUserGuideSteps():bSSGuideState(false), bIsChange(false) {}
 
@@ -380,13 +380,13 @@ struct SUserGuideSteps
 
 typedef ElementArr<SUserHeroDBData, c_un32HeroListLen> HeroList;
 struct PODUsrDBData{
-	UINT64				un64ObjIdx;//Íæ¼ÒÎ¨Ò»±êÊ¶
+	UINT64				un64ObjIdx;//ç©å®¶å”¯ä¸€æ ‡è¯†
 	EUserPlatform		eUserPlatform;
-	UINT16				un16HeaderID;//Íæ¼ÒÍ·ÏñIDÔÚ200ÄÚ
+	UINT16				un16HeaderID;//ç©å®¶å¤´åƒIDåœ¨200å†…
 	INT16				n16Sex; 
 	INT64				n64Diamond;
 	INT64				n64Gold;;
-	time_t				tRegisteUTCMillisec;	//×¢²áÊ±¼ä(s)
+	time_t				tRegisteUTCMillisec;	//æ³¨å†Œæ—¶é—´(s)
 	INT64				n64Score;
 	UINT32				un32TotalGameInns;
 	UINT32				un32TotalWinInns;
@@ -395,7 +395,7 @@ struct PODUsrDBData{
 	UINT32				un32TotalDeadTimes;
 	UINT32				un32TotalAssist;
 
-	UINT8				un8UserLv;//Íæ¼ÒµÈ¼¶£¬×î¸ß30¼¶
+	UINT8				un8UserLv;//ç©å®¶ç­‰çº§ï¼Œæœ€é«˜30çº§
 	UINT32				un32UserCurLvExp;
 	UINT64				tLastFirstWinTime; 
 

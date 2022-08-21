@@ -8,19 +8,19 @@ class CTaskMgr;
 namespace CentralServer{
 enum BattleType
 {
-	eBattleType_Free,		//×ÔÓÉÖĞ//
-	eBattleType_Room,		//·¿¼äÖĞ//
-	eBattleType_Match,		//Æ¥ÅäÖĞ//
-	eBattleType_Guide1,		//Òıµ¼1ÖĞ//
-	eBattleType_Guide2,		//Òıµ¼2ÖĞ//
+	eBattleType_Free,		//è‡ªç”±ä¸­//
+	eBattleType_Room,		//æˆ¿é—´ä¸­//
+	eBattleType_Match,		//åŒ¹é…ä¸­//
+	eBattleType_Guide1,		//å¼•å¯¼1ä¸­//
+	eBattleType_Guide2,		//å¼•å¯¼2ä¸­//
 };
 
 enum BattleState
 {
-	eBattleState_Free,		//×ÔÓÉÖĞ//
-	eBattleState_Wait,		//µÈ´ıÖĞ//
-	eBattleState_Async,		//Òì²½ÖĞ//
-	eBattleState_Play,		//Õ½¶·ÖĞ//
+	eBattleState_Free,		//è‡ªç”±ä¸­//
+	eBattleState_Wait,		//ç­‰å¾…ä¸­//
+	eBattleState_Async,		//å¼‚æ­¥ä¸­//
+	eBattleState_Play,		//æˆ˜æ–—ä¸­//
 };
 
 enum ePrivilegeType{
@@ -35,7 +35,7 @@ struct SPrivilege{
 	UINT64	end_time;
 };
 
-/*Õ½¶·ĞÅÏ¢»¥³âÌå*/
+/*æˆ˜æ–—ä¿¡æ¯äº’æ–¥ä½“*/
 class CCSUserBattleInfo
 {
 public:
@@ -109,8 +109,8 @@ private:
 	int64_t								m_TimerID;
 	map<UINT32, SUserRunesBagRuntimeData>	m_RunesMap;
 	vector<INT32>							m_RunePageMaxEquipNum;
-	map<INT32, EquipRuneArray>				m_EquipRuneArrayMap;//key:·ûÎÄÒ³ value:·ûÎÄÊı×é
-	map<ePrivilegeType, SPrivilege>			m_ItemAdditionMap;		//¼Ó³É±í
+	map<INT32, EquipRuneArray>				m_EquipRuneArrayMap;//key:ç¬¦æ–‡é¡µ value:ç¬¦æ–‡æ•°ç»„
+	map<ePrivilegeType, SPrivilege>			m_ItemAdditionMap;		//åŠ æˆè¡¨
 	
 	stringstream m_RuneBagStream;
 	stringstream m_RuneSlotStream;
@@ -168,7 +168,7 @@ public:
 	SUserDBData&						GetUserDBData()	{return m_sUserDBData;}
 	const INT64&						GetUserGUID()	{return m_sUserDBData.sPODUsrDBData.un64ObjIdx;}
 	bool								IsOverTime();
-	INT32								SetUserNetInfo(const SUserNetInfo &crsUNI);//ÉèÖÃUserÏÂÍøÂçĞÅÏ¢£¬µ«Î´ÉèÖÃÍæ¼ÒÉÏÏÂÏß×´Ì¬£¬Î´ĞŞ¸ÄUserNetMap±í//
+	INT32								SetUserNetInfo(const SUserNetInfo &crsUNI);//è®¾ç½®Userä¸‹ç½‘ç»œä¿¡æ¯ï¼Œä½†æœªè®¾ç½®ç©å®¶ä¸Šä¸‹çº¿çŠ¶æ€ï¼Œæœªä¿®æ”¹UserNetMapè¡¨//
 
 	INT32								AddRunes(SUserRunesBagRuntimeData sSUserRunesBagRuntimeData, bool ifNotifyClient);
 	INT32								AddRunes(UINT32 un32RunesID, bool ifNotifyClient);
@@ -237,7 +237,7 @@ public:
 	INT32								SynUser_AllHeroList();
 	INT32								SynUser_AllRunesList();
 	INT32								SynUser_IsOnSS();
-	//Í¬²½ÎïÆ·ĞÅÏ¢
+	//åŒæ­¥ç‰©å“ä¿¡æ¯
 	INT32								SynOtherItemInfo(UINT32 item_id);
 
 	INT32								PostMsgToGC_NetClash();
@@ -267,7 +267,7 @@ public:
 private:
 	void								GetUserHeroList_RedisCallback(redisAsyncContext* predisAsyncContext, redisReply* predisReply, void* pUserData);
 
-	///////////////////////////////////////ĞÂÊÖÒıµ¼/////////////////////////
+	///////////////////////////////////////æ–°æ‰‹å¼•å¯¼/////////////////////////
 public:  
 	 INT32								PosUserCSCurtGuideSteps();
 

@@ -96,7 +96,7 @@ bool CSceneSession::Msg_Handle_Init(const char* pMsg, int n32MsgLength, INetSess
 		return false;
 	}
 
-	// ¼ÓÈëSS
+	// åŠ å…¥SS
 	pcSSInfo->m_eSSNetState = eSNS_Connecting;
 	pcSSInfo->m_n32NSID = vthis->GetID();
 	vthis->SetLogicID(pcSSInfo->GetSSID());

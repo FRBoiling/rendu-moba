@@ -49,12 +49,12 @@ public:
 public:
 	SMapLogicCfg* m_pMapLogicCfg;
 	ERoomTime mCurRoomTime;
-	time_t mCheckTime[eRoomTime_Total];//¼ì²é²¹×ãÊ±¼ä//
-	UINT32 mMustCount[eRoomTime_Total];//±Ø¶¨ÊıÁ¿(»úÆ÷ÈË²¹×ã)//
-	UINT32 mUserCount;//Íæ¼ÒÊıÁ¿//
+	time_t mCheckTime[eRoomTime_Total];//æ£€æŸ¥è¡¥è¶³æ—¶é—´//
+	UINT32 mMustCount[eRoomTime_Total];//å¿…å®šæ•°é‡(æœºå™¨äººè¡¥è¶³)//
+	UINT32 mUserCount;//ç©å®¶æ•°é‡//
 	UINT32 mRoomID;
 	string mInvitePlayer;
 	map<string,bool> mIgorePlayerMap;
 	map<UINT32,vector<CCSMatchTeam*>> mTeamMap;
-	bool mIsInvalid;//µ±Ã»Íæ¼ÒÊ±ÉèÖÃÎªÎŞĞ§
+	bool mIsInvalid;//å½“æ²¡ç©å®¶æ—¶è®¾ç½®ä¸ºæ— æ•ˆ
 };

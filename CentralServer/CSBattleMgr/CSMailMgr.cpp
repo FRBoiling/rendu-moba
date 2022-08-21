@@ -92,7 +92,7 @@ namespace CentralServer
 			} 
 			mailInfo.set_createtime(createTime);
 
-			//…Ë÷√” º˛≤Èø¥◊¥Ã¨
+			//ËÆæÁΩÆÈÇÆ‰ª∂Êü•ÁúãÁä∂ÊÄÅ
 			if (!itr->second.mailGift.empty())
 			{
 				updatePerMailList(mailId,objIdx,eMailState_LookedButNotGotGift);
@@ -156,7 +156,7 @@ namespace CentralServer
 			if (itrGameMail->second.curtState == eMailState_Del)  continue; 
 			if (  userDb.sPODUsrDBData.tRegisteUTCMillisec > itrGameMail->second.n64CreateTime )  continue; 
 			if (checkIfMailHasRecv(userDb.sPODUsrDBData.un64ObjIdx, itrGameMail->first))  	continue; 
-			//‘ˆº”ƒ⁄¥Ê≈–∂œ «∑Òπ˝∆⁄
+			//Â¢ûÂä†ÂÜÖÂ≠òÂà§Êñ≠ÊòØÂê¶ËøáÊúü
 			if ( cut > itrGameMail->second.n64EndTime   )
 			{
 				if (itrGameMail->second.objIdx > 0)  GetCSUserMgrInstance()->UpdateMailState2DB(itrGameMail->second.objIdx,itrGameMail->first,eMailState_Del);
@@ -194,7 +194,7 @@ namespace CentralServer
 
 		return total > 0 ? true : false;
 	}
-	//” º˛œ˚œ¢
+	//ÈÇÆ‰ª∂Ê∂àÊÅØ
 	void CCSMailMgr::getShortMailMasg(INT64 objId, INT32 mailid,INT32 mailtype, std::string& mailtitle, INT32 mailState, GSToGC::NotifyMailList&  mailList)
 	{
 		GSToGC::ShortMail* shortMail = mailList.add_maillist();
@@ -220,7 +220,7 @@ namespace CentralServer
 				int total = tVec.size();
 				for (int i=0; i <total; i++)
 				{
-					std::string itemStr = tVec[i]; // ¿‡–Õ:‘˘ÀÕ±‡∫≈: ˝¡ø
+					std::string itemStr = tVec[i]; // Á±ªÂûã:Ëµ†ÈÄÅÁºñÂè∑:Êï∞Èáè
 					std::vector<std::string> tItemVec;
 					boost::algorithm::split( tItemVec, itemStr, boost::algorithm::is_any_of(gSignPoint) ); 
 					if (tItemVec.size() == 3)

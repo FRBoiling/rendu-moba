@@ -4,7 +4,7 @@
 
 /**
 
-Êı¾İ¿â½á¹¹Ìå£ºÃ¿ÈÕÈÎÎñ¸üĞÂÊ±¼ä,ÈÎÎñ1ID:ÈÎÎñ1ÊıÁ¿,ÈÎÎñ2ID:ÈÎÎñ2ÊıÁ¿,.....
+æ•°æ®åº“ç»“æ„ä½“ï¼šæ¯æ—¥ä»»åŠ¡æ›´æ–°æ—¶é—´,ä»»åŠ¡1ID:ä»»åŠ¡1æ•°é‡,ä»»åŠ¡2ID:ä»»åŠ¡2æ•°é‡,.....
 
 **/
 
@@ -16,25 +16,25 @@ public:
 	CTaskMgr(CCSUser* user);
 	virtual ~CTaskMgr();
 public:
-	bool AddTask(UINT32 taskId,UINT32 taskCount=0);//ÁìÈ¡ÈÎÎñ
-	bool FinishTask(UINT32 taskGuid);//Íê³ÉÈÎÎñ
-	bool RushDailyTasks();//Ë¢ĞÂÃ¿ÈÕÈÎÎñ
-	bool OnEvent(TASK_TYPE tt,UINT32 count,UINT32 param1,UINT32 param2);//ÈÎÎñÊÂ¼ş
-	bool PackTaskData(string& taskData,bool& isTaskRush);//±àÂëÊı¾İ
-	bool UnpackTaskData(string& taskData);//½âÂëÊı¾İ
+	bool AddTask(UINT32 taskId,UINT32 taskCount=0);//é¢†å–ä»»åŠ¡
+	bool FinishTask(UINT32 taskGuid);//å®Œæˆä»»åŠ¡
+	bool RushDailyTasks();//åˆ·æ–°æ¯æ—¥ä»»åŠ¡
+	bool OnEvent(TASK_TYPE tt,UINT32 count,UINT32 param1,UINT32 param2);//ä»»åŠ¡äº‹ä»¶
+	bool PackTaskData(string& taskData,bool& isTaskRush);//ç¼–ç æ•°æ®
+	bool UnpackTaskData(string& taskData);//è§£ç æ•°æ®
 public:
-	void NotifyTaskAdd(CTask* pTask);//Í¨ÖªÔö¼ÓÈÎÎñ
-	void NotifyTaskUpdate(CTask* pTask);//Í¨Öª¸üĞÂÈÎÎñ
-	void NotifyTaskRewards(CTask* pTask);//Í¨ÖªÈÎÎñ½±Àø
-	void NotifyTaskDel(CTask* pTask);//Í¨ÖªÉ¾³ıÈÎÎñ
-	void NotifyAllTask();//Í¨ÖªËùÓĞÈÎÎñ
-	void NotifyAllDailyTask();//Í¨ÖªËùÓĞÈÕ³£ÈÎÎñ
+	void NotifyTaskAdd(CTask* pTask);//é€šçŸ¥å¢åŠ ä»»åŠ¡
+	void NotifyTaskUpdate(CTask* pTask);//é€šçŸ¥æ›´æ–°ä»»åŠ¡
+	void NotifyTaskRewards(CTask* pTask);//é€šçŸ¥ä»»åŠ¡å¥–åŠ±
+	void NotifyTaskDel(CTask* pTask);//é€šçŸ¥åˆ é™¤ä»»åŠ¡
+	void NotifyAllTask();//é€šçŸ¥æ‰€æœ‰ä»»åŠ¡
+	void NotifyAllDailyTask();//é€šçŸ¥æ‰€æœ‰æ—¥å¸¸ä»»åŠ¡
 private:
 	CCSUser* mOwner;
-	UINT32 mDailyDay;//ÈÕ³£¸üĞÂÊ±¼ä
-	map<UINT32,CTask*> mDailyTasks;//ÈÕ³£ÈÎÎñ
-	map<UINT32,CTask*> mInfiniteTasks;//ÓÀ¾ÃÈÎÎñ(³É¾ÍÈÎÎñ)
-	vector<CTask*> mAllTasks;//ËùÓĞÈÎÎñ
-	bool mIsForbidAllTaskNotify;//ÊÇ·ñÍ¨ÖªËùÓĞÈÎÎñ
-	bool mIsForbidDailyTaskNotify;//ÊÇ·ñÍ¨ÖªÈÕ³£ÈÎÎñ
+	UINT32 mDailyDay;//æ—¥å¸¸æ›´æ–°æ—¶é—´
+	map<UINT32,CTask*> mDailyTasks;//æ—¥å¸¸ä»»åŠ¡
+	map<UINT32,CTask*> mInfiniteTasks;//æ°¸ä¹…ä»»åŠ¡(æˆå°±ä»»åŠ¡)
+	vector<CTask*> mAllTasks;//æ‰€æœ‰ä»»åŠ¡
+	bool mIsForbidAllTaskNotify;//æ˜¯å¦é€šçŸ¥æ‰€æœ‰ä»»åŠ¡
+	bool mIsForbidDailyTaskNotify;//æ˜¯å¦é€šçŸ¥æ—¥å¸¸ä»»åŠ¡
 };

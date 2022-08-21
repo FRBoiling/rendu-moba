@@ -25,29 +25,29 @@ class CCSUserMgr
 {
 private:
 	typedef	map<UINT64, CCSUser*>	UserMap;
-	UserMap						m_cUserGUIDMap;//ÕæÊµ±í
+	UserMap						m_cUserGUIDMap;//çœŸå®è¡¨
 	UserMap						m_cUserOnlineMap;
 
 	typedef map<string, CCSUser*> UserNickNameMap;
-	UserNickNameMap					m_cNickNameMap;//¿ì±í£¨°´´ÂºÅÃû£©
-	map<SUserNetInfo, CCSUser*>		m_cUserNetMap;//¿ì±í£¨°´ÍøÂçÁ¬½Ó£©
+	UserNickNameMap					m_cNickNameMap;//å¿«è¡¨ï¼ˆæŒ‰ç»°å·åï¼‰
+	map<SUserNetInfo, CCSUser*>		m_cUserNetMap;//å¿«è¡¨ï¼ˆæŒ‰ç½‘ç»œè¿æ¥ï¼‰
 
 	Concurrency::concurrent_queue<Buffer*>		m_DBCallbackQueue;
 	CThreadSafeObejctPool<Buffer>	m_DBCallbackQueuePool;
 
-	//ÓÃÓÚÍæ¼ÒÊı¾İ´æ´¢
+	//ç”¨äºç©å®¶æ•°æ®å­˜å‚¨
 	DBActiveWrapper			*	m_UserCacheDBActiveWrapper;
-	// ÓÃÓÚÈ«¾ÖÊı¾İ²Ù×÷
+	// ç”¨äºå…¨å±€æ•°æ®æ“ä½œ
 	DBActiveWrapper			*	m_CdkeyWrapper;
-	//Íæ¼ÒÇëÇóÊ±£¬²Ù×÷Êı¾İ¿â
+	//ç©å®¶è¯·æ±‚æ—¶ï¼Œæ“ä½œæ•°æ®åº“
 	vector<DBActiveWrapper*>	m_pUserAskDBActiveWrapperVec;
 
-	//µ±Ç°·şÎñÆ÷×î´óGUID£¬µ«ÓÎÏ·ÀïµÄGUIDÊÇºÏ³ÉµÄ£¬ÒÔ±£Ö¤ËùÓĞCS ServerÎ¨Ò»
+	//å½“å‰æœåŠ¡å™¨æœ€å¤§GUIDï¼Œä½†æ¸¸æˆé‡Œçš„GUIDæ˜¯åˆæˆçš„ï¼Œä»¥ä¿è¯æ‰€æœ‰CS Serverå”¯ä¸€
 	INT64						m_MaxGuid;
 
-	//ËùÓĞÍæ¼ÒêÇ³Æ¼¯ºÏ£¬ËùÓĞ¹ØÓÚêÇ³ÆµÄ²Ù×÷¿ÉÒÔÍ¨¹ı´Ë±íÀ´²Ù×÷£¡
+	//æ‰€æœ‰ç©å®¶æ˜µç§°é›†åˆï¼Œæ‰€æœ‰å…³äºæ˜µç§°çš„æ“ä½œå¯ä»¥é€šè¿‡æ­¤è¡¨æ¥æ“ä½œï¼
 	set<string>					m_AllNickNameSet;
-	//ËùÓĞÍæ¼ÒÓÃ»§Ãû£¬guid±í£¬Èç¹ûÍæ¼ÒµÇÂ½ Í¨¹ıCS£¬SDK£¬Username²éµ½¶ÔÓ¦guid
+	//æ‰€æœ‰ç©å®¶ç”¨æˆ·åï¼Œguidè¡¨ï¼Œå¦‚æœç©å®¶ç™»é™† é€šè¿‡CSï¼ŒSDKï¼ŒUsernameæŸ¥åˆ°å¯¹åº”guid
 	struct UserCombineKey{
 		string username;
 		INT32 sdkid;
@@ -65,14 +65,14 @@ private:
 	};
 	map<UserCombineKey, UINT64>			m_AllUserName2GUIDMap;
 
-	// »ñÈ¡µ±Ç°¸ºÔØ×îĞ¡µÄDBÏß³Ì
+	// è·å–å½“å‰è´Ÿè½½æœ€å°çš„DBçº¿ç¨‹
 	DBActiveWrapper&			GetNowWorkActor();
 	CCSMailMgr					m_MailMgr;
-	boost::posix_time::ptime	m_TodayTime;//µ±Ç°Ê±¼ä(ÄêÔÂÈÕÊ±·ÖÃë)
-	boost::gregorian::date		m_Today;//µ±Ç°Ê±¼ä(ÄêÔÂÈÕ)
-	UINT32						m_monthDays;//µ±Ç°ÔÂÌìÊı
-	bool						m_IsDailyTaskRush;//½ñÈÕÈÕ³£ÈÎÎñÊÇ·ñË¢ĞÂ¹ı
-	INT64						m_GiftCDKID;//CDKÈÎÎñÎ¨Ò»±êÊ¶£¬ÓÃÀ´±íÊ¾ÔËÓªÃ¿´Î×ö»î¶¯·¢·ÅÒ»ÅúCDKµÄÎ¨Ò»ID£¬ÓÃRedis±£´æ
+	boost::posix_time::ptime	m_TodayTime;//å½“å‰æ—¶é—´(å¹´æœˆæ—¥æ—¶åˆ†ç§’)
+	boost::gregorian::date		m_Today;//å½“å‰æ—¶é—´(å¹´æœˆæ—¥)
+	UINT32						m_monthDays;//å½“å‰æœˆå¤©æ•°
+	bool						m_IsDailyTaskRush;//ä»Šæ—¥æ—¥å¸¸ä»»åŠ¡æ˜¯å¦åˆ·æ–°è¿‡
+	INT64						m_GiftCDKID;//CDKä»»åŠ¡å”¯ä¸€æ ‡è¯†ï¼Œç”¨æ¥è¡¨ç¤ºè¿è¥æ¯æ¬¡åšæ´»åŠ¨å‘æ”¾ä¸€æ‰¹CDKçš„å”¯ä¸€IDï¼Œç”¨Redisä¿å­˜
 
 	std::stringstream			m_SaveUserStream;
 private:
@@ -82,11 +82,11 @@ public:
 	void					Initialize();
 	~CCSUserMgr();
 	IDBConnector*			GetDBSource(int actorID);
-	//×¢²áÏûÏ¢´¦Àí»Øµ÷
+	//æ³¨å†Œæ¶ˆæ¯å¤„ç†å›è°ƒ
 	void					RegisterMsgHandle(SSMsgHandlerMap& m_SSMsgHandlerMap, GSMsgHandlerMap& m_GSMsgHandlerMap, GCMsgHandlerMap& m_GCMsgHandlerMap, RCMsgHandlerMap& m_RCMsgHandlerMap);
-	//Íæ¼Ò´æ´¢DBÏß³Ì»Øµ÷
+	//ç©å®¶å­˜å‚¨DBçº¿ç¨‹å›è°ƒ
 	void					UserCacheDBAsynHandler(Buffer*& pBuffer);
-	//Íæ¼ÒÇëÇó»Øµ÷
+	//ç©å®¶è¯·æ±‚å›è°ƒ
 	void					UserAskDBAsynHandler(Buffer*& pBuffer);
 
 	void					GetProfileReport(wstringstream &report);
@@ -196,7 +196,7 @@ private:
 	bool					EncodeAndSendToLogicThread(google::protobuf::Message& sMsg, int n32MsgID);
 
 	/************************************************************************/
-	/* UserAskDB Íæ¼Ò¼´Ê±ÇëÇóOperation   [µ¥¶ÀÍæ¼ÒDBÏß³Ì£¬DBConnectÒ²ÊÇµ¥¶ÀµÄ]                                              */
+	/* UserAskDB ç©å®¶å³æ—¶è¯·æ±‚Operation   [å•ç‹¬ç©å®¶DBçº¿ç¨‹ï¼ŒDBConnectä¹Ÿæ˜¯å•ç‹¬çš„]                                              */
 	/************************************************************************/
 	//INT32					GetGuideSteps(IDBConnector *pConn, UINT64	un64ObjIdx,  SUserGuideSteps &guideSteps);
 	INT32					GetUserHeros(IDBConnector *pConn, UINT64	un64ObjIdx, DBToCS::QueryUser& sQueryUser);
@@ -221,7 +221,7 @@ private:
 	UINT64					CombineGUID();
 	void					DBAsynUpdateUserGameMail(Buffer*& pBuffer, IDBConnector* pDB);
 	/************************************************************************/
-	/* UserAskDB Ïß³ÌÒì²½»Øµ÷                                                 */
+	/* UserAskDB çº¿ç¨‹å¼‚æ­¥å›è°ƒ                                                 */
 	/************************************************************************/ 
 	void					DBAsynQueryUserCallBack(Buffer*& pBuffer, IDBConnector* pDB);
 	void					DBAsynTryToChangeMoneyReleated_CallBack(Buffer*& pBuffer, IDBConnector* pDB);
@@ -230,12 +230,12 @@ private:
 
 	void					DBAsyn_QueryGameMailList(IDBConnector *pConn,INT64 objIdx );
 	/************************************************************************/
-	/* DB Ïß³ÌÒì²½»Øµ÷                                                 */
+	/* DB çº¿ç¨‹å¼‚æ­¥å›è°ƒ                                                 */
 	/************************************************************************/
 	void					DBAsynInsertUserCallback(Buffer*& pBuffer, IDBConnector* pDB);
 	void					DBAsynUpdateUserCallback(Buffer*& pBuffer, IDBConnector* pDB);
 	/************************************************************************/
-	/* DB Í¬²½CallBack                                                 */
+	/* DB åŒæ­¥CallBack                                                 */
 	/************************************************************************/
 	INT32					SynUserAskDBCallBack();
 	INT32					SynHandleQueryUserCallback(Buffer* pBuffer);
@@ -270,10 +270,10 @@ private:
 
 		INT32					DBAsynChangeNickNameCallBack(Buffer*& pBuffer, IDBConnector* pDB);
 	//////////////////////////////////////////////////////////////////////////
-	//	Item Ïà¹Øº¯Êı
+	//	Item ç›¸å…³å‡½æ•°
 	public:
 		void					UserAskUdateItem(const SUserItemInfo& info, EDBOperation optype, UINT64 user_id);
-		//²éÑ¯CDKID
+		//æŸ¥è¯¢CDKID
 		void					redisQueryCDKIDCallBack(redisAsyncContext* predisAsyncContext, redisReply* predisReply, void* pData);
 		void					InitCDKIDCFromRedis();
 		void					InitRedisSucscribe();
@@ -292,7 +292,7 @@ private:
 		void					redisSubsribeCallBack(redisAsyncContext* predisAsyncContext, redisReply* predisReply, void* pData);
 
 		void					InsertNewUserToMysql(GCToCS::Login &pLogin, CCSUser* pcUser);
-		//ĞÂÊÖÒıµ¼²¹ÔÊĞí¶¥ºÅ
+		//æ–°æ‰‹å¼•å¯¼è¡¥å…è®¸é¡¶å·
 	public:
 		bool					CheckIfInGuideBattle(CCSUser* pUser);
 

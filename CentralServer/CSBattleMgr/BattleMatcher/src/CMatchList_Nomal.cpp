@@ -83,12 +83,12 @@ CCSMatchRoom_Nomal::CCSMatchRoom_Nomal(UINT32 mapId)
 	mCheckTime[eRoomTime_Random2] = mCheckTime[0] + rand; mMustCount[eRoomTime_Random2] = 1+perCount*2;
 	if (rand>0) rand = RandInt(rand/2,rand-1);//8
 	mCheckTime[eRoomTime_Random1] = mCheckTime[0] + rand; mMustCount[eRoomTime_Random1] = 1+perCount*1;
-	ELOG(LOG_SpecialDebug,"·¿¼äºÅ%d£º¿ªÊ¼Ê±¼ä%s",mRoomID,ctime(&mCheckTime[eRoomTime_Start]));
-	ELOG(LOG_SpecialDebug,"·¿¼äºÅ%d£ºÖÁÉÙ2ÈËÊ±¼ä%s",mRoomID,ctime(&mCheckTime[eRoomTime_Random1]));
-	ELOG(LOG_SpecialDebug,"·¿¼äºÅ%d£ºÖÁÉÙ3ÈËÊ±¼ä%s",mRoomID,ctime(&mCheckTime[eRoomTime_Random2]));
-	ELOG(LOG_SpecialDebug,"·¿¼äºÅ%d£ºÖÁÉÙ4ÈËÊ±¼ä%s",mRoomID,ctime(&mCheckTime[eRoomTime_Random3]));
-	ELOG(LOG_SpecialDebug,"·¿¼äºÅ%d£ºÖÁÉÙ5ÈËÊ±¼ä%s",mRoomID,ctime(&mCheckTime[eRoomTime_Random4]));
-	ELOG(LOG_SpecialDebug,"·¿¼äºÅ%d£º½áÊøÊ±¼ä%s",mRoomID,ctime(&mCheckTime[eRoomTime_Finish]));
+	ELOG(LOG_SpecialDebug,"æˆ¿é—´å·%dï¼šå¼€å§‹æ—¶é—´%s",mRoomID,ctime(&mCheckTime[eRoomTime_Start]));
+	ELOG(LOG_SpecialDebug,"æˆ¿é—´å·%dï¼šè‡³å°‘2äººæ—¶é—´%s",mRoomID,ctime(&mCheckTime[eRoomTime_Random1]));
+	ELOG(LOG_SpecialDebug,"æˆ¿é—´å·%dï¼šè‡³å°‘3äººæ—¶é—´%s",mRoomID,ctime(&mCheckTime[eRoomTime_Random2]));
+	ELOG(LOG_SpecialDebug,"æˆ¿é—´å·%dï¼šè‡³å°‘4äººæ—¶é—´%s",mRoomID,ctime(&mCheckTime[eRoomTime_Random3]));
+	ELOG(LOG_SpecialDebug,"æˆ¿é—´å·%dï¼šè‡³å°‘5äººæ—¶é—´%s",mRoomID,ctime(&mCheckTime[eRoomTime_Random4]));
+	ELOG(LOG_SpecialDebug,"æˆ¿é—´å·%dï¼šç»“æŸæ—¶é—´%s",mRoomID,ctime(&mCheckTime[eRoomTime_Finish]));
 	mIsInvalid = false;
 }
 
@@ -161,8 +161,8 @@ bool CCSMatchRoom_Nomal::Update()
 	}
 	time_t curTime = time(NULL);
 	for (int i=mCurRoomTime+1;i<=eRoomTime_Finish;++i){
-		if (curTime>mCheckTime[i]){//Ìø×ªµ½ÏÂÒ»×´Ì¬//
-			ELOG(LOG_SpecialDebug,"·¿¼äºÅ%d£ºÌø×ªÊ±¼ä%s",mRoomID,ctime(&curTime));
+		if (curTime>mCheckTime[i]){//è·³è½¬åˆ°ä¸‹ä¸€çŠ¶æ€//
+			ELOG(LOG_SpecialDebug,"æˆ¿é—´å·%dï¼šè·³è½¬æ—¶é—´%s",mRoomID,ctime(&curTime));
 			mCurRoomTime = (ERoomTime)i;
 			GSToGC::BattleMatcherCount msg;
 			msg.set_count(mUserCount>=mMustCount[mCurRoomTime]?mUserCount:mMustCount[mCurRoomTime]);
@@ -171,7 +171,7 @@ bool CCSMatchRoom_Nomal::Update()
 			break;
 		}
 	}
-	// ÏÂÃæÑûÇëÍæ¼ÒÁ÷³Ì±»ÆÁ±Î
+	// ä¸‹é¢é‚€è¯·ç©å®¶æµç¨‹è¢«å±è”½
 	if (false && mCurRoomTime==eRoomTime_Random4 && mCheckTime[eRoomTime_Random4]+15<=mCheckTime[eRoomTime_Finish]){//66+15<=82
 		if (mUserCount+1==m_pMapLogicCfg->SeatCount && mInvitePlayer.size()==0){
 			CentralServer::CCSUser* pUser = GetCSUserMgrInstance()->GetIdlePlayer(mIgorePlayerMap);

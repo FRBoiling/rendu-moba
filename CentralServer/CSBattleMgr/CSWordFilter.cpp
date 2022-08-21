@@ -15,7 +15,7 @@ void CChineseCode::UTF_8ToUnicode(wchar_t* pOut,char *pText){
 }
 
 void CChineseCode::UnicodeToUTF_8(char* pOut,wchar_t* pText){
-	// ×¢Òâ WCHAR¸ßµÍ×ÖµÄË³Ðò,µÍ×Ö½ÚÔÚÇ°£¬¸ß×Ö½ÚÔÚºó
+	// æ³¨æ„ WCHARé«˜ä½Žå­—çš„é¡ºåº,ä½Žå­—èŠ‚åœ¨å‰ï¼Œé«˜å­—èŠ‚åœ¨åŽ
 	char* pchar = (char *)pText;
 	pOut[0] = (0xE0 | ((pchar[1] & 0xF0) >> 4));
 	pOut[1] = (0x80 | ((pchar[1] & 0x0F) << 2)) + ((pchar[0] & 0xC0) >> 6);

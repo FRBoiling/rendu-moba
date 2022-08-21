@@ -62,7 +62,7 @@ bool CCSBattleRoom::AddPlayer( IRoomPlayer* pRoomPlayer, UINT32 pos, bool isRest
 				m_pPlayerList[i] = pRoomPlayer;
 				++m_curPlayerNum;
 				Assert(pRoomPlayer->m_pUser->GetUserName().size()>0);
-				ELOG(LOG_SpecialDebug,"玩家%s%s房间(%u)",pRoomPlayer->m_pUser->GetUserName(),pRoomPlayer->bIfMaster?"创建":"加入",m_RoomID);
+				ELOG(LOG_SpecialDebug,"鐜╁%s%s鎴块棿(%u)",pRoomPlayer->m_pUser->GetUserName(),pRoomPlayer->bIfMaster?"鍒涘缓":"鍔犲叆",m_RoomID);
 				BroadcastMsg_BattleSeatPosInfo(pRoomPlayer->GetRoomPos(), NULL);
 				if (!isRestart)
 				{
@@ -95,7 +95,7 @@ bool CCSBattleRoom::AddPlayer( IRoomPlayer* pRoomPlayer, UINT32 pos, bool isRest
 			m_pPlayerList[pos] = pRoomPlayer;
 			++m_curPlayerNum;
 			Assert(pRoomPlayer->m_pUser->GetUserName().size()>0);
-			ELOG(LOG_SpecialDebug,"玩家%s%s房间(%u)",pRoomPlayer->m_pUser->GetUserName(),pRoomPlayer->bIfMaster?"创建":"加入",m_RoomID);
+			ELOG(LOG_SpecialDebug,"鐜╁%s%s鎴块棿(%u)",pRoomPlayer->m_pUser->GetUserName(),pRoomPlayer->bIfMaster?"鍒涘缓":"鍔犲叆",m_RoomID);
 			BroadcastMsg_BattleSeatPosInfo(pRoomPlayer->GetRoomPos(), NULL);
 			if (!isRestart)
 			{
@@ -135,7 +135,7 @@ bool CCSBattleRoom::RemoverPlayer( IRoomPlayer* pRoomPlayer )
 	{
 		m_pPlayerList[pRoomPlayer->GetFindPos()] = NULL;
 		--m_curPlayerNum;
-		ELOG(LOG_SpecialDebug,"玩家%s离开房间(%u)",pRoomPlayer->m_pUser->GetUserName(),m_RoomID);
+		ELOG(LOG_SpecialDebug,"鐜╁%s绂诲紑鎴块棿(%u)",pRoomPlayer->m_pUser->GetUserName(),m_RoomID);
 		{
 			GSToGC::RoomBaseInfo sMsg;
 			sMsg.set_roomid(0);

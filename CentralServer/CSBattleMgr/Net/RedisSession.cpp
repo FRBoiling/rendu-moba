@@ -20,7 +20,7 @@ CRedisSession::~CRedisSession()
 
 void CRedisSession::SendInitData()
 {
-	ELOG(LOG_INFO, "Á¬½ÓÉÏRedis");
+	ELOG(LOG_INFO, "è¿æ¥ä¸ŠRedis");
 	redisAsyncContextWrapper* predisAsyncContextWrapper = GetUserDBCacheRedisHandler();
 	if (!predisAsyncContextWrapper){
 		predisAsyncContextWrapper = new redisAsyncContextWrapper();
@@ -33,11 +33,11 @@ void CRedisSession::SendInitData()
 	predisAsyncContextWrapper->SetConnected(true);
 	// send init data to remote and a stop message at the end.
 	// you can't send anything until you recv remote init messages.
-	//·¢ËÍÏûÏ¢//
+	//å‘é€æ¶ˆæ¯//
 }
 
 void CRedisSession::OnRealEstablish(){
-	ELOG(LOG_INFO, "Á¬½ÓÉÏRedis");
+	ELOG(LOG_INFO, "è¿æ¥ä¸ŠRedis");
 
 	redisAsyncContextWrapper* predisAsyncContextWrapper = GetUserDBCacheRedisHandler();
 	if (!predisAsyncContextWrapper){
@@ -56,11 +56,11 @@ void CRedisSession::OnClose()
 	if (GetUserDBCacheRedisHandler()){
 		GetUserDBCacheRedisHandler()->SetConnected(false);
 	}
-	ELOG(LOG_WARNNING, "ÓëRedis¶Ï¿ªÁ¬½Ó!");
+	ELOG(LOG_WARNNING, "ä¸Redisæ–­å¼€è¿æ¥!");
 }
 
 bool CRedisSession::Msg_Handle_Init(const char* pMsg, int n32MsgLength, INetSession* vthis, int n32MsgID){
-	//½âÂëÏûÏ¢//
+	//è§£ç æ¶ˆæ¯//
 	ELOG(LOG_INFO, "");
 	vthis->SetInited(true,true);
 	return true;

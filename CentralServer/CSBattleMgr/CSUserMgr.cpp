@@ -1,4 +1,4 @@
-// CSUserMgr.cpp : ¶¨Òå DLL Ó¦ÓÃ³ÌĞòµÄµ¼³öº¯Êı¡£
+// CSUserMgr.cpp : å®šä¹‰ DLL åº”ç”¨ç¨‹åºçš„å¯¼å‡ºå‡½æ•°ã€‚
 
 #include "stdafx.h"
 #include <iostream>
@@ -132,11 +132,11 @@ INT32	CCSUserMgr::AddUser(CCSUser *pcUser)
 	}
 
 	auto insertRes1 = m_cUserGUIDMap.insert(std::make_pair(un64ObjIndex, pcUser));
-	Assert(insertRes1.second, "²åÈëÊ§°Ü£¡£¡£¡");
+	Assert(insertRes1.second, "æ’å…¥å¤±è´¥ï¼ï¼ï¼");
 
 	if (!pcUser->GetNickName().empty()){
 		auto insertRes3 = m_cNickNameMap.insert(std::make_pair(pcUser->GetNickName(), pcUser));
-		Assert(insertRes3.second, "²åÈëÊ§°Ü£¡£¡£¡");
+		Assert(insertRes3.second, "æ’å…¥å¤±è´¥ï¼ï¼ï¼");
 	}
 
 	int64_t timerID = GetCSKernelInstance()->AddTimer(std::bind(&CCSUser::CheckDbSaveTimer, pcUser, std::placeholders::_1, std::placeholders::_2), CCSCfgMgr::getInstance().GetCSGlobalCfg().dbSaveTimeSpace * 1000, true);
@@ -412,7 +412,7 @@ void	CCSUserMgr::UserAskUdateItem(const SUserItemInfo& info, EDBOperation optype
 
 	CSToDB::AlterItem t_iteminfo;
 	t_iteminfo.set_sql_str(operate_ss.str());
-	ELOG(LOG_DBBUG, "Ôö¼ÓÔùËÍÎïÆ·:%d To User:%d.", info.item_id, user_id);
+	ELOG(LOG_DBBUG, "å¢åŠ èµ é€ç‰©å“:%d To User:%d.", info.item_id, user_id);
 	m_UserCacheDBActiveWrapper->EncodeAndSendToDBThread(t_iteminfo, t_iteminfo.mgsid());
 }
 
@@ -636,7 +636,7 @@ INT32 CCSUserMgr::RemoveUser(CCSUser*& pUser){
 
 	pUser->CheckHeroValidTimer(time(NULL));
 
-	DBPoster_UpdateUser(pUser);//´æÅÌ// 
+	DBPoster_UpdateUser(pUser);//å­˜ç›˜// 
 
 	CSSGameLogMgr::GetInstance().AddGameLog(eLog_UserDiscon,pUser->GetUserDBData() );
 
@@ -644,7 +644,7 @@ INT32 CCSUserMgr::RemoveUser(CCSUser*& pUser){
 
 	m_MailMgr.RemoveObjId(pUser->GetUserDBData().sPODUsrDBData.un64ObjIdx);
 
-	//Íæ¼ÒÓĞêÇ³Æ²ÅÉ¾³ı
+	//ç©å®¶æœ‰æ˜µç§°æ‰åˆ é™¤
 	if (!pUser->GetNickName().empty()){
 		m_cNickNameMap.erase(pUser->GetNickName());
 	}
@@ -660,7 +660,7 @@ bool CCSUserMgr::CheckIfCanRemoveUser(CCSUser*& pUser){
 
 	if (pUser->GetUserPlayingStatus() == eUserPlayingStatus_OffLine && pUser->GetUserBattleInfoEx().GetBattleState() == eBattleState_Free){
 		RemoveUser(pUser);
-		ELOG(LOG_SpecialDebug, "É¾³ıÍæ¼Ò!");
+		ELOG(LOG_SpecialDebug, "åˆ é™¤ç©å®¶!");
 		return true;
 	}
 

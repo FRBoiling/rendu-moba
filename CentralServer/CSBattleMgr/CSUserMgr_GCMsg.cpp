@@ -1,4 +1,4 @@
-// CSUserMgr.cpp : ¶¨Òå DLL Ó¦ÓÃ³ÌĞòµÄµ¼³öº¯Êı¡£
+// CSUserMgr.cpp : å®šä¹‰ DLL åº”ç”¨ç¨‹åºçš„å¯¼å‡ºå‡½æ•°ã€‚
 
 #include "stdafx.h"
 #include <iostream>
@@ -13,7 +13,7 @@
 using namespace std;
 
 namespace CentralServer{
-//²»ÔÙ²éÑ¯Êı¾İ¿â£¬Ö±½Ó´ÓÄÚ´æÀïÑéÖ¤£¡
+//ä¸å†æŸ¥è¯¢æ•°æ®åº“ï¼Œç›´æ¥ä»å†…å­˜é‡ŒéªŒè¯ï¼
 INT32	CCSUserMgr::OnMgrFromGC_AskCompleteUserInfo(const ICSGSInfo *cpiGSInfo, INT32 n32GCNSID, const char* pData, int n32DataLength){
 	CCSUser *pcUser = GetUserByNetInfo(cpiGSInfo, n32GCNSID);
 	if (NULL == pcUser){
@@ -74,7 +74,7 @@ INT32	CCSUserMgr::OnMgrFromGC_AskCompleteUserInfo(const ICSGSInfo *cpiGSInfo, IN
 		pcUser->SynUser_UserBaseInfo();
 		pcUser->PostCSNotice();
 
-		DBPoster_UpdateUser(pcUser);//´æÅÌ// 
+		DBPoster_UpdateUser(pcUser);//å­˜ç›˜// 
 
 		{
 			stringstream mystream;
@@ -428,14 +428,14 @@ INT32		CCSUserMgr::OnMsgFromGC_AskCloseMailOrGetMailGift(const ICSGSInfo *cpiGSI
 		return pcUser->PostMsgToGC(mailRet,mailRet.msgid());
 	}
 	
-	//1 ÓÊ¼şÊÇ·ñÓÊ¼şÁìÈ¡
+	//1 é‚®ä»¶æ˜¯å¦é‚®ä»¶é¢†å–
 	if (m_MailMgr.checkIfMailHasRecv(pcUser->GetUserDBData().sPODUsrDBData.un64ObjIdx,pMsg->mailid()))
 	{
 		ELOG(LOG_ERROR,"mailId:%d has recv.",pMsg->mailid());
 		mailRet.set_errcode(eEc_MailHasRecv);
 		return pcUser->PostMsgToGC(mailRet,mailRet.msgid());
 	}
-	//2 ÓÊ¼şÊÇ·ñ¹ıÆÚ
+	//2 é‚®ä»¶æ˜¯å¦è¿‡æœŸ
 	if (m_MailMgr.checkIfMailHasTimeOver(pMsg->mailid()))
 	{ 
 		ELOG(LOG_ERROR,"mailId:%d has time out.",pMsg->mailid());
@@ -548,7 +548,7 @@ INT32 CCSUserMgr::OnMsgFromGC_AskChangeNickname(const ICSGSInfo *cpiGSInfo, INT3
 	}
 
 	pcUser->SynCurDiamond();
-	//ÈÕÖ¾
+	//æ—¥å¿—
 	CSSGameLogMgr::GetInstance().AddGameLog(eLog_ChangeUseName,pcUser->GetGUID(),pcUser->GetUserDBData().sPODUsrDBData.un8UserLv,pcUser->GetUserDBData().sPODUsrDBData.un16VipLv);
 
 	return eNormal;
@@ -586,7 +586,7 @@ INT32 CCSUserMgr::OnMsgFromGC_AskCDKGift(const ICSGSInfo *cpiGSInfo, INT32 n32GC
 		bFlag = true;
 	}
 	else{
-		ELOG(LOG_ERROR, "RedisÎ´Á¬½Ó!");
+		ELOG(LOG_ERROR, "Redisæœªè¿æ¥!");
 	}
 
 	if (bFlag)

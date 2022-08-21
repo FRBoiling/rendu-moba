@@ -1,4 +1,4 @@
-// CSUserMgr.cpp : ¶¨Òå DLL Ó¦ÓÃ³ÌÐòµÄµ¼³öº¯Êý¡£
+// CSUserMgr.cpp : å®šä¹‰ DLL åº”ç”¨ç¨‹åºçš„å¯¼å‡ºå‡½æ•°ã€‚
 #include "stdafx.h"
 #include "CSUserMgr.h"
 #include "CSCfgMgr.h"
@@ -15,7 +15,7 @@ namespace CentralServer{
 {
 	UINT64 temp_date = time(NULL);
 	INT64 temp = temp_date - notice.end_time;
-	if (temp > 0) //¹«¸æ¹ýÆÚÅÐ¶Ï
+	if (temp > 0) //å…¬å‘Šè¿‡æœŸåˆ¤æ–­
 	{
 		return false;
 	}
@@ -39,7 +39,7 @@ namespace CentralServer{
 
 	stringstream t_ss;
 	t_ss<<year;
-	//ÔÂ¡¢ÈÕ¡¢Ê±¡¢·Ö¡¢Ãë²»×ãÁ½Î»µÄ²¹0
+	//æœˆã€æ—¥ã€æ—¶ã€åˆ†ã€ç§’ä¸è¶³ä¸¤ä½çš„è¡¥0
 	if (mon < 10){
 		t_ss<<0;
 	}
@@ -53,11 +53,11 @@ namespace CentralServer{
 	}
 	t_ss<<hour;
 
-	//×ªstring
+	//è½¬string
 	string t_sec;
 	t_ss>>t_sec;
 
-	//×ªUint64
+	//è½¬Uint64
 	stringstream ss;
 	ss<<t_sec;
 

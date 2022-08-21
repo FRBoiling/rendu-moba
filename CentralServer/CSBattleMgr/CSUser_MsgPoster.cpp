@@ -1,4 +1,4 @@
-// CSUserMgr.cpp : ¶¨Òå DLL Ó¦ÓÃ³ÌĞòµÄµ¼³öº¯Êı¡£
+// CSUserMgr.cpp : å®šä¹‰ DLL åº”ç”¨ç¨‹åºçš„å¯¼å‡ºå‡½æ•°ã€‚
 
 #include "stdafx.h"
 #include <iostream>
@@ -238,11 +238,11 @@ INT32	CCSUser::PostMsgToGC_AskRetMsg(INT32 n32AskProtocalID, INT32 n32RetFlag)
 INT32	CCSUser::SynUserCLDays()
 {
 	GSToGC::NotifyUserCLDays sMsg;
-	sMsg.set_month(GetCSUserMgrInstance()->GetToday().month());//µ±Ç°ÔÂ
-	sMsg.set_today(GetCSUserMgrInstance()->GetToday().day());//µ±Ç°ÈÕ
-	sMsg.set_totalcldays(GetCSUserMgrInstance()->GetMonthDays());//ÔÂ×ÜÌìÊı
-	sMsg.set_cldays(m_sUserDBData.sPODUsrDBData.un16Cldays);//ÒÑÁìÌìÊı
-	sMsg.set_istodaycan((m_sUserDBData.sPODUsrDBData.un32LastGetLoginRewardDay)!=GetCSUserMgrInstance()->GetToday().julian_day());//½ñÌìÊÇ·ñ¿ÉÒÔÁìÈ¡
+	sMsg.set_month(GetCSUserMgrInstance()->GetToday().month());//å½“å‰æœˆ
+	sMsg.set_today(GetCSUserMgrInstance()->GetToday().day());//å½“å‰æ—¥
+	sMsg.set_totalcldays(GetCSUserMgrInstance()->GetMonthDays());//æœˆæ€»å¤©æ•°
+	sMsg.set_cldays(m_sUserDBData.sPODUsrDBData.un16Cldays);//å·²é¢†å¤©æ•°
+	sMsg.set_istodaycan((m_sUserDBData.sPODUsrDBData.un32LastGetLoginRewardDay)!=GetCSUserMgrInstance()->GetToday().julian_day());//ä»Šå¤©æ˜¯å¦å¯ä»¥é¢†å–
 	return PostMsgToGC(sMsg, sMsg.msgid());
 }
 
@@ -485,20 +485,20 @@ void	CCSUser::PostCSNotice()
 			continue;
 		}
 
-		//Æ½Ì¨ÅĞ¶Ï
+		//å¹³å°åˆ¤æ–­
 		if (temp_notice.platform != ePlatform_All){
 			if (temp_notice.platform != GetUserDBData().sPODUsrDBData.eUserPlatform){
 				continue;
 			}
 		}
-		//¹ıÆÚÅĞ¶Ï
+		//è¿‡æœŸåˆ¤æ–­
 		UINT64 temp_date = time(NULL);
 		INT64 temp_end = temp_notice.end_time - temp_date;
 		if (temp_end < 0){
 			continue;
 		}
 
-		//ÊÇ·ñµ½·¢ËÍÊ±¼ä
+		//æ˜¯å¦åˆ°å‘é€æ—¶é—´
 		INT64 temp_star = temp_notice.star_time - temp_date;
 		if (temp_star > 0){
 			continue;

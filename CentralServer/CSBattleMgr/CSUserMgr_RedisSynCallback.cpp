@@ -1,4 +1,4 @@
-// CSUserMgr.cpp : ¶¨Òå DLL Ó¦ÓÃ³ÌĞòµÄµ¼³öº¯Êı¡£
+// CSUserMgr.cpp : å®šä¹‰ DLL åº”ç”¨ç¨‹åºçš„å¯¼å‡ºå‡½æ•°ã€‚
 
 #include "stdafx.h"
 #include <iostream>
@@ -204,12 +204,12 @@ namespace CentralServer{
 			res = AddUser(pcUser);
 			if (res != eNormal){
 				delete pcUser;
-				ELOG(LOG_ERROR, "AdduerÊ§°Ü!");
+				ELOG(LOG_ERROR, "Adduerå¤±è´¥!");
 				return;
 			}
 
 			pcUser->OnOnline(netinfo, sLoginMsg, false, true);
-			//´ÓRedisÉÏÉ¾³ıUserĞÅÏ¢
+			//ä»Redisä¸Šåˆ é™¤Userä¿¡æ¯
 			RemoveUserFromRedisLRU(*pcUser);
 		} while (false);
 
@@ -217,7 +217,7 @@ namespace CentralServer{
 			if (!pcUser){
 				delete pcUser;
 			}
-			ELOG(LOG_SpecialDebug, "Ã»ÓĞÃüÖĞcache,ËùÒÔ²éÑ¯Êı¾İ¿â");
+			ELOG(LOG_SpecialDebug, "æ²¡æœ‰å‘½ä¸­cache,æ‰€ä»¥æŸ¥è¯¢æ•°æ®åº“");
 			GetNowWorkActor().EncodeAndSendToDBThread(*pQueryUser, pQueryUser->msgid());
 		}
 	}
@@ -227,7 +227,7 @@ namespace CentralServer{
 		AskCDKGiftData* pAskCDKGiftData = (AskCDKGiftData*)pData;
 		auto pUser = GetUserByGuid(pAskCDKGiftData->pGuid);
 		if (!pUser){
-			ELOG(LOG_ERROR, "Î´²éµ½Íæ¼Ò:%llu", pAskCDKGiftData->pGuid);
+			ELOG(LOG_ERROR, "æœªæŸ¥åˆ°ç©å®¶:%llu", pAskCDKGiftData->pGuid);
 			delete pAskCDKGiftData;
 			return;
 		}
@@ -236,15 +236,15 @@ namespace CentralServer{
 			for (int i = 0; i < predisReply->elements; ++i){
 				auto pOneRedis = predisReply->element[i];
 				if (pOneRedis->len == 0){
-					ELOG(LOG_WARNNING, "ÎŞĞ§CDK");
-					//Í¨Öª¿Í»§¶Ë£¬CDKÎŞĞ§
+					ELOG(LOG_WARNNING, "æ— æ•ˆCDK");
+					//é€šçŸ¥å®¢æˆ·ç«¯ï¼ŒCDKæ— æ•ˆ
 					PostMsgToGC_AskReturn(pUser->GetUserNetInfo(), GCToCS::eMsgToGSToCSFromGC_CDKReq, eEC_InvalidCDKey);
 					delete pAskCDKGiftData;
 				}
 				else{
 					auto cdkID = _atoi64(pOneRedis->str);
 
-					// »Øµ÷Êı¾İ
+					// å›è°ƒæ•°æ®
 					auto pReids = GetLogicRedisHandler();
 					if (pReids){
 						pReids->redisAsyncCommand(RedisSCallBack(&CCSUserMgr::redisGetGiftInfoCallBack, this), pAskCDKGiftData, "hmget cdkID:%lld platform items", cdkID);
@@ -261,7 +261,7 @@ namespace CentralServer{
 		AskCDKGiftData* pAskCDKGiftData = (AskCDKGiftData*)pData;
 		auto pUser = GetUserByGuid(pAskCDKGiftData->pGuid);
 		if (!pUser){
-			ELOG(LOG_ERROR, "Î´²éµ½Íæ¼Ò:%llu", pAskCDKGiftData->pGuid);
+			ELOG(LOG_ERROR, "æœªæŸ¥åˆ°ç©å®¶:%llu", pAskCDKGiftData->pGuid);
 			delete pAskCDKGiftData;
 			return;
 		}
@@ -284,7 +284,7 @@ namespace CentralServer{
 								if (sItemInfoVec.size() == 2){
 									auto itemID = atoi(sItemInfoVec[0].c_str());
 									auto num = atoi(sItemInfoVec[1].c_str());
-									ELOG(LOG_DBBUG, "»ñÈ¡item:%d,num:%d", itemID, num);
+									ELOG(LOG_DBBUG, "è·å–item:%d,num:%d", itemID, num);
 									bIfGetSuccess = true;
 									pUser->NotifyCDKGiftToGC(itemID, num);
 								}
@@ -295,7 +295,7 @@ namespace CentralServer{
 						if (pOneRedis->len != 0){
 							int platFrom = atoi(pOneRedis->str);
 							if (platFrom != ePlatform_All && platFrom != pUser->GetUserDBData().sPODUsrDBData.eUserPlatform){
-								ELOG(LOG_WARNNING, "Æ½Ì¨²»Ò»ÖÂ!");
+								ELOG(LOG_WARNNING, "å¹³å°ä¸ä¸€è‡´!");
 								break;
 							}
 						}
@@ -330,14 +330,14 @@ namespace CentralServer{
 	void CCSUserMgr::redisQueryCDKIDCallBack(redisAsyncContext* predisAsyncContext, redisReply* predisReply, void* pData){
 		if (predisReply->type == REDIS_REPLY_STRING){
 			m_GiftCDKID = _atoi64(predisReply->str);
-			ELOG(LOG_SpecialDebug, "¸üĞÂm_GiftCDKID=%lld", m_GiftCDKID);
+			ELOG(LOG_SpecialDebug, "æ›´æ–°m_GiftCDKID=%lld", m_GiftCDKID);
 		}
 	}
 
 	bool CCSUserMgr::RemoveUserFromRedisLRU(CCSUser& pUser){
 		if (GetUserDBCacheRedisHandler() && GetUserDBCacheRedisHandler()->CanbeUsed()){
 			GetUserDBCacheRedisHandler()->redisAsyncCommand(NULL, NULL, "del usercache:%llu", pUser.GetGUID());
-			ELOG(LOG_DBBUG, "É¾³ıRedis Cache guid:%llu", pUser.GetGUID());
+			ELOG(LOG_DBBUG, "åˆ é™¤Redis Cache guid:%llu", pUser.GetGUID());
 			return true;
 		}
 
@@ -361,7 +361,7 @@ namespace CentralServer{
 		if (predisReply->type == REDIS_REPLY_ARRAY){
 			for (int i = 2; i < predisReply->elements; ++i){
 				if (i == 2){
-					//½âÎökey
+					//è§£ækey
 					auto pOneReply = predisReply->element[i];
 					string key(pOneReply->str, pOneReply->len);
 					if (key.find(SubsribeKeyBegin) != -1){
@@ -369,11 +369,11 @@ namespace CentralServer{
 					}
 				}
 				else if (i == 3){
-					//½âÎöÊÂ¼ş
+					//è§£æäº‹ä»¶
 					auto pOneReply = predisReply->element[i];
 					string eventKey(pOneReply->str, pOneReply->len);
 					if (eventKey != "expired"){
-						ELOG(LOG_WARNNING, "²»ÊÇredis¹ıÆÚÊÂ¼ş!");
+						ELOG(LOG_WARNNING, "ä¸æ˜¯redisè¿‡æœŸäº‹ä»¶!");
 						return;
 					}
 				}

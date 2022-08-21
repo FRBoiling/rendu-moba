@@ -22,8 +22,8 @@ namespace CentralServer{
 	void	CCSGuideBattle::ReCreateMatch(){}
 	void	CCSGuideBattle::AddBattleHeroAndOtherList(CCSUser* pUser,CSToSS::CreateBattle_CreateBattleUserInfo* pUserInfo) {}
 
-	//Õ½¶·½áÊø£¬¸øÓè½±Àø£¬ ²»ÐèÒª½áËã½çÃæ¡£
-	//²¢ÇÒÖ±½ÓÌø×ªµ½¹ºÂòÓ¢ÐÛÉÌ³Ç
+	//æˆ˜æ–—ç»“æŸï¼Œç»™äºˆå¥–åŠ±ï¼Œ ä¸éœ€è¦ç»“ç®—ç•Œé¢ã€‚
+	//å¹¶ä¸”ç›´æŽ¥è·³è½¬åˆ°è´­ä¹°è‹±é›„å•†åŸŽ
 	void	CCSGuideBattle::CaculateResult(SSToCS::FinishBattle* pFinishMsg)
 	{ 	 
 		GSToGC::GuideAward aw;
@@ -88,7 +88,7 @@ namespace CentralServer{
 					bFlag = true;
 				}
 				if (award.taskId > 0)
-				{//Íê³ÉµÄÈÎÎñ
+				{//å®Œæˆçš„ä»»åŠ¡
 					bool bFlag = pUser->GetUserDBData().mGuideSteps.UpdateGuideInfo(award.taskId,false);
 					if (bFlag)
 					{
@@ -97,7 +97,7 @@ namespace CentralServer{
 					}
 					pUser->PosUserCSCurtGuideSteps();
 				} 
-				GetCSUserMgrInstance()->DBPoster_UpdateUser(pUser);//´æÅÌ// 
+				GetCSUserMgrInstance()->DBPoster_UpdateUser(pUser);//å­˜ç›˜// 
 				if (bFlag)
 				{
 					pUser->PostMsgToGC(aw,aw.msgid()); 

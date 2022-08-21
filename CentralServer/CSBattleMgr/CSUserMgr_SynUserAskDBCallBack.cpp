@@ -1,4 +1,4 @@
-// CSUserMgr.cpp : ¶¨Òå DLL Ó¦ÓÃ³ÌĞòµÄµ¼³öº¯Êı¡£
+// CSUserMgr.cpp : å®šä¹‰ DLL åº”ç”¨ç¨‹åºçš„å¯¼å‡ºå‡½æ•°ã€‚
 #include "CSUserMgr.h"
 #include "CSUser.h"
 
@@ -62,7 +62,7 @@ void	CCSUserMgr::DBAsyn_QueryWhenThreadBegin(){
 	}
 	INT32 tValue = 0;
 	piGameDBConnector->GetQueryFieldData("mailid", tValue);
-	//·şÎñÆ÷Æô¶¯µÄÊ±ºò Ã»ÓĞµÇÂ¼µÄÍæ¼Ò£¬¿ÉÒÔÕâÑùÉèÖÃ
+	//æœåŠ¡å™¨å¯åŠ¨çš„æ—¶å€™ æ²¡æœ‰ç™»å½•çš„ç©å®¶ï¼Œå¯ä»¥è¿™æ ·è®¾ç½®
 	m_MailMgr.setCurtMaxMailIdx(tValue); 
 	piGameDBConnector->CloseQuery(); 
 
@@ -225,7 +225,7 @@ INT32 CCSUserMgr::SynHandleQueryUserCallback(Buffer* pBuffer){
 INT32	CCSUserMgr::DBPoster_UpdateUser(CCSUser *pcUser)
 {  
 	SUserDBData &psUserDBData = pcUser->GetUserDBData();  
-	pcUser->GetTaskMgr()->PackTaskData(psUserDBData.szTaskData,psUserDBData.isTaskRush);//´æÊı¾İ¿âÊ±Ôö¼ÓÈÎÎñÊı¾İ
+	pcUser->GetTaskMgr()->PackTaskData(psUserDBData.szTaskData,psUserDBData.isTaskRush);//å­˜æ•°æ®åº“æ—¶å¢åŠ ä»»åŠ¡æ•°æ®
 	CCSUserDbDataMgr::UpdateUserDbData(psUserDBData, m_SaveUserStream);
 	if (!m_SaveUserStream.str().empty()){
 		CSToDB::UpdateUser sUpdateUser;

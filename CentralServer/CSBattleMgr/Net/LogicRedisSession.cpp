@@ -11,7 +11,7 @@ CLogicRedisSession::CLogicRedisSession()
 
 void CLogicRedisSession::SendInitData()
 {
-	ELOG(LOG_INFO, "连接上Redis");
+	ELOG(LOG_INFO, "杩炴帴涓奟edis");
 	redisAsyncContextWrapper* predisAsyncContextWrapper = GetLogicRedisHandler();
 	if (!predisAsyncContextWrapper){
 		predisAsyncContextWrapper = new redisAsyncContextWrapper();
@@ -27,7 +27,7 @@ void CLogicRedisSession::SendInitData()
 }
 
 void CLogicRedisSession::OnRealEstablish(){
-	ELOG(LOG_INFO, "连接上Redis");
+	ELOG(LOG_INFO, "杩炴帴涓奟edis");
 
 	redisAsyncContextWrapper* predisAsyncContextWrapper = GetLogicRedisHandler();
 	if (!predisAsyncContextWrapper){
@@ -46,7 +46,7 @@ void CLogicRedisSession::OnClose()
 	if (GetLogicRedisHandler()){
 		GetLogicRedisHandler()->SetConnected(false);
 	}
-	ELOG(LOG_WARNNING, "与Redis断开连接!");
+	ELOG(LOG_WARNNING, "涓嶳edis鏂紑杩炴帴!");
 }
 
 void UCAPI CLogicRedisSession::OnRecv(const char* pBuf, UINT32 dwLen){

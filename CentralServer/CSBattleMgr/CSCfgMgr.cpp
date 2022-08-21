@@ -1,4 +1,4 @@
-// CSBattleMgr.cpp : ¶¨Òå DLL Ó¦ÓÃ³ÌĞòµÄµ¼³öº¯Êı¡£
+// CSBattleMgr.cpp : å®šä¹‰ DLL åº”ç”¨ç¨‹åºçš„å¯¼å‡ºå‡½æ•°ã€‚
 
 #include "stdafx.h"
 #include <iostream>
@@ -316,7 +316,7 @@ INT32	CCSCfgMgr::LoadHeroCfg(){
 				}
 			}
 
-			//ÍÆ¼ö¹ºÂòÎïÆ·ÁĞ±í
+			//æ¨èè´­ä¹°ç‰©å“åˆ—è¡¨
 			int itemIndex = 0;
 			std::string strPreItem = iterInfo->second.get<string>("un32PreItem","");
 			if(FALSE == strPreItem.empty()){
@@ -859,7 +859,7 @@ INT32 CCSCfgMgr::LoadSkillModelAccountCfg(){
 			sTempCfg.sEffectInfo.n32BlastAttPercent = iterInfo->second.get<INT32>("eEffectCriticalPosb", 0);
 			sTempCfg.sEffectInfo.n32BlastAttRate = iterInfo->second.get<INT32>("eEffectCriticalPercent", 0);
 
-			//¶ÁÈ¡ÉËº¦¸Ä±äµÄ»ù´¡ÖµºÍÇ§·Ö±È(1:500;2:300 µÄ¸ñÊ½)
+			//è¯»å–ä¼¤å®³æ”¹å˜çš„åŸºç¡€å€¼å’Œåƒåˆ†æ¯”(1:500;2:300 çš„æ ¼å¼)
 			string sBaseValueStr = iterInfo->second.get<string>("eEffectPlusRate");
 			if(sBaseValueStr != "0"){
 				typedef vector< string > split_vector_type;
@@ -1619,7 +1619,7 @@ INT32	CCSCfgMgr::LoadPassitiveSkillCfg()
 				sTempCfg.lPassitiveEffectList[i] = atoi(sPassitiveVec[i].c_str());
 			}
 
-			//ÌØĞ§²¿·Ö
+			//ç‰¹æ•ˆéƒ¨åˆ†
 			sTempCfg.bIfHasStartEffect = iterInfo->second.get<string>("StartEffect") != "0"; 
 			sTempCfg.bIfHasReleaseEffect = iterInfo->second.get<string>("n32ReleaseAction") != "0" || iterInfo->second.get<string>("n32ReleaseSound") != "0" || iterInfo->second.get<string>("ReleaseEffect") != "0"; 
 
@@ -1806,9 +1806,9 @@ void	CCSCfgMgr::DoEventStr(std::string & str, SSNextSkillEffectCfg *asSkillModel
 		} 
 	}
 }
-//½âÎö×Ö·û´®£º20025:1000(20026:0,20017:500);20030:1000
-//½âÎö×Ö·û´®£º20025:1000;20030:1000
-//×¢:²»¿ÉÄÜÓĞ¶à²ãÒÀÀµ£¬Ô¼¶¨×î¶à1²ãÒÀÀµ(×î¶àÒ»²ã())
+//è§£æå­—ç¬¦ä¸²ï¼š20025:1000(20026:0,20017:500);20030:1000
+//è§£æå­—ç¬¦ä¸²ï¼š20025:1000;20030:1000
+//æ³¨:ä¸å¯èƒ½æœ‰å¤šå±‚ä¾èµ–ï¼Œçº¦å®šæœ€å¤š1å±‚ä¾èµ–(æœ€å¤šä¸€å±‚())
 #define SPILIT_STR_FEATURE_SEM ";"
 #define SPILIT_STR_FEATURE_COM "," 
 
@@ -1845,7 +1845,7 @@ void  CCSCfgMgr::SpilitEventStr(std::string & str, std::vector<SSNextSkillEffect
 	for (int i=0; i< tokens_Lv_1.size(); ++i)
 	{  
 		string strChild( tokens_Lv_1[i] );
-		tPos = strChild.find("(");	//ÊÇ·ñ´æÔÚ¹ØÏµÄ£¿é
+		tPos = strChild.find("(");	//æ˜¯å¦å­˜åœ¨å…³ç³»æ¨¡å—
 		if (-1 == tPos)
 		{
 			vector<string> tokens_Lv_2;
@@ -1861,7 +1861,7 @@ void  CCSCfgMgr::SpilitEventStr(std::string & str, std::vector<SSNextSkillEffect
 
 			bool bState = false;
 			tPos = strChild.find("(");
-			if (-1 != tPos)//ÏŞ¶¨Ö»ÓĞ1²ã¹ØÏµ
+			if (-1 != tPos)//é™å®šåªæœ‰1å±‚å…³ç³»
 			{
 				vector<string> tokens_Lv_2;
 				tokens_Lv_2.clear(); 

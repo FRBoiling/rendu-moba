@@ -7,9 +7,9 @@ class IMatchPlayer;
 enum EBattleMatchType
 {
 	eMatchType_None,
-	eMatchType_VsAI,//ÈË»ú¶ÔÕ½(¼º·½Íæ¼ÒµĞ·½»úÆ÷ÈË)//
-	eMatchType_Nomal,//ÆÕÍ¨¶ÔÕ½//
-	eMatchType_Tianti,//ÌìÌİ¶ÔÕ½// 
+	eMatchType_VsAI,//äººæœºå¯¹æˆ˜(å·±æ–¹ç©å®¶æ•Œæ–¹æœºå™¨äºº)//
+	eMatchType_Nomal,//æ™®é€šå¯¹æˆ˜//
+	eMatchType_Tianti,//å¤©æ¢¯å¯¹æˆ˜// 
 	eMatchType_Total, 
 };
 

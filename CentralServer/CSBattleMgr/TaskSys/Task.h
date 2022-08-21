@@ -30,8 +30,8 @@ public:
 
 public:
 	static UINT32 mMaxTaskGUID;
-	UINT32 mTaskGUID;//当前任务唯一编号
-	UINT32 mCurCount;//当前数量
+	UINT32 mTaskGUID;//褰撳墠浠诲姟鍞竴缂栧彿
+	UINT32 mCurCount;//褰撳墠鏁伴噺
 	const STaskConfig* mTaskConfig;
 	CCSUser* mOwner;
 };

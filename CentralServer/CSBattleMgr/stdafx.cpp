@@ -1,13 +1,13 @@
-// stdafx.cpp : Ö»°üÀ¨±ê×¼°üº¬ÎÄ¼şµÄÔ´ÎÄ¼ş
-// UserMgr.pch ½«×÷ÎªÔ¤±àÒëÍ·
-// stdafx.obj ½«°üº¬Ô¤±àÒëÀàĞÍĞÅÏ¢
+// stdafx.cpp : åªåŒ…æ‹¬æ ‡å‡†åŒ…å«æ–‡ä»¶çš„æºæ–‡ä»¶
+// UserMgr.pch å°†ä½œä¸ºé¢„ç¼–è¯‘å¤´
+// stdafx.obj å°†åŒ…å«é¢„ç¼–è¯‘ç±»å‹ä¿¡æ¯
 
 #include "stdafx.h"
 #include "CSBattleMgr.h"
 #include "CSUserMgr.h"
 #include "CSKernel.h"
-// TODO: ÔÚ STDAFX.H ÖĞ
-// ÒıÓÃÈÎºÎËùĞèµÄ¸½¼ÓÍ·ÎÄ¼ş£¬¶ø²»ÊÇÔÚ´ËÎÄ¼şÖĞÒıÓÃ
+// TODO: åœ¨ STDAFX.H ä¸­
+// å¼•ç”¨ä»»ä½•æ‰€éœ€çš„é™„åŠ å¤´æ–‡ä»¶ï¼Œè€Œä¸æ˜¯åœ¨æ­¤æ–‡ä»¶ä¸­å¼•ç”¨
 namespace CentralServer{
 static  redisAsyncContextWrapper* m_pUserDBredisAsyncContext = nullptr;
 static  redisAsyncContextWrapper* m_pLogicredisAsyncContext = nullptr;

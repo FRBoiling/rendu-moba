@@ -30,7 +30,7 @@ void CGateSession::SendInitData()
 {
 	// send init data to remote and a stop message at the end.
 	// you can't send anything until you recv remote init messages.
-	//·¢ËÍÏûÏ¢//
+	//å‘é€æ¶ˆæ¯//
 	TIME_MILSEC tCurUTCMilsec = GetUTCMiliSecond();
 
 	CSToGS::AskRegisteRet sMsg;
@@ -84,7 +84,7 @@ bool CGateSession::Msg_Handle_Init(const char* pMsg, int n32MsgLength, INetSessi
 		return 0;
 	}
 
-	//ÕÒµ½Î»ÖÃºÅ//
+	//æ‰¾åˆ°ä½ç½®å·//
 	INT32 gsPos = -1;
 	CCSGSInfo *pcGSInfo = NULL;
 	for (UINT32 i = 0; i < GetCSKernelInstance()->GetMaxGSNum(); i++){
@@ -112,7 +112,7 @@ bool CGateSession::Msg_Handle_Init(const char* pMsg, int n32MsgLength, INetSessi
 		return false;
 	}
 
-	// ¼ÓÈëGS
+	// åŠ å…¥GS
 	TIME_MILSEC tCurUTCMilsec = GetUTCMiliSecond();
 	pcGSInfo->m_eGSNetState = eSNS_Free;
 	pcGSInfo->m_n32NSID = vthis->GetID();

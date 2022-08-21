@@ -90,7 +90,7 @@ public:
 	INT32			LoadRobotAICfg();
 	INT32			LoadRobotAIPathCfg();
 	INT32			LoadHeroCfg();
-	INT32			LoadHeroHeadCfg();//¶ÁÈ¡Ó¢ĞÛÍ·Ïñ//
+	INT32			LoadHeroHeadCfg();//è¯»å–è‹±é›„å¤´åƒ//
 	INT32			LoadGoodsCfg();
 	INT32			LoadShopCfg();
 	INT32			LoadMapCfg();
@@ -195,13 +195,13 @@ private:
 
 	vector<UINT32>					m_HotGoodsCfgVec;
 	vector<UINT32>					m_NewGoodsCfgVec;
-	//ÆÁ±Î×Ö
+	//å±è”½å­—
 	std::vector<std::string>        m_invalidWorld; 
 
-	//ĞÂÊÖÒıµ¼½áÊø½±Àø
+	//æ–°æ‰‹å¼•å¯¼ç»“æŸå¥–åŠ±
 	std::map<UINT32/*mapId*/,  CSGuideAward   >   m_GuideEndAward;
 
-	//ÓÃ»§Êı¾İ±£´æ(ÉèÖÃÎª¶¨Ê±)
+	//ç”¨æˆ·æ•°æ®ä¿å­˜(è®¾ç½®ä¸ºå®šæ—¶)
 	UserDbSaveConfig				m_UserDbSaveCfg;
 	//SDBCfg							m_DbCfg;
 	std::default_random_engine		m_Generator;

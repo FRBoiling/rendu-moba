@@ -52,10 +52,10 @@ void CCSMatchList_VsAI::Update()
 		virUserCount += (*it)->GetPlayerCount();
 		if (virUserCount>mMapLogicCfg->PlayerModel[0]){
 			virUserCount = curUserCount;
-			++it;//³¬ÖØÏÂ°àµçÌÝ//
+			++it;//è¶…é‡ä¸‹ç­ç”µæ¢¯//
 			continue;
 		}
-		mVTeamStart[1].push_back(*it);//ÅÅ¶Ó½øµçÌÝ//
+		mVTeamStart[1].push_back(*it);//æŽ’é˜Ÿè¿›ç”µæ¢¯//
 		curUserCount = virUserCount;
 		it = mVLeaved.erase(it);
 		if (virUserCount==mMapLogicCfg->PlayerModel[0]){
@@ -63,7 +63,7 @@ void CCSMatchList_VsAI::Update()
 			UINT32 pos = 1;
 			UINT32 campId = 1;
 			for (auto it=mMapLogicCfg->PlayerModel.begin();it!=mMapLogicCfg->PlayerModel.end();++it){
-				if (pos==1) { ++pos; continue; }//ÕóÓª¿ªÊ¼Î»ÖÃ//
+				if (pos==1) { ++pos; continue; }//é˜µè¥å¼€å§‹ä½ç½®//
 				campId = pos;
 				UINT32 count = (*it);
 				while(count-->0) { aiRobots.insert(make_pair(pos,campId)); pos += mMapLogicCfg->PlayerModel.size(); }
@@ -73,7 +73,7 @@ void CCSMatchList_VsAI::Update()
 			mUserCount -= virUserCount;
 			curUserCount = 0;
 			virUserCount = 0;
-			it = mVLeaved.begin();//ÏÂ°àµçÌÝÂíÉÏ¾ÍÀ´ÁËÅ¶//
+			it = mVLeaved.begin();//ä¸‹ç­ç”µæ¢¯é©¬ä¸Šå°±æ¥äº†å“¦//
 			GSToGC::BattleMatcherCount msg;
 			msg.set_count(mUserCount);
 			Assert(mUserCount>=0 && mUserCount<100);

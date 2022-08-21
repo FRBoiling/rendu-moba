@@ -9,7 +9,7 @@ public:
 	CSNetSessionMgr();
 	virtual ~CSNetSessionMgr();
 public:
-	virtual ISDSession* UCAPI CreateSession(ISDConnection* pConnection) { return NULL; /*÷ÿ–¥*/}
+	virtual ISDSession* UCAPI CreateSession(ISDConnection* pConnection) { return NULL; /*ÈáçÂÜô*/}
 	virtual ICliSession* UCAPI CreateConnectorSession(SESSION_TYPE type);
 	virtual bool CreateConnector(SESSION_TYPE type, const char* ip, int port, int recvsize, int sendsize, int logicId);
 

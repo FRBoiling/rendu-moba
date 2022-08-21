@@ -1,4 +1,4 @@
-// CSBattleMgr.cpp : ¶¨Òå DLL Ó¦ÓÃ³ÌĞòµÄµ¼³öº¯Êı¡£
+// CSBattleMgr.cpp : å®šä¹‰ DLL åº”ç”¨ç¨‹åºçš„å¯¼å‡ºå‡½æ•°ã€‚
 
 #include "stdafx.h"
 #include <iostream>
@@ -20,7 +20,7 @@ INT32 CCSBattleMgr::OnMsgFromSS_AllBattleInfo(ICSSSInfo *piSSInfo, const char* p
 	{
 		CCSBattle* pBattle = it->second;
 		if (pBattle->GetSSID() == piSSInfo->GetSSID())
-		{//ÏàÍ¬µÄSS
+		{//ç›¸åŒçš„SS
 			theBattles.insert(make_pair(it->first,it->second));
 		}
 	}

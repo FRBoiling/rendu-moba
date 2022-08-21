@@ -1,4 +1,4 @@
-// CSUserMgr.cpp : ¶¨Òå DLL Ó¦ÓÃ³ÌĞòµÄµ¼³öº¯Êı¡£
+// CSUserMgr.cpp : å®šä¹‰ DLL åº”ç”¨ç¨‹åºçš„å¯¼å‡ºå‡½æ•°ã€‚
 
 #include "stdafx.h"
 #include <iostream>
@@ -62,7 +62,7 @@ INT32 CCSUserMgr::OnMgrFromRC_AskAddNotice(const ICSRCInfo *cpiRCInfo, const cha
 
 	bool reflag = AddNotice(notice);
 
-	if(reflag){//µ±Ç°Ìí¼Ó¹«¸æÒ»¶¨³É¹¦£¬Áô¸øÒÔºó¿ÉÄÜÊ§°ÜµÄÂß¼­
+	if(reflag){//å½“å‰æ·»åŠ å…¬å‘Šä¸€å®šæˆåŠŸï¼Œç•™ç»™ä»¥åå¯èƒ½å¤±è´¥çš„é€»è¾‘
 
 		string sql_str;
 		InsertNoticeSQL(notice, sql_str);
@@ -74,7 +74,7 @@ INT32 CCSUserMgr::OnMgrFromRC_AskAddNotice(const ICSRCInfo *cpiRCInfo, const cha
 		respMsg.set_rst(true);
 		GetCSKernelInstance()->PostMsgToRC(cpiRCInfo, respMsg, respMsg.msgid()); 
 
-		//·¢ËÍ×îĞÂµÄ¹«¸æÁĞ±í
+		//å‘é€æœ€æ–°çš„å…¬å‘Šåˆ—è¡¨
 		return PostAllNoticeInfo(cpiRCInfo); 
 	}
 	else{
@@ -96,7 +96,7 @@ INT32 CCSUserMgr::OnMgrFromRC_AskInsertCDKey(const ICSRCInfo *cpiRCInfo, const c
 
 	auto pReids = GetLogicRedisHandler();
 	if (!pReids){
-		ELOG(LOG_ERROR, "RedisÎ´Á¬½Ó£¡");
+		ELOG(LOG_ERROR, "Redisæœªè¿æ¥ï¼");
 	}
 
 	string title = sMsp->title();
@@ -107,7 +107,7 @@ INT32 CCSUserMgr::OnMgrFromRC_AskInsertCDKey(const ICSRCInfo *cpiRCInfo, const c
 	INT32 code_len = sMsp->code_len();
 	INT32 code_num = sMsp->cdkey_size();
 
-	//¼ÆËã³ö¹ıÆÚÊ±¼ä(µ¥Î»£ºÃë)
+	//è®¡ç®—å‡ºè¿‡æœŸæ—¶é—´(å•ä½ï¼šç§’)
 	INT64 expiredSeconds = end_time - time(NULL);
 	if (expiredSeconds < 0){
 		GetCDKeySurplusSec(expiredSeconds, end_time);
@@ -125,7 +125,7 @@ INT32 CCSUserMgr::OnMgrFromRC_AskInsertCDKey(const ICSRCInfo *cpiRCInfo, const c
 	GetLogicRedisHandler()->redisAsyncCommand(nullptr, nullptr, "incr m_GiftCDKID");
 	GetLogicRedisHandler()->redisAsyncCommand(nullptr, nullptr, "hmset cdkID:%lld describe %s gift_type %d items %s endtime %lld platfrom %d "
 		"title %s", m_GiftCDKID, describe, gift_type, tempStream.str(), end_time, plat, title);
-	ELOG(LOG_SpecialDebug, "Ôö¼ÓCDKey ID:%lld ÀñÆ·£º%s", m_GiftCDKID, tempStream.str());
+	ELOG(LOG_SpecialDebug, "å¢åŠ CDKey ID:%lld ç¤¼å“ï¼š%s", m_GiftCDKID, tempStream.str());
 
 	CSToDB::CDKeyEvents info;
 
@@ -164,7 +164,7 @@ INT32 CCSUserMgr::OnMgrFromRC_AskInsertCDKey(const ICSRCInfo *cpiRCInfo, const c
 
 		const string& sCDK = sMsp->cdkey(i);
 		GetLogicRedisHandler()->redisAsyncCommand(nullptr, nullptr, "hmset cdk:%s GiftCDKID %d", sCDK.c_str(), m_GiftCDKID);
-		//ÉèÖÃcdk¹ıÆÚÊ±¼ä
+		//è®¾ç½®cdkè¿‡æœŸæ—¶é—´
 		GetLogicRedisHandler()->redisAsyncCommand(nullptr, nullptr, "EXPIRE cdk:%s %lld", sCDK.c_str(), expiredSeconds);
 	}
 
@@ -206,7 +206,7 @@ INT32	CCSUserMgr::OnMgrFromRC_AskAddMail(const ICSRCInfo *cpiRCInfo, const char*
 	INT64 waitTime = mail.n64CreateTime - curSecondTime;
 	INT64 mailExpiredTime = mail.n64EndTime - curSecondTime;
 
-	ELOG(LOG_SpecialDebug, "ÓÊ¼ş(id:%d)¹ıÆÚÊÂ¼şÉèÖÃÔÚRedis WaitTime:%d, ExpireTime:%lld(Ãë)", mail.mailId, waitTime, mailExpiredTime);
+	ELOG(LOG_SpecialDebug, "é‚®ä»¶(id:%d)è¿‡æœŸäº‹ä»¶è®¾ç½®åœ¨Redis WaitTime:%d, ExpireTime:%lld(ç§’)", mail.mailId, waitTime, mailExpiredTime);
 	auto redisHandler = GetLogicRedisHandler();
 	if (redisHandler && redisHandler->CanbeUsed()){
 		if (waitTime > 0){
@@ -248,7 +248,7 @@ INT32	CCSUserMgr::OnMgrFromRC_AskAddMail(const ICSRCInfo *cpiRCInfo, const char*
 	msp.set_rst(true);
 	GetCSKernelInstance()->PostMsgToRC(cpiRCInfo, msp, msp.msgid());  
  
-	//ĞÂÔöµÄÍ¬Ê± Í¬ÊÂ¸üĞÂµ½Êı¾İ¿â
+	//æ–°å¢çš„åŒæ—¶ åŒäº‹æ›´æ–°åˆ°æ•°æ®åº“
 	Sync_SaveGameMail();
 
 	return eNormal;

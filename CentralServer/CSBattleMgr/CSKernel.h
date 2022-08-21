@@ -71,10 +71,10 @@ private:
 public:
 	CCSSSInfo*			m_pcSSInfoList;
 	CCSGSInfo*			m_pcGSInfoList;
-	SSSNetInfo*			m_psSSNetInfoList;//³¡¾°ÁĞ±íĞÅÏ¢
-	SGSNetInfo*			m_psGSNetInfoList;//Íø¹ØÁĞ±íĞÅÏ¢
-	SRCNetInfo*			m_psRCNetInfoList;//³¡¾°ÁĞ±íĞÅÏ¢
-	CHAR				m_szRemoteConsolekey[c_n32DefaultRemoveConsoleKeyLen];//Ô¶³Ì¹ÜÀí¶ËÃÜÂë
+	SSSNetInfo*			m_psSSNetInfoList;//åœºæ™¯åˆ—è¡¨ä¿¡æ¯
+	SGSNetInfo*			m_psGSNetInfoList;//ç½‘å…³åˆ—è¡¨ä¿¡æ¯
+	SRCNetInfo*			m_psRCNetInfoList;//åœºæ™¯åˆ—è¡¨ä¿¡æ¯
+	CHAR				m_szRemoteConsolekey[c_n32DefaultRemoveConsoleKeyLen];//è¿œç¨‹ç®¡ç†ç«¯å¯†ç 
 
 	TIME_MILSEC			m_tHeartBeartUTCMilsec;
 	TIME_TICK			m_tHeartBeartTickSpan; 

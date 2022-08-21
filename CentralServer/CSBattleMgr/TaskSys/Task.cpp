@@ -23,6 +23,6 @@ void CTask::NotifyCount()
 
 void CTask::GiveAwards()
 {
-	mCurCount = UINT32_MAX;//±ê¼ÇÒÑÁìÈ¡
+	mCurCount = UINT32_MAX;//æ ‡è®°å·²é¢†å–
 	mOwner->GetTaskMgr()->NotifyTaskRewards(this);
 }

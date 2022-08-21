@@ -1,4 +1,4 @@
-// CSUserMgr.cpp : ¶¨Òå DLL Ó¦ÓÃ³ÌĞòµÄµ¼³öº¯Êı¡£
+// CSUserMgr.cpp : å®šä¹‰ DLL åº”ç”¨ç¨‹åºçš„å¯¼å‡ºå‡½æ•°ã€‚
 
 #include "stdafx.h"
 #include <iostream>
@@ -27,15 +27,15 @@ INT32	CCSUserMgr::UserAskLogin(const ICSGSInfo *cpiGSInfo, INT32 n32UserGCNSID, 
 	UINT64 guid = 0;
 
 	if (iter != m_AllUserName2GUIDMap.end()){
-		//ÀÏÍæ¼Ò
+		//è€ç©å®¶
 		guid = iter->second;
-		//Èç¹û»¹ÔÚÄÚ´æÀï
+		//å¦‚æœè¿˜åœ¨å†…å­˜é‡Œ
 		CCSUser* pUser = GetUserByGuid(guid);
 		if (NULL != pUser){
 			bool bFlag = CheckIfInGuideBattle(pUser);
 			if (bFlag)
 			{
-				ELOG(LOG_WARNNING, "ĞÂÊÖÒıµ¼Íæ¼Ò²»ÔÊĞí¶¥ºÅ");
+				ELOG(LOG_WARNNING, "æ–°æ‰‹å¼•å¯¼ç©å®¶ä¸å…è®¸é¡¶å·");
 				return eEC_GuideUserForbit;
 			}
 
@@ -43,14 +43,14 @@ INT32	CCSUserMgr::UserAskLogin(const ICSGSInfo *cpiGSInfo, INT32 n32UserGCNSID, 
 			return eNormal;
 		}
 
-		//´ËÊ±Ê×ÏÈ²éÑ¯RedisCache£¬ÈôÃ»ÓĞÃüÖĞ£¬ÔÚ²éÑ¯Êı¾İ¿â
+		//æ­¤æ—¶é¦–å…ˆæŸ¥è¯¢RedisCacheï¼Œè‹¥æ²¡æœ‰å‘½ä¸­ï¼Œåœ¨æŸ¥è¯¢æ•°æ®åº“
 		CSToDB::QueryUserReq* sQueryUser = new CSToDB::QueryUserReq;
 		sQueryUser->set_logininfo(pLogin.SerializeAsString());
 		sQueryUser->set_gsid(cpiGSInfo->GetGSID());
 		sQueryUser->set_gcnetid(n32UserGCNSID);
 		sQueryUser->set_csid(CCSKernel::GetInstance().GetKernelCfg().unCSId);
 		sQueryUser->set_objid(guid);
-		//ÈôRedis»º´æ¿ÉÓÃ£¬Ôò²éÑ¯£»²»¿ÉÓÃ¾ÍÖ±½Ó²éÑ¯Êı¾İ¿â£¨Í¨¹ıRedisIPÅäÖÃ¿ØÖÆ£©
+		//è‹¥Redisç¼“å­˜å¯ç”¨ï¼Œåˆ™æŸ¥è¯¢ï¼›ä¸å¯ç”¨å°±ç›´æ¥æŸ¥è¯¢æ•°æ®åº“ï¼ˆé€šè¿‡RedisIPé…ç½®æ§åˆ¶ï¼‰
 		bool ifQueryFromRedis = false;
 		do {
 			auto pReids = GetUserDBCacheRedisHandler();
@@ -79,7 +79,7 @@ INT32	CCSUserMgr::UserAskLogin(const ICSGSInfo *cpiGSInfo, INT32 n32UserGCNSID, 
 		}
 	}
 	else{
-		//ĞÂÍæ¼Ò£¬²úÉúGUID
+		//æ–°ç©å®¶ï¼Œäº§ç”ŸGUID
 		guid = CombineGUID();
 
 		auto pcUser = new CCSUser;
@@ -90,7 +90,7 @@ INT32	CCSUserMgr::UserAskLogin(const ICSGSInfo *cpiGSInfo, INT32 n32UserGCNSID, 
 		sUserDBData.sPODUsrDBData.eUserPlatform = (EUserPlatform)pLogin.sdk();
 		sUserDBData.sPODUsrDBData.tRegisteUTCMillisec = time(NULL);
 
-		//¼ÓÈëÈ«¾Ö±í
+		//åŠ å…¥å…¨å±€è¡¨
 		UserCombineKey sUserCombineKey;
 		sUserCombineKey.sdkid = pLogin.sdk();
 		sUserCombineKey.username = pLogin.name();
@@ -129,7 +129,7 @@ INT32 CCSUserMgr::UserAskReconnectGame(const ICSGSInfo *cpiGSInfo, INT32 n32User
 	if (GetUserByNetInfo(netinfo)){
 		return eEC_InvalidNetState;
 	}
-	//ĞèÒª´ÓÏûÏ¢»ñÈ¡
+	//éœ€è¦ä»æ¶ˆæ¯è·å–
 	INT32 sdkID = 0;
 	UserCombineKey sUserCombineKey(cpszUserName, sdkID);
 	auto iter = m_AllUserName2GUIDMap.find(sUserCombineKey);

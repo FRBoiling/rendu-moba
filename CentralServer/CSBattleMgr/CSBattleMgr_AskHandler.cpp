@@ -1,4 +1,4 @@
-// CSBattleMgr.cpp : ¶¨Òå DLL Ó¦ÓÃ³ÌĞòµÄµ¼³öº¯Êı¡£
+// CSBattleMgr.cpp : å®šä¹‰ DLL åº”ç”¨ç¨‹åºçš„å¯¼å‡ºå‡½æ•°ã€‚
 
 #include "stdafx.h"
 #include <iostream>
@@ -259,7 +259,7 @@ INT32 CCSBattleMgr::OnBattleRoomStart( CCSBattleRoom* pRoom, CCSUserListMap& sLi
 		m_cAllBattleMap.insert(make_pair(pBattle->GetBattleId(),pBattle));
 		pBattle->Start();
 		piSSInfo->AddBattleNum(1);
-		ELOG(LOG_SpecialDebug,"·¿¼ä(%u)ÒòÕ½¶·¶ø½áÊø",pRoom->GetID());
+		ELOG(LOG_SpecialDebug,"æˆ¿é—´(%u)å› æˆ˜æ–—è€Œç»“æŸ",pRoom->GetID());
 		m_BattleRoomList.erase(pRoom->GetID());
 		delete pRoom;
 		pRoom = NULL;
@@ -270,7 +270,7 @@ INT32 CCSBattleMgr::OnBattleRoomStart( CCSBattleRoom* pRoom, CCSUserListMap& sLi
 
 void CCSBattleMgr::OnBattleRoomAbort(CCSBattleRoom* pRoom)
 {
-	ELOG(LOG_SpecialDebug,"·¿¼ä(%u)ÎŞ·¿Ö÷¶øÖĞÖ¹",pRoom->GetID());
+	ELOG(LOG_SpecialDebug,"æˆ¿é—´(%u)æ— æˆ¿ä¸»è€Œä¸­æ­¢",pRoom->GetID());
 	m_BattleRoomList.erase(pRoom->GetID());
 	delete pRoom;
 	pRoom = NULL;

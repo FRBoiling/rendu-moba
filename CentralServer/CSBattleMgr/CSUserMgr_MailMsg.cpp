@@ -1,4 +1,4 @@
-// CSUserMgr.cpp : ¶¨Òå DLL Ó¦ÓÃ³ÌÐòµÄµ¼³öº¯Êý¡£
+// CSUserMgr.cpp : å®šä¹‰ DLL åº”ç”¨ç¨‹åºçš„å¯¼å‡ºå‡½æ•°ã€‚
 #include "stdafx.h"
 #include "CSUserMgr.h"
 #include "CSCfgMgr.h"
@@ -128,7 +128,7 @@ namespace CentralServer{
 		{
 			return;
 		}
-		//¸öÈË
+		//ä¸ªäºº
 		if (mail.objIdx > 0)
 		{ 
 			auto itr =	m_cUserOnlineMap.find( mail.objIdx );
@@ -153,7 +153,7 @@ namespace CentralServer{
 			}  
 		}
 		else
-		{//ÈºÖÚ
+		{//ç¾¤ä¼—
 			GSToGC::NotifyMailList msg;
 			GSToGC::ShortMail *shortMail = msg.add_maillist();
 			shortMail->set_mailtype((GSToGC::MailType)mail.mailType);
@@ -302,7 +302,7 @@ namespace CentralServer{
 		} 
 	}
 
-	//ÓÐµã·Ñ£¬Ã¿´Î¶¼ÒªÅÜ£¬ºó±ßÓÅ»¯
+	//æœ‰ç‚¹è´¹ï¼Œæ¯æ¬¡éƒ½è¦è·‘ï¼ŒåŽè¾¹ä¼˜åŒ–
 	 void		CCSUserMgr::CheckPostDelayNewMail(CCSUser* pUser)
 	 {
 		 GSToGC::NotifyMailList pMsg;
@@ -320,7 +320,7 @@ namespace CentralServer{
 			 {
 				 continue;
 			 }
-			  //Ôö¼ÓÄÚ´æÅÐ¶ÏÊÇ·ñ¹ýÆÚ
+			  //å¢žåŠ å†…å­˜åˆ¤æ–­æ˜¯å¦è¿‡æœŸ
 			 if (  ctime > itr->second.n64EndTime  ) 
 			 {
 				 if(itr->second.objIdx > 0)  UpdateMailState2DB(itr->second.objIdx,itr->first,eMailState_Del); 

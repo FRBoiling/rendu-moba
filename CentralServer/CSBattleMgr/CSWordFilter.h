@@ -4,12 +4,12 @@
 class CChineseCode{
 public:
 
-	static void UTF_8ToUnicode(wchar_t* pOut,char *pText);  // °ÑUTF-8×ª»»³ÉUnicode
-	static void UnicodeToUTF_8(char* pOut,wchar_t* pText);  //Unicode ×ª»»³ÉUTF-8
-	static void UnicodeToGB2312(char* pOut,wchar_t uData);  // °ÑUnicode ×ª»»³É GB2312 
-	static void Gb2312ToUnicode(wchar_t* pOut,char *gbBuffer);// GB2312 ×ª»»³É¡¡Unicode
-	static void GB2312ToUTF_8(string& pOut,char *pText, int pLen);//GB2312 ×ªÎª UTF-8
-	static void UTF_8ToGB2312(string &pOut, char *pText, int pLen);//UTF-8 ×ªÎª GB2312
+	static void UTF_8ToUnicode(wchar_t* pOut,char *pText);  // æŠŠUTF-8è½¬æ¢æˆUnicode
+	static void UnicodeToUTF_8(char* pOut,wchar_t* pText);  //Unicode è½¬æ¢æˆUTF-8
+	static void UnicodeToGB2312(char* pOut,wchar_t uData);  // æŠŠUnicode è½¬æ¢æˆ GB2312 
+	static void Gb2312ToUnicode(wchar_t* pOut,char *gbBuffer);// GB2312 è½¬æ¢æˆã€€Unicode
+	static void GB2312ToUTF_8(string& pOut,char *pText, int pLen);//GB2312 è½¬ä¸º UTF-8
+	static void UTF_8ToGB2312(string &pOut, char *pText, int pLen);//UTF-8 è½¬ä¸º GB2312
 };
 
 class CCSWordFilter

@@ -39,10 +39,10 @@ bool CTaskMgr::FinishTask( UINT32 taskGuid )
 	for (auto it=mAllTasks.begin();it!=mAllTasks.end();++it){
 		pTask = (*it);
 		if (pTask->GetGUID()==taskGuid){
-			if (pTask->IsFinished() && pTask->IsCanAwards()){//ÅÐ¶ÏÊÇ·ñ¿ÉÒÔÍê³É,ÊÇ·ñ¿ÉÒÔÁì½±
-				pTask->GiveAwards();//´¥·¢½±Àø
-				AddTask(pTask->GetNextID());//´¥·¢ÏÂÒ»ÈÎÎñ
-				if (pTask->GetTimeType()!=TTT_Daily){//ÈÕ³£ÈÎÎñ²»ÄÜÉ¾³ý
+			if (pTask->IsFinished() && pTask->IsCanAwards()){//åˆ¤æ–­æ˜¯å¦å¯ä»¥å®Œæˆ,æ˜¯å¦å¯ä»¥é¢†å¥–
+				pTask->GiveAwards();//è§¦å‘å¥–åŠ±
+				AddTask(pTask->GetNextID());//è§¦å‘ä¸‹ä¸€ä»»åŠ¡
+				if (pTask->GetTimeType()!=TTT_Daily){//æ—¥å¸¸ä»»åŠ¡ä¸èƒ½åˆ é™¤
 					mDailyTasks.erase(taskGuid);
 					mInfiniteTasks.erase(taskGuid);
 					mAllTasks.erase(it);
@@ -64,13 +64,13 @@ bool CTaskMgr::OnEvent( TASK_TYPE tt,UINT32 count,UINT32 param1,UINT32 param2 )
 	{
 		pTask = (*it);
 		if (pTask->GetType()!=tt) continue;
-		// ²»ÐèÒª²ÎÊýÐ£Ñé£¬Ö±½Ó¼ÆÊý
+		// ä¸éœ€è¦å‚æ•°æ ¡éªŒï¼Œç›´æŽ¥è®¡æ•°
 		if (pTask->GetParam(0)==0) { pTask->AddCount(count); continue; }
-		// ¼ì²é²ÎÊýºó²Å½øÐÐ¼ÆÊý
+		// æ£€æŸ¥å‚æ•°åŽæ‰è¿›è¡Œè®¡æ•°
 		switch(tt)
 		{
 		case TT_GameWin:
-			if (pTask->GetParam(1)==param1/*³¡¾°ID*/) pTask->AddCount(count);
+			if (pTask->GetParam(1)==param1/*åœºæ™¯ID*/) pTask->AddCount(count);
 			break;
 		}
 	}
@@ -89,7 +89,7 @@ bool CTaskMgr::RushDailyTasks()
 		}
 	}
 	mDailyTasks.clear();
-	// Í¨ÖªÃ¿ÈÕÈÎÎñÈ«ÒÑ½áÊø
+	// é€šçŸ¥æ¯æ—¥ä»»åŠ¡å…¨å·²ç»“æŸ
 	mDailyDay = CentralServer::GetCSUserMgrInstance()->GetTodayTime().date().day_number();
 	AddTask(10001);
 	AddTask(10002);
@@ -128,14 +128,14 @@ bool CTaskMgr::UnpackTaskData( string& taskData )
 	boost::algorithm::split(vTasks, taskData, boost::algorithm::is_any_of(","));
 	bool isRushDailyTask = false;
 	for (auto it=vTasks.begin();it!=vTasks.end();++it){
-		if (it==vTasks.begin()){//µÚÒ»ÔªËØ£ºÈÕ³£ÈÎÎñÊ±¼ä
+		if (it==vTasks.begin()){//ç¬¬ä¸€å…ƒç´ ï¼šæ—¥å¸¸ä»»åŠ¡æ—¶é—´
 			boost::posix_time::ptime& todayTime = CentralServer::GetCSUserMgrInstance()->GetTodayTime();
-			UINT32 updateDay = todayTime.date().day_number();//½ñÌì5µãÐè¸üÐÂ
+			UINT32 updateDay = todayTime.date().day_number();//ä»Šå¤©5ç‚¹éœ€æ›´æ–°
 			if (todayTime.time_of_day().hours()<5) updateDay -= 1;
 			mDailyDay= atoi((*it).c_str());
 			if (mDailyDay==0 || mDailyDay<updateDay) isRushDailyTask = true;
 		}
-		else{//ÆäËüÔªËØ£ºÈ«ÊÇÈÎÎñ
+		else{//å…¶å®ƒå…ƒç´ ï¼šå…¨æ˜¯ä»»åŠ¡
 			vector<string> oneTask;
 			boost::algorithm::split(oneTask, (*it), boost::algorithm::is_any_of(":"));
 			if (oneTask.size()!=2) continue;

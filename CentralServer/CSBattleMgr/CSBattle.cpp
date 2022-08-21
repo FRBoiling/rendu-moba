@@ -32,18 +32,18 @@ namespace CentralServer{
 		int pos = 0;
 		ELOG(LOG_SpecialDebug,"create battle(%u)",m_BattleID);
 		for (auto it=pCCSUserListMap.begin();it!=pCCSUserListMap.end();++it){
-			pos = it->first;//ÕóÓª¿ªÊ¼Î»ÖÃ//
+			pos = it->first;//é˜µè¥å¼€å§‹ä½ç½®//
 			for (auto iter = it->second.Begin(); iter != it->second.End(); iter = it->second.Next()){
 				CCSUser* pUser = *iter;
 				if (pUser->GetUserLv()<level_min) level_min = pUser->GetUserLv();
 				if (pUser->GetUserLv()>level_max) level_max = pUser->GetUserLv();
 				if (aiRobots) while ((*aiRobots).find(pos)!=(*aiRobots).end()){ pos += m_MapLogicCfg->PlayerModel.size(); }
 				if (type==eBattleType_Room) pos = pUser->GetRoomPlayer()->GetRoomPos();
-				m_UserMap[pos] = pUser;//Î»ÖÃĞÅÏ¢//
+				m_UserMap[pos] = pUser;//ä½ç½®ä¿¡æ¯//
 				ELOG(LOG_SpecialDebug,"battle(%u) add user(%u)",m_BattleID,pUser->GetGUID());
 				pos += m_MapLogicCfg->PlayerModel.size();
 				Assert(pUser->GetUserBattleInfoEx().GetBattleID()==0);
-				pUser->GetUserBattleInfoEx().ChangeBattleGrp(it->first);//ÕóÓªĞÅÏ¢//
+				pUser->GetUserBattleInfoEx().ChangeBattleGrp(it->first);//é˜µè¥ä¿¡æ¯//
 			}
 		}
 		if (aiRobots){
@@ -82,7 +82,7 @@ namespace CentralServer{
 	}
 
 	INT32 CCSBattle::Start(){
-		GSToGC::BattleSeatPosInfo sBattleSeatPosInfoMsg;//·Ç·¿¼ä½øÈë£¬²¹³ä·¿¼äÏûÏ¢
+		GSToGC::BattleSeatPosInfo sBattleSeatPosInfoMsg;//éæˆ¿é—´è¿›å…¥ï¼Œè¡¥å……æˆ¿é—´æ¶ˆæ¯
 		CSToSS::CreateBattle sOrderCreateBattle;
 		sOrderCreateBattle.set_battleid(m_BattleID);
 		sOrderCreateBattle.set_mapid(m_MapID);
@@ -144,16 +144,16 @@ namespace CentralServer{
 			//}
 			//map<INT32, EquipRuneArray>& userRunePage = pUser->GetEquipRuneArrayMap();
 			//for (auto it=userRunePage.begin();it!=userRunePage.end();++it){
-			//	::CSToSS::CreateBattle_CreateBattleUserInfo_RunePage* pRunePage = pUserInfo->add_runepages();//¼ÓÈë·ûÎÄÒ³
+			//	::CSToSS::CreateBattle_CreateBattleUserInfo_RunePage* pRunePage = pUserInfo->add_runepages();//åŠ å…¥ç¬¦æ–‡é¡µ
 			//	pRunePage->set_runepage(it->first);
-			//	map<UINT32,::CSToSS::CreateBattle_CreateBattleUserInfo_RunePage_RuneInfo*> createRune;//ÒÑ¼ÓÈë·ûÎÄĞ§¹ûÁĞ±í
+			//	map<UINT32,::CSToSS::CreateBattle_CreateBattleUserInfo_RunePage_RuneInfo*> createRune;//å·²åŠ å…¥ç¬¦æ–‡æ•ˆæœåˆ—è¡¨
 			//	EquipRuneArray& runesInOnePage = it->second;
 			//	for (auto itOnePage=runesInOnePage.Begin();itOnePage!=runesInOnePage.End();itOnePage=runesInOnePage.Next()){
 			//		UINT32 runeId = *itOnePage;
 			//		const SRunesCfg* pRunesCfg = CCSCfgMgr::getInstance().GetRunesCfg(runeId);
 			//		if (pRunesCfg==NULL) continue;
 			//		::CSToSS::CreateBattle_CreateBattleUserInfo_RunePage_RuneInfo* pRuneInfo = createRune[pRunesCfg->un8EffectID];
-			//		if (pRuneInfo==NULL) { pRuneInfo = pRunePage->add_runeeffects(); pRuneInfo->set_effectid(pRunesCfg->un8EffectID); pRuneInfo->set_effectname("undefine"); }//¼ÓÈë·ûÎÄĞ§¹û
+			//		if (pRuneInfo==NULL) { pRuneInfo = pRunePage->add_runeeffects(); pRuneInfo->set_effectid(pRunesCfg->un8EffectID); pRuneInfo->set_effectname("undefine"); }//åŠ å…¥ç¬¦æ–‡æ•ˆæœ
 			//		pRuneInfo->set_effectvalue(pRuneInfo->effectvalue()+pRunesCfg->fEffectVal);
 			//		pRuneInfo->set_effectper(pRuneInfo->effectper()+pRunesCfg->fEffectPer);
 			//	}
@@ -186,16 +186,16 @@ namespace CentralServer{
 		}
 		map<INT32, EquipRuneArray>& userRunePage = pUser->GetEquipRuneArrayMap();
 		for (auto it=userRunePage.begin();it!=userRunePage.end();++it){
-			::CSToSS::CreateBattle_CreateBattleUserInfo_RunePage* pRunePage = pUserInfo->add_runepages();//¼ÓÈë·ûÎÄÒ³
+			::CSToSS::CreateBattle_CreateBattleUserInfo_RunePage* pRunePage = pUserInfo->add_runepages();//åŠ å…¥ç¬¦æ–‡é¡µ
 			pRunePage->set_runepage(it->first);
-			map<UINT32,::CSToSS::CreateBattle_CreateBattleUserInfo_RunePage_RuneInfo*> createRune;//ÒÑ¼ÓÈë·ûÎÄĞ§¹ûÁĞ±í
+			map<UINT32,::CSToSS::CreateBattle_CreateBattleUserInfo_RunePage_RuneInfo*> createRune;//å·²åŠ å…¥ç¬¦æ–‡æ•ˆæœåˆ—è¡¨
 			EquipRuneArray& runesInOnePage = it->second;
 			for (auto itOnePage=runesInOnePage.Begin();itOnePage!=runesInOnePage.End();itOnePage=runesInOnePage.Next()){
 				UINT32 runeId = *itOnePage;
 				const SRunesCfg* pRunesCfg = CCSCfgMgr::getInstance().GetRunesCfg(runeId);
 				if (pRunesCfg==NULL) continue;
 				::CSToSS::CreateBattle_CreateBattleUserInfo_RunePage_RuneInfo* &pRuneInfo = createRune[pRunesCfg->un8EffectID];
-				if (pRuneInfo==NULL) { pRuneInfo = pRunePage->add_runeeffects(); pRuneInfo->set_effectid(pRunesCfg->un8EffectID); pRuneInfo->set_effectname("undefine"); }//¼ÓÈë·ûÎÄĞ§¹û
+				if (pRuneInfo==NULL) { pRuneInfo = pRunePage->add_runeeffects(); pRuneInfo->set_effectid(pRunesCfg->un8EffectID); pRuneInfo->set_effectname("undefine"); }//åŠ å…¥ç¬¦æ–‡æ•ˆæœ
 				pRuneInfo->set_effectvalue(pRuneInfo->effectvalue()+pRunesCfg->fEffectVal);
 				pRuneInfo->set_effectper(pRuneInfo->effectper()+pRunesCfg->fEffectPer);
 			}
@@ -256,7 +256,7 @@ namespace CentralServer{
 	{
 		if (pFinishMsg==NULL) return;
 
-		INT32 tSpanMin = (INT32)ceil( (double)(GetUTCMiliSecond()-m_tStateUTCMilsec) / 1000 / 60);//ÏûºÄÊ±³¤//
+		INT32 tSpanMin = (INT32)ceil( (double)(GetUTCMiliSecond()-m_tStateUTCMilsec) / 1000 / 60);//æ¶ˆè€—æ—¶é•¿//
 		int winGrpId = pFinishMsg->wingrpid();
 
 		GSToGC::BroadcastBattelePersonalRes sBroadcastBattelePersonalRes;
@@ -290,22 +290,22 @@ namespace CentralServer{
 
 		INT32 n32GetGold = 0;
 		INT32 n32Exp = 0;
-		//ÂúÈË»òÈË»ú¶ÔÕ½£¬Ôò»ñµÃ¾­ÑéºÍ½ğ±Ò
+		//æ»¡äººæˆ–äººæœºå¯¹æˆ˜ï¼Œåˆ™è·å¾—ç»éªŒå’Œé‡‘å¸
 		if(isCanGetGoldAndCoin || eBattleType_Match == m_Type || eBattleType_Guide2 == m_Type){
 			for (auto it=m_UserMap.begin(); it!=m_UserMap.end(); ++it){
 				pUser = it->second;
 				bool bIfWinner = false;
-				//¼ÆËãÍæ¼ÒÎïÆ·¼Ó³É
+				//è®¡ç®—ç©å®¶ç‰©å“åŠ æˆ
 				pUser->CalculateItemAddition();
 
 				sBroadcastBattelePersonalRes.set_old_lv(pUser->GetUserDBData().sPODUsrDBData.un8UserLv);
 				sBroadcastBattelePersonalRes.set_old_exp(pUser->GetUserDBData().sPODUsrDBData.un32UserCurLvExp);
 
 				userGrpId = it->second->GetUserBattleInfoEx().GetBattleGrpID();
-				if (userGrpId == winGrpId){//Ê¤ÀûÕß½áËã//
+				if (userGrpId == winGrpId){//èƒœåˆ©è€…ç»“ç®—//
 					bIfWinner = true;
 					n32Exp = CaculateExp(pUser, tSpanMin, bIfWinner);
-					if (pUser->IsFirstWin()){//Ê×´ÎÊ¤ÀûÕß½áËã//
+					if (pUser->IsFirstWin()){//é¦–æ¬¡èƒœåˆ©è€…ç»“ç®—//
 						n32GetGold = CaculateFWGold(pUser, tSpanMin);
 						pUser->GetUserDBData().ChangeUserDbData(eUserDBType_LastFirstWinTime, time(NULL));
 					}
@@ -313,7 +313,7 @@ namespace CentralServer{
 						n32GetGold = CaculateGold(pUser, tSpanMin, bIfWinner);
 					}
 				}
-				else{//Ê§°Ü½áËã//
+				else{//å¤±è´¥ç»“ç®—//
 					bIfWinner = false;
 					n32Exp = CaculateExp(pUser, tSpanMin, bIfWinner);
 					n32GetGold = CaculateGold(pUser, tSpanMin, bIfWinner);
@@ -434,7 +434,7 @@ namespace CentralServer{
 			UINT32 roomid = 0;
 			for (auto it=m_UserMap.begin(); it!=m_UserMap.end(); ++it){
 				pUser = it->second;
-				if (pUser->GetUserPlayingStatus()==eUserPlayingStatus_OffLine) continue;//ÏÂÏßÍæ¼Ò¿ÉÉ¾³ıÁË//
+				if (pUser->GetUserPlayingStatus()==eUserPlayingStatus_OffLine) continue;//ä¸‹çº¿ç©å®¶å¯åˆ é™¤äº†//
 				if (roomid==0 && eNormal!=GetBattleMgrInstance()->AskCreateRoom(pUser,m_MapID,m_Password,true,it->first)) break;
 				else if (roomid==0){ roomid = pUser->GetRoomPlayer()->m_RoomID; continue; }
 				GetBattleMgrInstance()->AskAddRoom(pUser,roomid,m_Password,true,it->first);
