@@ -49,14 +49,14 @@ namespace ReBot
 	}
 
 	void	CCClient::EnterBattle(DWORD curTime){
-		if (m_n32SSID>0) return;//cs¸æÖªÓĞÕ½³¡
-		if (m_un64BattleID>0) return;//ÒÑÊÕµ½Õ½³¡ÑûÇë
-		if (m_eServerBattleState!=eSSBS_Invalid) return;//ÒÑÈ·ÈÏ¹ı¼ÓÈëÕ½³¡
+		if (m_n32SSID>0) return;//cså‘ŠçŸ¥æœ‰æˆ˜åœº
+		if (m_un64BattleID>0) return;//å·²æ”¶åˆ°æˆ˜åœºé‚€è¯·
+		if (m_eServerBattleState!=eSSBS_Invalid) return;//å·²ç¡®è®¤è¿‡åŠ å…¥æˆ˜åœº
 		if (m_Role==RRIR_AsIdle){
 			if (m_eAskState==RS_AskCompleteUserInfoOk) { m_RoomCounter.clear(); AskReEnterRoom(); }
 			else if (m_eAskState==RS_AskReEnterRoomFailed) AskMatchTeamList();
 			else if (m_eAskState==RS_AskMatchTeamListFailed) { 
-				int rand = RandInt(1,100);// 100£º20·¿Ö÷ 50·¿ÓÑ 30Æ¥Åä  
+				int rand = RandInt(1,100);// 100ï¼š20æˆ¿ä¸» 50æˆ¿å‹ 30åŒ¹é…  
 				if ((rand=rand-20)<=0) m_Role = RRIR_AsRoomMaster;
 				else if ((rand=rand-50)<=0) m_Role = RRIR_AsRoomMate;
 				else if ((rand=rand-30)<=0) m_Role = RRIR_AsTeamMaster;
@@ -73,7 +73,7 @@ namespace ReBot
 				m_Role =  RRIR_AsTeamMaster;
 			}
 		}
-		if (m_Role==RRIR_AsIdle || m_Role>=RRIR_AsTotal) return;//Î´»ñÈ¡ÄãÒª°çÑİµÄ½ÇÉ«
+		if (m_Role==RRIR_AsIdle || m_Role>=RRIR_AsTotal) return;//æœªè·å–ä½ è¦æ‰®æ¼”çš„è§’è‰²
 		switch(m_Role)
 		{
 		case RRIR_AsRoomMaster:
@@ -81,7 +81,7 @@ namespace ReBot
 				if (m_RoomCounter.size()==0){
 					if (m_eAskState!=RS_AskCreateRoom) { AskCreateRoom(); m_RoomMasterWaitTime = curTime; }
 				}
-				else if (m_RoomCounter.size()>=6 || curTime>m_RoomMasterWaitTime+60000){//Âú6ÈË¿ª
+				else if (m_RoomCounter.size()>=6 || curTime>m_RoomMasterWaitTime+60000){//æ»¡6äººå¼€
 					if (m_eAskState!=RS_AskStartRoom){
 						bool isAllReady = true;
 						for (auto it=m_RoomCounter.begin();it!=m_RoomCounter.end();++it){
@@ -96,7 +96,7 @@ namespace ReBot
 						}
 					}
 					else{
-						// µÈ´ı½øÈëÕ½³¡°É...
+						// ç­‰å¾…è¿›å…¥æˆ˜åœºå§...
 					}
 				}
 			}
@@ -104,11 +104,11 @@ namespace ReBot
 		case RRIR_AsRoomMate:
 			{
 				if (m_RoomCounter.size()==0){
-					if (mRoomlist.size()==0){//ÇëÇó·¿¼äÁĞ±í
+					if (mRoomlist.size()==0){//è¯·æ±‚æˆ¿é—´åˆ—è¡¨
 						if (m_eAskState!=RS_AskRoomList) { AskRoomList(); m_AskRoomListTime = curTime; }
 						else if (curTime>m_AskRoomListTime+5000) { AskRoomList(); m_AskRoomListTime = curTime; }
 					}
-					else{//ÇëÇó¼ÓÈë·¿¼äÁĞ±í
+					else{//è¯·æ±‚åŠ å…¥æˆ¿é—´åˆ—è¡¨
 						int select = RandInt(0,mRoomlist.size()-1);
 						auto selectIter = mRoomlist.begin(); while(select-->0) { ++selectIter; }
 						if (m_eAskState!=RS_AskAddRoom) { AskAddRoom(selectIter->second.roomId); m_AskAddRoomTime = curTime; }
@@ -124,7 +124,7 @@ namespace ReBot
 					}
 				}
 				else {
-					// µÈ´ı½øÈëÕ½³¡°É...
+					// ç­‰å¾…è¿›å…¥æˆ˜åœºå§...
 				}
 			}
 			break;
@@ -132,11 +132,11 @@ namespace ReBot
 			{
 				if (mTeamList.size()==0){
 					if (m_eAskState!=RS_AskCreateMatchTeam) AskCreateMatchTeam(1002,eMatchType_Nomal);
-					else if (m_eAskState==RS_AskCreateMatchTeamFailed) { /*´´½¨Æ¥ÅäÊ§°Ü?*/ }
+					else if (m_eAskState==RS_AskCreateMatchTeamFailed) { /*åˆ›å»ºåŒ¹é…å¤±è´¥?*/ }
 				}
 				else{
 					if (m_eAskState!=RS_AskStartMatch) AskStartMatch();
-					else if (m_eAskState==RS_AskStartMatchFailed) { /*¿ªÊ¼Æ¥ÅäÊ§°Ü*/ }
+					else if (m_eAskState==RS_AskStartMatchFailed) { /*å¼€å§‹åŒ¹é…å¤±è´¥*/ }
 				}
 			}
 			break;
@@ -149,7 +149,7 @@ namespace ReBot
 				AskEnterBattle(m_un64BattleID);
 			}
 			else if (m_eAskState==RS_AskEnterBattleFailed){
-				if (m_n32SSID==0){//SS¡¢CSÉÏ¶¼ĞèÒÑÍË³öÕ½¶·
+				if (m_n32SSID==0){//SSã€CSä¸Šéƒ½éœ€å·²é€€å‡ºæˆ˜æ–—
 					FinishBattle(curTime);
 				}
 			}
@@ -166,7 +166,7 @@ namespace ReBot
 			}
 		}
 		else if (m_eServerBattleState==eSSBS_SelectRune){
-			// ÈÃ·şÎñÆ÷×Ô¼º×ßÊ±¼ä°É...
+			// è®©æœåŠ¡å™¨è‡ªå·±èµ°æ—¶é—´å§...
 		}
 		else if (m_eServerBattleState==eSSBS_Loading){
 			if (m_eAskState!=RS_AskLoadMapComplete){
@@ -182,7 +182,7 @@ namespace ReBot
 			}
 		}
 		else if (m_eServerBattleState==eSSBS_Finished){
-			if (m_n32SSID==0){//SS¡¢CSÉÏ¶¼ĞèÒÑÍË³öÕ½¶·
+			if (m_n32SSID==0){//SSã€CSä¸Šéƒ½éœ€å·²é€€å‡ºæˆ˜æ–—
 				FinishBattle(curTime);
 			}
 		}
@@ -325,9 +325,9 @@ namespace ReBot
 
 	void CCClient::Connect()
 	{
-		if (m_bConnected) return;//ÒÑÁ´½Ó
-		if (m_bSendConnect) return;//ÒÑ·¢ËÍÁ´½Ó
-		if (CRobotMgr::m_n32ConnectingRobotNum>=3) return;//µ±Ç°µÇÂ¼Íæ¼ÒÌ«¶à
+		if (m_bConnected) return;//å·²é“¾æ¥
+		if (m_bSendConnect) return;//å·²å‘é€é“¾æ¥
+		if (CRobotMgr::m_n32ConnectingRobotNum>=3) return;//å½“å‰ç™»å½•ç©å®¶å¤ªå¤š
 		if (m_pRobotMgr->m_TickCount<m_DisConnectTime+1000) return;
 		m_pRobotMgr->PostConnect(this);
 	}
@@ -363,7 +363,7 @@ namespace ReBot
 		msg->ParseFromArray(pMsg,n32MsgLength);
 		int pos = msg->postion();
 		int headid = msg->headid();
-		if (headid>0){//Ôö¼Ó
+		if (headid>0){//å¢åŠ 
 			auto &info = mTeamList[pos];
 			info.Seat = pos;
 			info.NickName = msg->nickname();

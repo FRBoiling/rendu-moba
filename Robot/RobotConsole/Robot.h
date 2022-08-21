@@ -12,24 +12,24 @@
 enum EBattleMatchType
 {
 	eMatchType_None,
-	eMatchType_VsAI,//ÈË»ú¶ÔÕ½(¼º·½Íæ¼ÒµĞ·½»úÆ÷ÈË)//
-	eMatchType_Nomal,//ÆÕÍ¨¶ÔÕ½//
-	eMatchType_Tianti,//ÌìÌİ¶ÔÕ½// 
+	eMatchType_VsAI,//äººæœºå¯¹æˆ˜(å·±æ–¹ç©å®¶æ•Œæ–¹æœºå™¨äºº)//
+	eMatchType_Nomal,//æ™®é€šå¯¹æˆ˜//
+	eMatchType_Tianti,//å¤©æ¢¯å¯¹æˆ˜// 
 	eMatchType_Total, 
 };
 
 enum RobotBattleState
 {
-	RBS_None,//Äã¿ÉÒÔÑ¡ÔñÆ¥Åä£¬·¿¼ä£¬ĞÂÊÖÒıµ¼£¬Ò²¿ÉµÈ´ıÆäËüÍæ¼Ò£¨Èç¹ûÄãÏ²»¶±»¶¯£©
-	RBS_InRoomAsMaster,//Äã¿ÉÒÔÑ¡Ôñ¿ªÆô·¿¼ä£¨¶ÓÔ±±ØĞëÈ«×¼±¸ºÃ£©
-	RBS_InRoomAsMasterStart,//µÈ´ı½øÈëÕ½³¡°É..
-	RBS_InRoomAsPlayer,//ÄãÔÚ·¿¼äÖĞÁË£¬ÇëÑ¡Ôñ×¼±¸·¿¼ä
-	RBS_InRoomAsPlayerReady,//ÄãÒÑ¾­×¼±¸ºÃÁË£¬Äã¿ÉÒÔÈ¡Ïû×¼±¸¡¢Àë¿ª·¿¼ä
-	RBS_InTeamAsMaster,//Äã¿ÉÒÔÒªÇóĞ¡»ï°é½øÀ´£¬Ò²¿ÉÒÔÒ»ÈËÉÏÂ·
-	RBS_InTeamAsMasterMatch,//Ç°·½¾ÍÊÇÕ½³¡£¬ÈõÕß¿ÉÒÔÑ¡ÔñÀë¿ª
-	RBS_InTeamAsPlayer,//Äã±»×é¶ÓÑûÇë½øÀ´£¬Äã¿ÉÒÔÀë¿ªµÄ
-	RBS_InTeamAsPlayerMatch,//Ç°·½¾ÍÊÇÕ½³¡£¬Èç¹û¶ÓÓÑÌ«Èõ£¬¸Ï¿ìÌÓ°É...
-	RBS_InBattleNow,//¿ªÊ¼Õ½¶·°É£¬¼Ç×¡ÄãÊÇÓ¢ĞÛ
+	RBS_None,//ä½ å¯ä»¥é€‰æ‹©åŒ¹é…ï¼Œæˆ¿é—´ï¼Œæ–°æ‰‹å¼•å¯¼ï¼Œä¹Ÿå¯ç­‰å¾…å…¶å®ƒç©å®¶ï¼ˆå¦‚æœä½ å–œæ¬¢è¢«åŠ¨ï¼‰
+	RBS_InRoomAsMaster,//ä½ å¯ä»¥é€‰æ‹©å¼€å¯æˆ¿é—´ï¼ˆé˜Ÿå‘˜å¿…é¡»å…¨å‡†å¤‡å¥½ï¼‰
+	RBS_InRoomAsMasterStart,//ç­‰å¾…è¿›å…¥æˆ˜åœºå§..
+	RBS_InRoomAsPlayer,//ä½ åœ¨æˆ¿é—´ä¸­äº†ï¼Œè¯·é€‰æ‹©å‡†å¤‡æˆ¿é—´
+	RBS_InRoomAsPlayerReady,//ä½ å·²ç»å‡†å¤‡å¥½äº†ï¼Œä½ å¯ä»¥å–æ¶ˆå‡†å¤‡ã€ç¦»å¼€æˆ¿é—´
+	RBS_InTeamAsMaster,//ä½ å¯ä»¥è¦æ±‚å°ä¼™ä¼´è¿›æ¥ï¼Œä¹Ÿå¯ä»¥ä¸€äººä¸Šè·¯
+	RBS_InTeamAsMasterMatch,//å‰æ–¹å°±æ˜¯æˆ˜åœºï¼Œå¼±è€…å¯ä»¥é€‰æ‹©ç¦»å¼€
+	RBS_InTeamAsPlayer,//ä½ è¢«ç»„é˜Ÿé‚€è¯·è¿›æ¥ï¼Œä½ å¯ä»¥ç¦»å¼€çš„
+	RBS_InTeamAsPlayerMatch,//å‰æ–¹å°±æ˜¯æˆ˜åœºï¼Œå¦‚æœé˜Ÿå‹å¤ªå¼±ï¼Œèµ¶å¿«é€ƒå§...
+	RBS_InBattleNow,//å¼€å§‹æˆ˜æ–—å§ï¼Œè®°ä½ä½ æ˜¯è‹±é›„
 };
 
 enum RobotBattleType
@@ -40,7 +40,7 @@ enum RobotBattleType
 	RBT_Guide,
 };
 
-// °çÑİ½ÇÉ«£¬Èç¹û³¤Ê±¼äÎ´½øÈëÕ½³¡£¬ÖØĞÂ°çÑİ½ÇÉ«
+// æ‰®æ¼”è§’è‰²ï¼Œå¦‚æœé•¿æ—¶é—´æœªè¿›å…¥æˆ˜åœºï¼Œé‡æ–°æ‰®æ¼”è§’è‰²
 enum RobotRole
 {
 	RRIR_AsIdle,
@@ -83,37 +83,37 @@ enum RobotLoginState
 enum RobotAskState
 {
 	RS_AskNone,
-	RS_AskCompleteUserInfo,//²¹³äÓÃ»§ĞÅÏ¢
-	RS_AskCompleteUserInfoFailed,//²¹³äĞÅÏ¢Ê§°Ü
-	RS_AskCompleteUserInfoOk,//²¹³äĞÅÏ¢³É¹¦
-	RS_AskReEnterRoom,//ÇëÇóÖØ½ø·¿¼ä
-	RS_AskReEnterRoomFailed,//Ã»ÓĞ·¿¼ä
-	RS_AskMatchTeamList,//ÇëÇóÆ¥Åä×é¶Ó
-	RS_AskMatchTeamListFailed,//Ã»ÓĞ×é¶Ó
-	RS_AskCreateMatchTeam,//´´½¨Æ¥Åä¶ÓÎé
-	RS_AskCreateMatchTeamFailed,//´´½¨Æ¥Åä¶ÓÎéÊ§°Ü
-	RS_AskStartMatch,//¿ªÊ¼Æ¥Åä
-	RS_AskStartMatchFailed,//¿ªÊ¼Æ¥ÅäÊ§°Ü
-	RS_AskRoomList,//·¿¼äÁĞ±í
-	RS_AskRoomListFailed,//ÇëÇó·¿¼äÁĞ±íÊ§°Ü
-	RS_AskCreateRoom,//´´½¨·¿¼ä
-	RS_AskAddRoom,//¼ÓÈë·¿¼ä
-	RS_AskLeaveRoom,//Àë¿ª·¿¼ä
-	RS_AskReadyRoom,//×¼±¸·¿¼ä
-	RS_AskCancelReadyRoom,//È¡Ïû×¼±¸
-	RS_AskStartRoom,//¿ªÊ¼·¿¼ä
-	RS_AskStartRoomFailed,//¿ªÊ¼·¿¼äÊ§°Ü
-	RS_AskChangeRoomSeat,//ÇĞ»»·¿¼äÎ»ÖÃ
-	RS_AskEnterBattle,//¼ÓÈëÕ½¶·
-	RS_AskEnterBattleFailed,//¼ÓÈëÕ½¶·Ê§°Ü
+	RS_AskCompleteUserInfo,//è¡¥å……ç”¨æˆ·ä¿¡æ¯
+	RS_AskCompleteUserInfoFailed,//è¡¥å……ä¿¡æ¯å¤±è´¥
+	RS_AskCompleteUserInfoOk,//è¡¥å……ä¿¡æ¯æˆåŠŸ
+	RS_AskReEnterRoom,//è¯·æ±‚é‡è¿›æˆ¿é—´
+	RS_AskReEnterRoomFailed,//æ²¡æœ‰æˆ¿é—´
+	RS_AskMatchTeamList,//è¯·æ±‚åŒ¹é…ç»„é˜Ÿ
+	RS_AskMatchTeamListFailed,//æ²¡æœ‰ç»„é˜Ÿ
+	RS_AskCreateMatchTeam,//åˆ›å»ºåŒ¹é…é˜Ÿä¼
+	RS_AskCreateMatchTeamFailed,//åˆ›å»ºåŒ¹é…é˜Ÿä¼å¤±è´¥
+	RS_AskStartMatch,//å¼€å§‹åŒ¹é…
+	RS_AskStartMatchFailed,//å¼€å§‹åŒ¹é…å¤±è´¥
+	RS_AskRoomList,//æˆ¿é—´åˆ—è¡¨
+	RS_AskRoomListFailed,//è¯·æ±‚æˆ¿é—´åˆ—è¡¨å¤±è´¥
+	RS_AskCreateRoom,//åˆ›å»ºæˆ¿é—´
+	RS_AskAddRoom,//åŠ å…¥æˆ¿é—´
+	RS_AskLeaveRoom,//ç¦»å¼€æˆ¿é—´
+	RS_AskReadyRoom,//å‡†å¤‡æˆ¿é—´
+	RS_AskCancelReadyRoom,//å–æ¶ˆå‡†å¤‡
+	RS_AskStartRoom,//å¼€å§‹æˆ¿é—´
+	RS_AskStartRoomFailed,//å¼€å§‹æˆ¿é—´å¤±è´¥
+	RS_AskChangeRoomSeat,//åˆ‡æ¢æˆ¿é—´ä½ç½®
+	RS_AskEnterBattle,//åŠ å…¥æˆ˜æ–—
+	RS_AskEnterBattleFailed,//åŠ å…¥æˆ˜æ–—å¤±è´¥
 	RS_AskGMCmd,
-	RS_AskTryToSelectHero,//³¢ÊÔÑ¡ÔñÓ¢ĞÛ
+	RS_AskTryToSelectHero,//å°è¯•é€‰æ‹©è‹±é›„
 	RS_AskTryToSelectHeroFailed,//
 	RS_AskTryToSelectHeroOk,//
-	RS_AskSelectHero,//Ñ¡ÔñÓ¢ĞÛ
+	RS_AskSelectHero,//é€‰æ‹©è‹±é›„
 	RS_AskSelectHeroFailed,
 	RS_AskSelectHeroOk,
-	RS_AskLoadMapComplete,//ÔØÍ¼Íê³É
+	RS_AskLoadMapComplete,//è½½å›¾å®Œæˆ
 	RS_AskEnd,
 };
 
@@ -133,52 +133,52 @@ namespace ReBot
 		~CCClient();
 
 	public:
-		CRobotMgr* m_pRobotMgr;//¹ÜÀíÆ÷
-		UINT32 m_un32RobotID;//»úÆ÷ÈË±àºÅ
-		INT8 m_n8RobotSex;//ĞÔ±ğ
-		UINT32 m_un32HeaderID;//Í·Ïñ
-		INT32 m_n32NSID;//ÍøÂç±àºÅ
+		CRobotMgr* m_pRobotMgr;//ç®¡ç†å™¨
+		UINT32 m_un32RobotID;//æœºå™¨äººç¼–å·
+		INT8 m_n8RobotSex;//æ€§åˆ«
+		UINT32 m_un32HeaderID;//å¤´åƒ
+		INT32 m_n32NSID;//ç½‘ç»œç¼–å·
 		INT32 m_n32SSID;//SSID
-		EServerLinkType m_SLinkState;//µ±Ç°Á¬½Ó(LS,BS,GS)
-		RobotLoginState mLoginState;//µÇÂ¼×´Ì¬
-		RobotAskState m_eAskState;//ÇëÇó×´Ì¬
-		ESSBattleState m_eServerBattleState;//·şÎñÆ÷Õ½¶·×´Ì¬
+		EServerLinkType m_SLinkState;//å½“å‰è¿æ¥(LS,BS,GS)
+		RobotLoginState mLoginState;//ç™»å½•çŠ¶æ€
+		RobotAskState m_eAskState;//è¯·æ±‚çŠ¶æ€
+		ESSBattleState m_eServerBattleState;//æœåŠ¡å™¨æˆ˜æ–—çŠ¶æ€
 		DWORD m_ServerStartTime;
-		boost::atomic_bool m_bConnected;//ÊÇ·ñÒÑÁ¬½Ó
-		boost::atomic_bool m_bSendConnect;//ÊÇ·ñÒÑ·¢ËÍÁ¬½Ó
-		SGUID_KEY m_UserGUID;//ÓÃ»§guid
-		UINT32 m_MapID;//ÉÏÏß³õÊ¼»¯£¬Õ½³¡ÑûÇë//
-		UINT64 m_un64BattleID;//ÉÏÏß³õÊ¼»¯£¬Õ½³¡ÑûÇë
-		RobotBattleType m_BattleType;//ÓÃ»§×Ô¶¨ÒåÕ½³¡ÀàĞÍ
-		CRobotPlayer* m_pPlayer;//AI¹ÜÀíÆ÷
-		UINT8 m_un8SeatPos;//·¿¼äÎ»ÖÃºÅ
-		string m_sToken;//bs·µ»ØÁ¬½ÓgsµÄÃÜÂë
-		string m_gateIp;//bs·µ»ØµÄgate ip
-		UINT32 m_gatePort;//bs·µ»ØµÄgate port
-		string m_szUserName;//ÓÃ»§Ãû
-		string m_szUserPwd;//ÃÜÂë
-		string m_szNickName;//êÇ³Æ
-		string m_szUserNameRet;//GS·µ»ØµÄÓÃ»§Ãû
-		map<UINT32,RobotTimes> m_RoomCounter;//·¿¼ä¼ÆÊıÆ÷
-		std::vector<UINT32>	m_HeroVec;//¿ÉÑ¡Ó¢ĞÛÁĞ±í
-		GOMap m_pClientGameObjectMap;//ÓÎÏ·¶ÔÏó(¶ÏÏß¡¢Õ½³¡½áÊøÇåÀí)
+		boost::atomic_bool m_bConnected;//æ˜¯å¦å·²è¿æ¥
+		boost::atomic_bool m_bSendConnect;//æ˜¯å¦å·²å‘é€è¿æ¥
+		SGUID_KEY m_UserGUID;//ç”¨æˆ·guid
+		UINT32 m_MapID;//ä¸Šçº¿åˆå§‹åŒ–ï¼Œæˆ˜åœºé‚€è¯·//
+		UINT64 m_un64BattleID;//ä¸Šçº¿åˆå§‹åŒ–ï¼Œæˆ˜åœºé‚€è¯·
+		RobotBattleType m_BattleType;//ç”¨æˆ·è‡ªå®šä¹‰æˆ˜åœºç±»å‹
+		CRobotPlayer* m_pPlayer;//AIç®¡ç†å™¨
+		UINT8 m_un8SeatPos;//æˆ¿é—´ä½ç½®å·
+		string m_sToken;//bsè¿”å›è¿æ¥gsçš„å¯†ç 
+		string m_gateIp;//bsè¿”å›çš„gate ip
+		UINT32 m_gatePort;//bsè¿”å›çš„gate port
+		string m_szUserName;//ç”¨æˆ·å
+		string m_szUserPwd;//å¯†ç 
+		string m_szNickName;//æ˜µç§°
+		string m_szUserNameRet;//GSè¿”å›çš„ç”¨æˆ·å
+		map<UINT32,RobotTimes> m_RoomCounter;//æˆ¿é—´è®¡æ•°å™¨
+		std::vector<UINT32>	m_HeroVec;//å¯é€‰è‹±é›„åˆ—è¡¨
+		GOMap m_pClientGameObjectMap;//æ¸¸æˆå¯¹è±¡(æ–­çº¿ã€æˆ˜åœºç»“æŸæ¸…ç†)
 		RobotRole m_Role;
-		map<UINT32,SRoomInfo> mRoomlist;//»º´æ·¿¼äÁĞ±í
+		map<UINT32,SRoomInfo> mRoomlist;//ç¼“å­˜æˆ¿é—´åˆ—è¡¨
 		bool mHadOnce;
 		DWORD m_AskRoomListTime;
 		DWORD m_AskAddRoomTime;
 		DWORD m_RoomMasterWaitTime;
 		DWORD m_DisConnectTime;
-		map<UINT32,STeamInfo> mTeamList;//¶ÓÎéĞÅÏ¢
+		map<UINT32,STeamInfo> mTeamList;//é˜Ÿä¼ä¿¡æ¯
 		DWORD mTeamID;
 		INT32 m_LastErrorCode;
 
 	public:
 		void		SetRobotMgr(CRobotMgr*	pRobotMgr) { m_pRobotMgr = pRobotMgr; }
-		void		Connect();//ÍøÂçÁ¬½Ó
-		void		EnterBattle(DWORD curTime);//½øÈëÕ½³¡
-		void		PlayBattle(DWORD curTime);//Õ½³¡Íæ·¨
-		void		FinishBattle(DWORD curTime);//½áÊøÕ½³¡
+		void		Connect();//ç½‘ç»œè¿æ¥
+		void		EnterBattle(DWORD curTime);//è¿›å…¥æˆ˜åœº
+		void		PlayBattle(DWORD curTime);//æˆ˜åœºç©æ³•
+		void		FinishBattle(DWORD curTime);//ç»“æŸæˆ˜åœº
 		bool		HandleMsgFalter(INT32 n32NSID, const char* pMsg, int n32MsgLength, int n32MsgID);
 		INT32		HandleMsg(INT32 n32NSID, const char* pMsg, int n32MsgLength, int n32MsgID);
 		void		OnHeartBeat(DWORD curTime);
@@ -200,14 +200,14 @@ namespace ReBot
 
 	public:
 		INT32		AskCompleteUserInfo(const CHAR *szNickname, UINT32 un32HeaderID, INT8 n8Sex);
-		INT32		AskReEnterRoom();//ÇëÇóÖØ½ø·¿¼ä
-		INT32		AskMatchTeamList();//ÇëÇóÆ¥ÅäÁĞ±í
+		INT32		AskReEnterRoom();//è¯·æ±‚é‡è¿›æˆ¿é—´
+		INT32		AskMatchTeamList();//è¯·æ±‚åŒ¹é…åˆ—è¡¨
 
 	public:
 		INT32		AskCreateMatchTeam(UINT32 mapid, EBattleMatchType matchType);
 		INT32		AskStartMatch();
-		INT32		AskRoomList();//·¿ÓÑ²ßÂÔÑ¡Ôñ
-		INT32		AskCreateRoom();//·¿Ö÷²ßÂÔÑ¡Ôñ
+		INT32		AskRoomList();//æˆ¿å‹ç­–ç•¥é€‰æ‹©
+		INT32		AskCreateRoom();//æˆ¿ä¸»ç­–ç•¥é€‰æ‹©
 		INT32		AskAddRoom(UINT32 room);
 		INT32		AskStartRoom();
 		INT32		AskLeaveRoom();
@@ -217,7 +217,7 @@ namespace ReBot
 
 	public:
 		INT32		AskEnterBattle(UINT64 un64BattleID);
-		INT32		AskGMCmd(const char* gmCmd);//GMÃüÁî
+		INT32		AskGMCmd(const char* gmCmd);//GMå‘½ä»¤
 		INT32		AskTrySelectHero();
 		INT32		AskSelectHero();
 		INT32		AskLoadMapComplete();

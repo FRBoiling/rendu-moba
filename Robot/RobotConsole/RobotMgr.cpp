@@ -157,7 +157,7 @@ namespace ReBot
 		return eNormal;
 	}
 
-	//pb±ä¶¯£¬protobufÖØÔØ
+	//pbå˜åŠ¨ï¼Œprotobufé‡è½½
 	INT32	CRobotMgr::PostMsg(INT32 n32NSID, google::protobuf::Message& sMsg,int n32MsgID,EServerLinkType linkType)
 	{
 		map<EServerLinkType,SessionInfo *>::iterator iter = m_IpLinkInfo.find(linkType);

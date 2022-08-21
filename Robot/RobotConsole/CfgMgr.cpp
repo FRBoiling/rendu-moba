@@ -306,7 +306,7 @@ INT32	CCfgMgr::LoadHeroCfg(){
 				}
 			}
 
-			//ÍÆ¼ö¹ºÂòÎïÆ·ÁĞ±í
+			//æ¨èè´­ä¹°ç‰©å“åˆ—è¡¨
 			int itemIndex = 0;
 			std::string strPreItem = iterInfo->second.get<string>("un32PreItem","");
 			if(FALSE == strPreItem.empty()){
@@ -1503,7 +1503,7 @@ INT32	CCfgMgr::LoadPassitiveSkillCfg()
 				sTempCfg.lPassitiveEffectList[i] = atoi(sPassitiveVec[i].c_str());
 			}
 
-			//ÌØĞ§²¿·Ö
+			//ç‰¹æ•ˆéƒ¨åˆ†
 			sTempCfg.bIfHasStartEffect = iterInfo->second.get<string>("StartEffect") != "0"; 
 			sTempCfg.bIfHasReleaseEffect = iterInfo->second.get<string>("n32ReleaseAction") != "0" || iterInfo->second.get<string>("n32ReleaseSound") != "0" || iterInfo->second.get<string>("ReleaseEffect") != "0"; 
 
@@ -1690,9 +1690,9 @@ void	CCfgMgr::DoEventStr(std::string & str, SSNextSkillEffectCfg *asSkillModelLi
 		} 
 	}
 }
-//½âÎö×Ö·û´®£º20025:1000(20026:0,20017:500);20030:1000
-//½âÎö×Ö·û´®£º20025:1000;20030:1000
-//×¢:²»¿ÉÄÜÓĞ¶à²ãÒÁÄÎ£¬Ô¼¶¨×î¶à1²ãÒÁÄÎ(×î¶àÒ»²ã())
+//è§£æå­—ç¬¦ä¸²ï¼š20025:1000(20026:0,20017:500);20030:1000
+//è§£æå­—ç¬¦ä¸²ï¼š20025:1000;20030:1000
+//æ³¨:ä¸å¯èƒ½æœ‰å¤šå±‚ä¼Šå¥ˆï¼Œçº¦å®šæœ€å¤š1å±‚ä¼Šå¥ˆ(æœ€å¤šä¸€å±‚())
 #define SPILIT_STR_FEATURE_SEM ";"
 #define SPILIT_STR_FEATURE_COM "," 
 
@@ -1729,7 +1729,7 @@ void  CCfgMgr::SpilitEventStr(std::string & str, std::vector<SSNextSkillEffectCf
 	for (int i=0; i< tokens_Lv_1.size(); ++i)
 	{  
 		string strChild( tokens_Lv_1[i] );
-		tPos = strChild.find("(");	//ÊÇ·ñ´æÔÚ¹ØÏµÄ£¿é
+		tPos = strChild.find("(");	//æ˜¯å¦å­˜åœ¨å…³ç³»æ¨¡å—
 		if (-1 == tPos)
 		{
 			vector<string> tokens_Lv_2;
@@ -1745,7 +1745,7 @@ void  CCfgMgr::SpilitEventStr(std::string & str, std::vector<SSNextSkillEffectCf
 
 			bool bState = false;
 			tPos = strChild.find("(");
-			if (-1 != tPos)//ÏŞ¶¨Ö»ÓĞ1²ã¹ØÏµ
+			if (-1 != tPos)//é™å®šåªæœ‰1å±‚å…³ç³»
 			{
 				vector<string> tokens_Lv_2;
 				tokens_Lv_2.clear(); 
@@ -2063,7 +2063,7 @@ void CChineseCode::UTF_8ToUnicode(wchar_t* pOut,char *pText){
 }
 
 void CChineseCode::UnicodeToUTF_8(char* pOut,wchar_t* pText){
-	// ×¢Òâ WCHAR¸ßµÍ×ÖµÄË³Ğò,µÍ×Ö½ÚÔÚÇ°£¬¸ß×Ö½ÚÔÚºó
+	// æ³¨æ„ WCHARé«˜ä½å­—çš„é¡ºåº,ä½å­—èŠ‚åœ¨å‰ï¼Œé«˜å­—èŠ‚åœ¨å
 	char* pchar = (char *)pText;
 	pOut[0] = (0xE0 | ((pchar[1] & 0xF0) >> 4));
 	pOut[1] = (0x80 | ((pchar[1] & 0x0F) << 2)) + ((pchar[0] & 0xC0) >> 6);

@@ -17,19 +17,19 @@ bool	CCClient::HandleMsgFalter(INT32 n32NSID, const char* pMsg, int n32MsgLength
 {
 	switch(n32MsgID)
 	{
-	case (int)LSToGC::MsgID::eMsgToGCFromLS_NotifyLoginResult://lsµÇÂ¼·µ»ØÊ§°Ü£¨Ê§°ÜÖØĞÂ×ßlsµÇÂ¼£©
+	case (int)LSToGC::MsgID::eMsgToGCFromLS_NotifyLoginResult://lsç™»å½•è¿”å›å¤±è´¥ï¼ˆå¤±è´¥é‡æ–°èµ°lsç™»å½•ï¼‰
 		OnMsg_NotifySdkLoginResult(pMsg,n32MsgLength,n32MsgID);
 		break;
-	case (int)LSToGC::MsgID::eMsgToGCFromLS_NotifyServerBSAddr://lsµÇÂ¼·µ»ØbsÁĞ±í£¨¿ªÊ¼Á¬½Óbs£©
+	case (int)LSToGC::MsgID::eMsgToGCFromLS_NotifyServerBSAddr://lsç™»å½•è¿”å›bsåˆ—è¡¨ï¼ˆå¼€å§‹è¿æ¥bsï¼‰
 		OnMsg_NotifyServerAddr(pMsg,n32MsgLength,n32MsgID);
 		break;
-	case (int)BSToGC::MsgID::eMsgToGCFromBS_OneClinetLoginCheckRet://bsµÇÂ¼·µ»ØÊÇ·ñ³É¹¦£¨Ê§°ÜÖØĞÂ×ßlsµÇÂ¼£©
+	case (int)BSToGC::MsgID::eMsgToGCFromBS_OneClinetLoginCheckRet://bsç™»å½•è¿”å›æ˜¯å¦æˆåŠŸï¼ˆå¤±è´¥é‡æ–°èµ°lsç™»å½•ï¼‰
 		OnMsg_OneClinetLoginCheckRet(pMsg,n32MsgLength,n32MsgID);
 		break;
-	case (int)BSToGC::MsgID::eMsgToGCFromBS_AskGateAddressRet://bsµÇÂ¼³É¹¦²¢·ÖÅäÁËgs£¨¿ªÊ¼Á¬½Ógs£¬Î´ÊÕµ½Íæ¼Ò»ù±¾ĞÅÏ¢ÖØĞÂ×ßlsµÇÂ¼£¬ÈôÊÕµ½ÁËÔò¶ÏÏßÖØÁ¬£©
+	case (int)BSToGC::MsgID::eMsgToGCFromBS_AskGateAddressRet://bsç™»å½•æˆåŠŸå¹¶åˆ†é…äº†gsï¼ˆå¼€å§‹è¿æ¥gsï¼Œæœªæ”¶åˆ°ç©å®¶åŸºæœ¬ä¿¡æ¯é‡æ–°èµ°lsç™»å½•ï¼Œè‹¥æ”¶åˆ°äº†åˆ™æ–­çº¿é‡è¿ï¼‰
 		OnMsg_NotifyGateServerInfo(pMsg,n32MsgLength,n32MsgID);
 		break;
-	case (int)GSToGC::MsgID::eMsgToGCFromGS_NotifyUserBaseInfo://gsµÇÂ¼³É¹¦·µ»ØÁËÓÃ»§ĞÅÏ¢
+	case (int)GSToGC::MsgID::eMsgToGCFromGS_NotifyUserBaseInfo://gsç™»å½•æˆåŠŸè¿”å›äº†ç”¨æˆ·ä¿¡æ¯
 		OnMsgFromGS_NotifyUserBaseInfo(pMsg,n32MsgLength,n32MsgID);
 		break;
 	case (int)GSToGC::MsgID::eMsgToGCFromCS_NotifyIsOnSS:
@@ -139,7 +139,7 @@ INT32	CCClient::HandleMsg(INT32 n32NSID, const char* pMsg, int n32MsgLength, int
 	case (int)GSToGC::MsgID::eMsgToGCFromGS_NotifyPassitiveSkillUnload:
 		OnMsg_NotifyPassitiveSkillUnLoad(pMsg,n32MsgLength,n32MsgID);
 		break;
-		//Ã»ÓĞº¯ÊıÌå
+		//æ²¡æœ‰å‡½æ•°ä½“
 	case GSToGC::MsgID::eMsgToGCFromGS_NotifySkillModelEmit:
 	case GSToGC::MsgID::eMsgToGCFromGS_NotifySkillModelHitTarget:
 	case GSToGC::MsgID::eMsgToGCFromGS_NotifySkillModelRange:
@@ -161,7 +161,7 @@ INT32	CCClient::HandleMsg(INT32 n32NSID, const char* pMsg, int n32MsgLength, int
 	case (int)GSToGC::MsgID::eMsgToGCFromGS_NotifyCurDeadTimes:
 		OnMsg_NotifyCurDeadTimes(pMsg,n32MsgLength,n32MsgID);
 		break;
-		//Ã»ÓĞº¯ÊıÌå
+		//æ²¡æœ‰å‡½æ•°ä½“
 	case (int)GSToGC::MsgID::eMsgToGCFromGS_NotifyGameObjectSkillCD:
 		break;
 	case (int)GSToGC::MsgID::eMsgToGCFromGS_NotifyAbsorbMonsterResult:
@@ -339,7 +339,7 @@ INT32 CCClient::OnMsg_NotifyGoodsInfo(const char* pMsg,int n32MsgLength,int n32M
 	{
 		const GSToGC::NotifyGoodsInfo::GoodsInfo& info = msg->info(i);
 		UINT8 un8Pos = info.pos();
-		UINT8 un8IsComposed = info.ifcomposed()?1:0;//ÆäÊµÃ»ÓÃÉÏ 
+		UINT8 un8IsComposed = info.ifcomposed()?1:0;//å…¶å®æ²¡ç”¨ä¸Š 
 		INT32 n32Num = info.num();
 		UINT32 un32TypeId = info.tyepid();
 		INT32 n32State = info.state();
@@ -363,7 +363,7 @@ INT32 CCClient::OnMsgFromGS_NotifySkillInfo(const char* pMsg,int n32MsgLength,in
 	return eNormal;
 }
 
-//Î´µ÷ÓÃ
+//æœªè°ƒç”¨
 INT32 CCClient::OnMsg_NotifySkillID(const char* pMsg,int n32MsgLength,int n32MsgID){
 	//BYTE *pbDataPos = (BYTE*)(psMsgHeader + 1);
 	//SGUID_KEY sGUID = *(SGUID_KEY*)pbDataPos;
@@ -468,12 +468,12 @@ INT32 CCClient::OnMsgFromGS_NotifyFightPropertyInfo(const char* pMsg,int n32MsgL
 	return eNormal;
 }
 
-// ¸Ãº¯ÊıÈ«ÊÇÖ´ĞĞ´íÎóµÄ·µ»Ø´úÂë
+// è¯¥å‡½æ•°å…¨æ˜¯æ‰§è¡Œé”™è¯¯çš„è¿”å›ä»£ç 
 INT32 CCClient::OnMsgFromGS_GCAskRetError(const char* pMsg,int n32MsgLength,int n32MsgID)
 {
 	std::auto_ptr<GSToGC::AskRet> msg(new GSToGC::AskRet);
 	msg->ParseFromArray(pMsg,n32MsgLength);
-	m_LastErrorCode = msg->errorcode();//×îºóÒ»´Î´íÎó´úÂë
+	m_LastErrorCode = msg->errorcode();//æœ€åä¸€æ¬¡é”™è¯¯ä»£ç 
 	switch(msg->askid()){
 	case GSToGC::eMsgToGCFromGS_GCAskPingRet:
 		OnMsg_NotifyPing(pMsg,n32MsgLength,n32MsgID);
@@ -541,23 +541,23 @@ INT32 CCClient::OnMsg_NotifyLeaveBattleSuccess(){
 	return eNormal;
 }
 
-//Î´µ÷ÓÃ
+//æœªè°ƒç”¨
 INT32 CCClient::OnMsg_NotifyPing(const char* pMsg,int n32MsgLength,int n32MsgID){
 	return eNormal;
 }
 
-// ÊÕµ½¸ÃÏûÏ¢£¬´ú±íÄãÔÚÕ½³¡ÖĞÁË¡£
+// æ”¶åˆ°è¯¥æ¶ˆæ¯ï¼Œä»£è¡¨ä½ åœ¨æˆ˜åœºä¸­äº†ã€‚
 INT32 CCClient::OnMsgFromGS_NotifyBattleBaseInfo(const char* pMsg,int n32MsgLength,int n32MsgID){
 	std::auto_ptr<GSToGC::BattleBaseInfo> msg(new GSToGC::BattleBaseInfo);
 	msg->ParseFromArray(pMsg,n32MsgLength);
 	m_MapID = msg->mapid();
 	m_un64BattleID = msg->battleid();
 	Assert(m_eServerBattleState==eSSBS_Invalid);
-	bool isReconnect = msg->ifreconnect();//ÄãÊÇ·ñÒÔÇ°µôÏß¹ı...
+	bool isReconnect = msg->ifreconnect();//ä½ æ˜¯å¦ä»¥å‰æ‰çº¿è¿‡...
 	return eNormal;
 }
 
-// ÊÕµ½¸ÃÏûÏ¢£¬·şÎñÆ÷Õ½³¡×´Ì¬¸Ä±äÁË¡£
+// æ”¶åˆ°è¯¥æ¶ˆæ¯ï¼ŒæœåŠ¡å™¨æˆ˜åœºçŠ¶æ€æ”¹å˜äº†ã€‚
 INT32	CCClient::OnMsgFromGS_NotifyBattleStateChange(const char* pMsg,int n32MsgLength,int n32MsgID){
 	std::auto_ptr<GSToGC::BattleStateChange> msg(new GSToGC::BattleStateChange);
 	msg->ParseFromArray(pMsg,n32MsgLength);
@@ -566,7 +566,7 @@ INT32	CCClient::OnMsgFromGS_NotifyBattleStateChange(const char* pMsg,int n32MsgL
 	return eNormal;
 }
 
-// ÊÕµ½¸ÃÏûÏ¢£¬´ú±íÄã¿ÉÒÔÉèÖÃ·¿¼äÁË¡£
+// æ”¶åˆ°è¯¥æ¶ˆæ¯ï¼Œä»£è¡¨ä½ å¯ä»¥è®¾ç½®æˆ¿é—´äº†ã€‚
 INT32	CCClient::OnMsgFromGS_NotifyBattleSeatPosInfo(const char* pMsg,int n32MsgLength,int n32MsgID){
 	std::auto_ptr<GSToGC::BattleSeatPosInfo> msg(new GSToGC::BattleSeatPosInfo);
 	msg->ParseFromArray(pMsg,n32MsgLength);
@@ -734,7 +734,7 @@ INT32	CCClient::OnMsgFromGS_NotifyGameObjectReleaseSkillState(const char* pMsg,i
 	return eNormal;
 }
 
-// ÊÕµ½ÓûÑ¡ÔñÓ¢ĞÛÁĞ±í
+// æ”¶åˆ°æ¬²é€‰æ‹©è‹±é›„åˆ—è¡¨
 INT32	CCClient::OnMsgFromGS_NotifyBattleTryHeroInfo(const char* pMsg,int n32MsgLength,int n32MsgID){
 	if (m_eAskState==RS_AskTryToSelectHero) m_eAskState = RS_AskTryToSelectHeroFailed;
 	std::auto_ptr<GSToGC::TryToChooseHero> msg(new GSToGC::TryToChooseHero);
@@ -747,7 +747,7 @@ INT32	CCClient::OnMsgFromGS_NotifyBattleTryHeroInfo(const char* pMsg,int n32MsgL
 	return eNormal;
 }
 
-// ÊÕµ½ÒÑÑ¡ÔñÓ¢ĞÛÁĞ±í
+// æ”¶åˆ°å·²é€‰æ‹©è‹±é›„åˆ—è¡¨
 INT32	CCClient::OnMsgFromGS_NotifyBattleHeroInfo(const char* pMsg,int n32MsgLength,int n32MsgID){
 	if (m_eAskState==RS_AskSelectHero) m_eAskState = RS_AskSelectHeroFailed;
 	std::auto_ptr<GSToGC::HeroInfo> msg(new GSToGC::HeroInfo);
@@ -819,11 +819,11 @@ INT32 CCClient::OnMsg_NotifySdkLoginResult( const char* pMsg,int n32MsgLength,in
 	std::auto_ptr<LSToGC::LoginResult> msg(new LSToGC::LoginResult);
 	msg->ParseFromArray(pMsg,n32MsgLength);
 	ELOG(LOG_ERROR,"ls check false robotid:%u reson:%d", m_un32RobotID, msg->result());
-	// µÇÂ¼Ê§°ÜÒª¶Ï¿ªÁ¬½ÓÖØĞÂµÇÂ¼
+	// ç™»å½•å¤±è´¥è¦æ–­å¼€è¿æ¥é‡æ–°ç™»å½•
 	return eNormal;
 }
 
-INT32 CCClient::OnMsg_NotifyServerAddr( const char* pMsg,int n32MsgLength,int n32MsgID )// »ñµÃ·şÎñÆ÷ÁĞ±í
+INT32 CCClient::OnMsg_NotifyServerAddr( const char* pMsg,int n32MsgLength,int n32MsgID )// è·å¾—æœåŠ¡å™¨åˆ—è¡¨
 {
 	Assert(mLoginState==RLS_LsAskLogin);
 	mLoginState = RLS_LsHadGetBsAddress;
@@ -838,13 +838,13 @@ INT32 CCClient::OnMsg_OneClinetLoginCheckRet( const char* pMsg,int n32MsgLength,
 	mLoginState = RLS_BsAskLoginRet;
 	std::auto_ptr<BSToGC::ClinetLoginCheckRet> msg(new BSToGC::ClinetLoginCheckRet);
 	msg->ParseFromArray(pMsg,n32MsgLength);
-	if(msg->login_success() != 1){//µÇÂ¼bsÊ§°Ü//
+	if(msg->login_success() != 1){//ç™»å½•bså¤±è´¥//
 		NetworkClose(eServerLink_BS);
 	}
 	return eNormal;
 }
 
-INT32 CCClient::OnMsg_NotifyGateServerInfo( const char* pMsg,int n32MsgLength,int n32MsgID )//»ñµÃgate serverĞÅÏ¢
+INT32 CCClient::OnMsg_NotifyGateServerInfo( const char* pMsg,int n32MsgLength,int n32MsgID )//è·å¾—gate serverä¿¡æ¯
 {
 	Assert(mLoginState==RLS_BsAskLoginRet);
 	mLoginState = RLS_BsHadGetGsAddress;

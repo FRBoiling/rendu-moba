@@ -6,7 +6,7 @@
 namespace ReBot
 {
 
-//pb�䶯
+//pb变动
 #define AskInsideMsgMarcos return m_pRobotMgr->PostMsg(m_n32NSID, pMsg, pMsg.msgnum());
 
 INT32 CCClient::AskCompleteUserInfo(const CHAR *cpszNickName, UINT32 un32HeaderID, INT8 n8Sex){

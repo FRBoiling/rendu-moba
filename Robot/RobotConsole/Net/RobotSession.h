@@ -24,7 +24,7 @@ protected:
 public:
 	static CMsgHandle_Central mHandles;
 	static MessageLite* Msg_Create_None() { return NULL; }
-	//pb�䶯
+	//pb变动
 	//static bool Msg_Handle_Init(MessageLite* pBaseMsg,INetSession* vthis);
 	//static bool Msg_Handle_Dispath(MessageLite* pBaseMsg,INetSession* vthis);
 	static bool Msg_Handle_Init(const char* pMsg, int n32MsgLength, INetSession* vthis, int n32MsgID);
