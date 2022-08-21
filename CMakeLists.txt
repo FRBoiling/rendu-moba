@@ -2,7 +2,7 @@
 #  Created by boil on 2022/8/14.
 #**********************************
 
-cmake_minimum_required(VERSION 3.11)
+cmake_minimum_required(VERSION 3.23)
 
 # add this options before PROJECT keyword
 set(CMAKE_DISABLE_SOURCE_CHANGES ON)
@@ -14,6 +14,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Set projectname (must be done AFTER setting configurationtypes)
 project(rendu-moba)
+
+# CMake policies (can not be handled elsewhere)
+cmake_policy(SET CMP0005 NEW)
+cmake_policy(SET CMP0043 NEW) # Cotire isn't used so set to NEW
+cmake_policy(SET CMP0054 NEW) # Only interpret if() arguments as variables or keywords when unquoted - prevents intepreting if(SOME_STRING_VARIABLE MATCHES "MSVC") as if(SOME_STRING_VARIABLE MATCHES "1")
+
+if(POLICY CMP0074)
+  cmake_policy(SET CMP0074 NEW) # find_package() uses <PackageName>_ROOT variables
+endif()
 
 # Set RPATH-handing (CMake parameters)
 set(CMAKE_SKIP_BUILD_RPATH 0)
@@ -41,10 +50,7 @@ include(CheckPlatform)
 include(GroupSources)
 include(AutoCollect)
 
-# find mysql client binary (needed by genrev)
-find_package(MySQL OPTIONAL_COMPONENTS binary)
-
 # add dependencies
 add_subdirectory(deps)
-# add core sources
+## add core sources
 add_subdirectory(src)
