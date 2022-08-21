@@ -85,7 +85,7 @@ bool CM2CSession::Msg_Handle_Init(const char* pMsg, int n32MsgLength, INetSessio
 		CGSKernel::GetStaticGSKernel().m_n32PostSSConnectNum = 0;
 
 		for(UINT32 i = 0; i < pAskRegisteRet->ssinfo_size(); i++){
-			// ÏûÏ¢½âÂë//
+			// æ¶ˆæ¯è§£ç //
 			if (0 == pAskRegisteRet->ssinfo(i).ssid()) 
 				continue;
 

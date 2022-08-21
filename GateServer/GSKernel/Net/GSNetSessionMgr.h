@@ -6,9 +6,9 @@
 struct SProfileNet
 {
 	UINT32 mClientCount;
-	UINT32 mTimeForDealWithMsg;//处理消息时间//
-	UINT32 mTimeForDealWithOther;//其他网络时间//
-	std::map<UINT32,UINT32> mMessageCount;//消息数量//
+	UINT32 mTimeForDealWithMsg;//澶勭悊娑堟伅鏃堕棿//
+	UINT32 mTimeForDealWithOther;//鍏朵粬缃戠粶鏃堕棿//
+	std::map<UINT32,UINT32> mMessageCount;//娑堟伅鏁伴噺//
 };
 
 extern SProfileNet gProfileNet;

@@ -159,7 +159,7 @@ INT32 CGSKernel::ReportGsInfo(TIME_TICK tUICMilsec){
 	static TIME_TICK nextReportTime = tUICMilsec;
 	if(nextReportTime > tUICMilsec) 
 		return eNormal;
-	nextReportTime = tUICMilsec + 2000;//2Ãë¼ä¸ô
+	nextReportTime = tUICMilsec + 2000;//2ç§’é—´éš”
 
 	GSToBS::ReportAllClientInf sMsg;
 	sMsg.set_tokenlist_size(m_UserTokenList.size());
@@ -204,10 +204,10 @@ INT32 CGSKernel::ChechUserToken( TIME_TICK tUICMilsec )
 	{
 		SUserToken* userToken = it->second;
 		if (userToken->NetSessionID==0 && 
-			tUICMilsec>userToken->OverTime)//×î´óÖØÁ·³¬Ê±ÏÞÖÆ//
+			tUICMilsec>userToken->OverTime)//æœ€å¤§é‡ç»ƒè¶…æ—¶é™åˆ¶//
 		{
 			for (auto it2=m_UserTokenListByNsId.begin();it2!=m_UserTokenListByNsId.end();++it2){
-				Assert(it2->second!=userToken);//¼ì²éÃ»ÓÐ¶ÔÏóÒýÓÃËü
+				Assert(it2->second!=userToken);//æ£€æŸ¥æ²¡æœ‰å¯¹è±¡å¼•ç”¨å®ƒ
 			}
 			it = m_UserTokenList.erase(it);
 			delete userToken;
@@ -234,7 +234,7 @@ bool CGSKernel::IsUserCanLogin(const string& sUserName,const std::string& sToken
 			if (userToken->ReconnectCount>INT_MAX)
 			{
 				Assert(false);
-				m_UserTokenList.erase(it);//×î´óÖØÁ·´ÎÊýÏÞÖÆ//
+				m_UserTokenList.erase(it);//æœ€å¤§é‡ç»ƒæ¬¡æ•°é™åˆ¶//
 			}
 			else
 			{
@@ -243,7 +243,7 @@ bool CGSKernel::IsUserCanLogin(const string& sUserName,const std::string& sToken
 					m_UserTokenListByNsId.erase(userToken->NetSessionID);
 				}
 				for (auto it=m_UserTokenListByNsId.begin();it!=m_UserTokenListByNsId.end();++it){
-					Assert(it->second!=userToken);//¼ì²éÃ»ÓÐ¶ÔÏóÒýÓÃËü
+					Assert(it->second!=userToken);//æ£€æŸ¥æ²¡æœ‰å¯¹è±¡å¼•ç”¨å®ƒ
 				}
 				userToken->OverTime = 0;
 				userToken->NetSessionID = nsId;

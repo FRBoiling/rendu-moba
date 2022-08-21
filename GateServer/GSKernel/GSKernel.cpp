@@ -113,11 +113,11 @@ INT32	CGSKernel::Initialize()
 INT32	CGSKernel::Start()
 {
 	GSNetSessionMgr* pNetSession = new GSNetSessionMgr;
-	// ÔÊÐí¿Í»§¶ËÁ¬½Ó
+	// å…è®¸å®¢æˆ·ç«¯è¿žæŽ¥
 	pNetSession->CreateListener(m_sGSConfig.n32GCListenPort,102400,102400,0);
-	// Á¬½ÓÖÐÐÄ·þÎñÆ÷
+	// è¿žæŽ¥ä¸­å¿ƒæœåŠ¡å™¨
 	pNetSession->CreateConnector(ST_CLIENT_G2C,m_sGSConfig.sCSIP.aszIPAddr,m_sGSConfig.n32CSPort,10240000,40960000,0);
-	// Á¬½ÓDBServer
+	// è¿žæŽ¥DBServer
 	pNetSession->CreateConnector(ST_CLIENT_G2B,m_sGSConfig.sBSListenIP.aszIPAddr,m_sGSConfig.n32BSListenPort,1024000,1024000,0);
 
 	//reset member variables.

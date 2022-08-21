@@ -15,7 +15,7 @@ CMsgHandle_Client::CMsgHandle_Client()
 CClientSession::CClientSession()
 {
 	mLogicInited = false;
-	SetSendBufferMaxSize(10*1024);//·¢ËÍ»º´æÎª10K//
+	SetSendBufferMaxSize(10*1024);//å‘é€ç¼“å­˜ä¸º10K//
 }
 
 CClientSession::~CClientSession()

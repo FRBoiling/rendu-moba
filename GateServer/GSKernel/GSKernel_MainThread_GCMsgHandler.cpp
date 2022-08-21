@@ -29,7 +29,7 @@ INT32	CGSKernel::OnMsgFromGC(INT32 n32NSID, const char* pMsg, int n32MsgLength, 
 				ELOG(LOG_ERROR, "");
 				return 0;
 			}
-			//验证token
+			//楠岃瘉token
 			if (!IsUserCanLogin(pLogin.name(), pLogin.passwd(), n32NSID)){
 				ELOG(LOG_ERROR, "user %s can't login with token %s", pLogin.name().c_str(), pLogin.passwd().c_str());
 				GSToGC::NetClash sMsg;
@@ -37,7 +37,7 @@ INT32	CGSKernel::OnMsgFromGC(INT32 n32NSID, const char* pMsg, int n32MsgLength, 
 				PostGameClientDisconnect(n32NSID);
 				return eNormal;
 			}
-			//获取IP
+			//鑾峰彇IP
 			INetSession* pClient = INetSessionMgr::GetInstance()->GetSession(n32NSID);
 			if (NULL != pClient){
 				const char* ipAddr = pClient->GetRemoteIp();
@@ -64,7 +64,7 @@ INT32	CGSKernel::OnMsgFromGC(INT32 n32NSID, const char* pMsg, int n32MsgLength, 
 				ELOG(LOG_ERROR, "");
 				return 0;
 			}
-			//验证token
+			//楠岃瘉token
 			if (!IsUserCanLogin(pReconnectToGame.name(), pReconnectToGame.passwd(), n32NSID)){
 				ELOG(LOG_ERROR, "user %s can't login with token %s", pReconnectToGame.name().c_str(), pReconnectToGame.passwd().c_str());
 				GSToGC::NetClash sMsg;

@@ -50,7 +50,7 @@ void CM2SSession::OnRealEstablish()
 		return;
 	}
 	ELOG(LOG_INFO,"SS(%u) Connected and register ok.",pcSSInfo->GetSSID());
-	pcSSInfo->m_n32NSID = GetID();//网络对象知道逻辑对象，现在让逻辑对象知道网络对象//
+	pcSSInfo->m_n32NSID = GetID();//缃戠粶瀵硅薄鐭ラ亾閫昏緫瀵硅薄锛岀幇鍦ㄨ閫昏緫瀵硅薄鐭ラ亾缃戠粶瀵硅薄//
 	pcSSInfo->m_tLastConnMilsec = GetMiliSecond();
 	pcSSInfo->m_tPingTickCounter = 0;
 }
@@ -63,7 +63,7 @@ void CM2SSession::OnClose(){
 	}
 	ELOG(LOG_INFO,"SS(%u) DisConnect.",pcSSInfo->GetSSID());
 	CGSKernel::GetStaticGSKernel().OnEvent(EVT_ON_SS_DISCONNECT, pcSSInfo);
-	pcSSInfo->m_n32NSID = 0;//逻辑对象不再知道网络对象//
+	pcSSInfo->m_n32NSID = 0;//閫昏緫瀵硅薄涓嶅啀鐭ラ亾缃戠粶瀵硅薄//
 }
 
 bool CM2SSession::Msg_Handle_Init(const char* pMsg, int n32MsgLength, INetSession* vthis, int n32MsgID){

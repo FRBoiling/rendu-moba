@@ -43,7 +43,7 @@ INT32	CGSKernel::OnMsgFromCS_AskPingRet(const char* pMsg, int n32MsgLength){
 	return eNormal;
 }
 
-// ÖÐÐÄ·þÎñÆ÷ÒªÇóÍø¹Ø¿ª·þ£¬ÔÊÐí¿Í»§¶ËÁ´½Ó
+// ä¸­å¿ƒæœåŠ¡å™¨è¦æ±‚ç½‘å…³å¼€æœï¼Œå…è®¸å®¢æˆ·ç«¯é“¾æŽ¥
 INT32	CGSKernel::OnMsgFromCS_OrderOpenListen(const char* pMsg, int n32MsgLength){
 	INetSessionMgr::GetInstance()->CreateListener(m_sGSConfig.n32GCListenPort,10240,10240,0);
 	return eNormal;
