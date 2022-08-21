@@ -6,17 +6,17 @@ class INetSession;
 #include "..\PointerPoll.h"
 #include "NetPointerPool.h"
 
-// ÍøÂçÏûÏ¢Í·£¬»ñÈ¡ÍøÂçÊı¾İ
+// ç½‘ç»œæ¶ˆæ¯å¤´ï¼Œè·å–ç½‘ç»œæ•°æ®
 struct SNetHeader
 {
 	int size;
 	int type;
 };
 
-// ÍøÂçÏûÏ¢½á¹¹Ìå
+// ç½‘ç»œæ¶ˆæ¯ç»“æ„ä½“
 typedef bool (*msg_handle)(const char* pMsg, int n32MsgLength, INetSession* vthis, int n32MsgID);
 
-// ÍøÂçÏûÏ¢½Úµã£¬½âÎöÍøÂçÊı¾İ==>ÍøÂçÏûÏ¢£¬²¢·Ö·¢Ö®
+// ç½‘ç»œæ¶ˆæ¯èŠ‚ç‚¹ï¼Œè§£æç½‘ç»œæ•°æ®==>ç½‘ç»œæ¶ˆæ¯ï¼Œå¹¶åˆ†å‘ä¹‹
 struct MsgNode
 {
 	msg_handle mHandle;

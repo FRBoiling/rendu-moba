@@ -28,13 +28,13 @@ public:
 	UINT32 AddPointer(T* pointer)
 	{
 		if (mMaxPos<PP_MAX)
-		{//1,Ôö¼Óµ½×î´óÖµ//
+		{//1,å¢åŠ åˆ°æœ€å¤§å€¼//
 			mPointers[mMaxPos] = pointer;
 			mPointerMap.push_back(pointer);
 			return mMaxPos++;
 		}
 		else if (mInvalidPos.size()>0)
-		{//2,»ñÈ¡ÎŞĞ§ÁĞ±í//
+		{//2,è·å–æ— æ•ˆåˆ—è¡¨//
 			UINT32 invalidPos = mInvalidPos.front();
 			if (invalidPos!=PP_INVALID)
 			{

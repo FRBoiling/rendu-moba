@@ -25,7 +25,7 @@ public:
 	void SendMsgToSession(SESSION_TYPE stype, int sessionId, google::protobuf::Message& sMsg, int n32MsgID);
 	void SendMsgToSession(SESSION_TYPE stype, int sessionId, const std::string& sMsg, int n32MsgID);
 	void SendMsgToSession(SESSION_TYPE stype, int sessionId, const char* pMsgBuffer, int n32MsgLen, int n32MsgID);
-	void TranMsgToSession(SESSION_TYPE stype, int sessionId, const char* pMsgBuffer, int n32MsgLen, int n32MsgID, int n32TransId, int n32GcNet);//ÓÅ»¯GS×¨ÓÃ(²»½âÎöpb)
+	void TranMsgToSession(SESSION_TYPE stype, int sessionId, const char* pMsgBuffer, int n32MsgLen, int n32MsgID, int n32TransId, int n32GcNet);//ä¼˜åŒ–GSä¸“ç”¨(ä¸è§£æpb)
 	void Send(SESSION_TYPE stype, int sessionId,char* pBuffer);
 	void StopListener(int pos) { if (pos<MAX_COUNT_LISTENER){ mListener[pos]->Stop(); } } 
 	void DisconnectOne(int sessionId);
@@ -39,11 +39,11 @@ public:
 public:
 	virtual INT32 UCAPI ParsePacket(const char* pBuf, UINT32 dwLen);
 public:
-	IUCNet* mNetModule;//ÍøÂçÄ£¿é
-	ISDListener* mListener[MAX_COUNT_LISTENER];//±»¶¯¼àÌı
-	static INetSessionMgr* mInstance;//µ¥Àı
-	bool mIsUnSafeSend;//ÊÇ·ñĞèÒª°²È«·¢ËÍ
-	CRITICAL_SECTION mNetworkCs;//ÁÙ½çÇø
-	vector<char*> m_SafeQueue;//°²È«¶ÓÁĞ
-	NetPointerPool<INetSession> m_AllSessions;//Ö¸Õë³Ø
+	IUCNet* mNetModule;//ç½‘ç»œæ¨¡å—
+	ISDListener* mListener[MAX_COUNT_LISTENER];//è¢«åŠ¨ç›‘å¬
+	static INetSessionMgr* mInstance;//å•ä¾‹
+	bool mIsUnSafeSend;//æ˜¯å¦éœ€è¦å®‰å…¨å‘é€
+	CRITICAL_SECTION mNetworkCs;//ä¸´ç•ŒåŒº
+	vector<char*> m_SafeQueue;//å®‰å…¨é˜Ÿåˆ—
+	NetPointerPool<INetSession> m_AllSessions;//æŒ‡é’ˆæ± 
 };

@@ -33,7 +33,7 @@ public:
 	UINT32 AddPointer(T* pointer,UINT32 income,UINT32& vritual_income)
 	{
 		if (mMaxPos<PP_MAX)
-		{//1,Ôö¼Óµ½×î´óÖµ//
+		{//1,å¢žåŠ åˆ°æœ€å¤§å€¼//
 			mPointers[mMaxPos] = pointer;
 			vritual_income = income;
 			while(mIncrease[vritual_income%PP_MAX]!=0) { ++vritual_income; }
@@ -42,7 +42,7 @@ public:
 			return mMaxPos++;
 		}
 		else
-		{//2,»ñÈ¡ÎÞÐ§ÁÐ±í//
+		{//2,èŽ·å–æ— æ•ˆåˆ—è¡¨//
 			UINT32 invalidPos = GetInvalid();
 			if (invalidPos!=PP_INVALID)
 			{
@@ -93,7 +93,7 @@ public:
 		return NULL;
 	}
 private:
-	void SetInvalid(UINT32 pos)//ºóÃæ·ÅÈë//
+	void SetInvalid(UINT32 pos)//åŽé¢æ”¾å…¥//
 	{
 		mPointers[pos] = (T*)PP_INVALID;
 		if (mInvalidPos_Begin==PP_INVALID)
@@ -107,7 +107,7 @@ private:
 			mInvalidPos_Finish = pos;
 		}
 	}
-	UINT32 GetInvalid()//Ç°ÃæÈ¡³ö//
+	UINT32 GetInvalid()//å‰é¢å–å‡º//
 	{
 		if (mInvalidPos_Begin==PP_INVALID) return PP_INVALID;
 		UINT32 first = mInvalidPos_Begin;
@@ -116,7 +116,7 @@ private:
 	}
 private:
 	T* mPointers[PP_MAX];
-	UINT32 mIncrease[PP_MAX];//µÝÔöID
+	UINT32 mIncrease[PP_MAX];//é€’å¢žID
 	UINT32 mMaxPos;
 	typedef typename std::map<UINT32,T*> PointerList;
 	typedef typename std::map<UINT32,T*>::iterator PointerListIt;

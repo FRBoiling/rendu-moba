@@ -17,7 +17,7 @@ public:
 	bool GetCanReconnectTag(){return mReconnectTag;}
 public:
 	virtual void UCAPI OnEstablish(void);
-	virtual void UCAPI Release(void) {/*触发重连,不释放该对象*/}
+	virtual void UCAPI Release(void) {/*瑙﹀彂閲嶈繛,涓嶉噴鏀捐瀵硅薄*/}
 private:
 	ISDConnector* m_poConnector;
 	UINT32 mReconTime;
